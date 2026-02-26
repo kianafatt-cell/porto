@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rijal's Portfolio - A journey of growth, exploration, and consistent learning." />
+  <title>Rijal | Student Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#0a0a0a;
+      --bg1:#111;
+      --bg2:#1c1c1c;
+      --card:#141414;
+      --card2:#1b1b1b;
+      --text:#f2f2f2;
+      --muted:#bdbdbd;
+      --line:#2c2c2c;
+      --glow: rgba(255,255,255,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+
+    /* Kustomisasi Scrollbar (Dark Theme) */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg0); 
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15); 
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3); 
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(255,255,255,.06), transparent 55%),
+        radial-gradient(1000px 600px at 80% 20%, rgba(255,255,255,.05), transparent 50%),
+        linear-gradient(180deg, #070707 0%, #121212 35%, #0b0b0b 100%);
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* Subtle scanline/noise vibe */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,.03),
+          rgba(255,255,255,.03) 1px,
+          transparent 1px,
+          transparent 6px
+        );
+      opacity:.10;
+      mix-blend-mode: overlay;
+      z-index:0;
+    }
+
+    a{ color:inherit; }
+    .wrap{
+      position:relative;
+      z-index:1;
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px 38px;
+    }
+
+    /* ==============================================
+       ANIMASI MASUK (FADE-UP)
+       ============================================== */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .brand{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      min-width:0;
+    }
+    .brand .name{
+      font-family:"Orbitron", "Poppins", sans-serif;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-size:14px;
+    }
+    .brand .tag{
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .pill{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .badge{
+      border:1px solid var(--line);
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.35);
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:.04em;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Hero */
+    .hero{
+      margin-top:18px;
+      padding:28px 18px;
+      border:1px solid var(--line);
+      border-radius: calc(var(--radius) + 10px);
+      background:
+        radial-gradient(900px 420px at 10% 0%, rgba(255,255,255,.07), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:18px;
+      align-items:center;
+      text-align:center;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+      opacity: 0;
+    }
+
+    /* ==============================================
+       PROFILE ANIMATION LOGIC (SPIN + PULSE)
+       ============================================== */
+    .profile-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .avatar {
+      position: relative;
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #0f0f0f;
+      z-index: 2;
+      border: 2px solid rgba(255,255,255,0.1);
+      transition: transform 0.1s ease, border-color 0.2s ease;
+    }
+
+    .profile-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #fff; 
+      border-right-color: rgba(255,255,255,0.5);
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .profile-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      filter: blur(15px);
+      z-index: 0;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.2s ease;
+    }
+
+    .profile-wrapper:active .avatar {
+      transform: scale(0.92);
+      border-color: #fff;
+    }
+    .profile-wrapper:active::before {
+      opacity: 1;
+      animation: spin 0.8s linear infinite;
+    }
+    .profile-wrapper:active::after {
+      opacity: 0.6;
+      animation: breathe 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes breathe {
+      0% { transform: scale(0.9); opacity: 0.4; }
+      100% { transform: scale(1.3); opacity: 0.8; }
+    }
+
+    .headline{
+      font-family:"Orbitron","Poppins",sans-serif;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size: clamp(18px, 3.6vw, 28px);
+      line-height:1.15;
+      margin:0;
+      background: linear-gradient(135deg, #ffffff 0%, #8892b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.1);
+    }
+    
+    .intro{
+      margin:10px auto 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-weight:600;
+      line-height:1.6;
+      font-size: 14px;
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:14px;
+    }
+    .meta .chip{
+      border:1px solid var(--line);
+      padding:10px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.35);
+      font-weight:800;
+      letter-spacing:.04em;
+      font-size:12px;
+      color: #e6e6e6;
+    }
+    .meta .chip span{
+      color: var(--muted);
+      font-weight:700;
+      margin-right:6px;
+    }
+
+    /* Section */
+    .section{
+      margin-top:18px;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius: calc(var(--radius) + 10px);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(12px);
+      animation: fadeUp 0.6s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .section h2{
+      margin:0 0 14px;
+      font-family:"Orbitron","Poppins",sans-serif;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      font-size: 14px;
+      color:#f5f5f5;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .now{
+      color:var(--muted);
+      font-family:"Poppins",sans-serif;
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:none;
+      font-size:12px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 55%;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+
+    .card{
+      grid-column: span 12;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      background:
+        radial-gradient(700px 260px at 30% 0%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.18));
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap:14px;
+      padding:14px;
+      align-items:center;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.05);
+    }
+
+    .cover{
+      width:120px;
+      height:120px;
+      border-radius: 14px;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,.12);
+      background:#0f0f0f;
+    }
+
+    .info{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .title{
+      margin:0;
+      font-weight:800;
+      letter-spacing:.02em;
+      font-size:14px;
+      line-height:1.3;
+    }
+    .sub{
+      margin-top:-2px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:.02em;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 12px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:800;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      font-size:12px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+      min-width: 85px;
+      justify-content: center;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.28); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+    .btn:focus-visible{
+      outline: 2px solid rgba(255,255,255,.55);
+      outline-offset: 2px;
+    }
+
+    .time{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+      letter-spacing:.03em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==============================================
+       VISUAL PROGRESS BAR (NO BUTTON)
+       ============================================== */
+    .progress-container {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      margin-top: 4px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      transition: width 0.1s linear;
+    }
+
+    audio{ display: none; }
+
+    /* Footer */
+    footer{
+      margin-top:18px;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius: calc(var(--radius) + 10px);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(12px);
+      animation: fadeUp 0.6s ease 0.3s forwards;
+      opacity: 0;
+    }
+    .foot-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .foot-head h3{
+      margin:0;
+      font-family:"Orbitron","Poppins",sans-serif;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      font-size:14px;
+    }
+    .foot-note{
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+      margin:0;
+    }
+
+    .socials{
+      display:flex;
+      gap:12px;
+      margin-top:14px;
+      flex-wrap:wrap;
+    }
+    .icon-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.25);
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:12px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .icon-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.30);
+      background: rgba(255,255,255,.06);
+    }
+    .icon-btn:focus-visible{
+      outline: 2px solid rgba(255,255,255,.55);
+      outline-offset: 2px;
+    }
+    .icon{
+      width:18px;
+      height:18px;
+      display:block;
+      fill: currentColor;
+      opacity:.95;
+    }
+
+    .copyright{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color: var(--muted);
+      font-weight:700;
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    /* Responsive layout upgrades */
+    @media (min-width: 720px){
+      .hero{
+        grid-template-columns: 180px 1fr;
+        text-align:left;
+        padding:32px 26px;
+      }
+      .profile-wrapper{ margin:0; }
+      .meta{ justify-content:flex-start; }
+      .card{ grid-column: span 6; }
+    }
+    @media (min-width: 980px){
+      .card{ grid-column: span 4; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .card, .btn, .icon-btn, .profile-wrapper::before, .profile-wrapper::after{ transition:none; animation:none; }
+      .card:hover, .btn:hover, .icon-btn:hover{ transform:none; }
+      .topbar, .hero, .section, footer { animation: none; opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="topbar" aria-label="Top navigation">
+      <div class="brand">
+        <div class="name">Rijal</div>
+        <div class="tag">Student Portfolio</div>
+      </div>
+      <div class="pill" aria-label="Quick facts">
+        <div class="badge">Growth Mindset</div>
+        <div class="badge">Bold Typography</div>
+        <div class="badge">Class 12</div>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Profile">
+      <div class="profile-wrapper" title="Press and hold me!">
+        <img
+          class="avatar"
+          src="https://i.ibb.co/k64DJ3jv/file-00000000532472089d743dd74fc158eb.png"
+          alt="Rijal profile photo"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          onerror="this.alt='Profile image failed to load'; this.style.opacity='.6';"
+        />
+      </div>
+
+      <div>
+        <h1 class="headline">Hi, I’m Rijal.</h1>
+        <p class="intro">
+          A Class 12 student, 17 years young, fuelled by a passion for the unknown. 
+          I love diving into new experiences and challenging my own limits. It’s not just about reaching a destination, but the consistent grind to learn, evolve, and build a better version of myself.
+        </p>
+
+        <div class="meta" role="list" aria-label="Personal info">
+          <div class="chip" role="listitem"><span>Class:</span>12</div>
+          <div class="chip" role="listitem"><span>Age:</span>17</div>
+          <div class="chip" role="listitem"><span>Hobby:</span>Exploration & Growth</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Top songs">
+      <h2>
+        Top 3 Favorite Songs
+        <span class="now" id="nowPlaying" title="Now playing status">Now playing: none</span>
+      </h2>
+
+      <div class="grid">
+        <article class="card" data-track="Daylight - Maroon 5">
+          <img
+            class="cover"
+            src="https://i.ibb.co/jP7SQR3p/Maroon-5-Daylight.jpg"
+            alt="Daylight - Maroon 5 cover"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <div class="info">
+            <div>
+              <p class="title">Daylight</p>
+              <div class="sub">Maroon 5</div>
+            </div>
+
+            <div class="controls">
+              <button class="btn js-toggle" type="button" aria-label="Play or pause Daylight">
+                <span class="js-icon">▶</span> <span class="js-label">Play</span>
+              </button>
+              <span class="time js-time" aria-label="Duration">0:00 / 0:00</span>
+            </div>
+            
+            <div class="progress-container">
+              <div class="progress-bar js-progress"></div>
+            </div>
+
+            <audio class="js-audio" preload="metadata">
+              <source src="https://files.catbox.moe/dc45qz.m4a" type="audio/mp4" />
+            </audio>
+          </div>
+        </article>
+
+        <article class="card" data-track="Animals - Maroon 5">
+          <img
+            class="cover"
+            src="https://i.ibb.co/1YnBwhVf/Maroon-5-Animals-Single-Cover.png"
+            alt="Animals - Maroon 5 cover"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <div class="info">
+            <div>
+              <p class="title">Animals</p>
+              <div class="sub">Maroon 5</div>
+            </div>
+
+            <div class="controls">
+              <button class="btn js-toggle" type="button" aria-label="Play or pause Animals">
+                <span class="js-icon">▶</span> <span class="js-label">Play</span>
+              </button>
+              <span class="time js-time" aria-label="Duration">0:00 / 0:00</span>
+            </div>
+
+            <div class="progress-container">
+              <div class="progress-bar js-progress"></div>
+            </div>
+
+            <audio class="js-audio" preload="metadata">
+              <source src="https://files.catbox.moe/a6x0fp.mp3" type="audio/mpeg" />
+            </audio>
+          </div>
+        </article>
+
+        <article class="card" data-track="Supernova">
+          <img
+            class="cover"
+            src="https://i.ibb.co/wFp7pX0N/file-00000000a67c71faadd52499df2f69f3.png"
+            alt="Supernova cover"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <div class="info">
+            <div>
+              <p class="title">Supernova</p>
+              <div class="sub">Favorite track</div>
+            </div>
+
+            <div class="controls">
+              <button class="btn js-toggle" type="button" aria-label="Play or pause Supernova">
+                <span class="js-icon">▶</span> <span class="js-label">Play</span>
+              </button>
+              <span class="time js-time" aria-label="Duration">0:00 / 0:00</span>
+            </div>
+
+            <div class="progress-container">
+              <div class="progress-bar js-progress"></div>
+            </div>
+
+            <audio class="js-audio" preload="metadata">
+              <source src="https://files.catbox.moe/qvwwo4.mp3" type="audio/mpeg" />
+            </audio>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer aria-label="Social links">
+      <div class="foot-head">
+        <h3>Connect with Me</h3>
+        <p class="foot-note">Embracing the journey, one step at a time.</p>
+      </div>
+
+      <div class="socials" role="list" aria-label="Social buttons">
+        <a class="icon-btn" role="listitem" href="https://wa.me/6283834683978" target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp chat">
+          <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M19.11 17.46c-.28-.14-1.65-.81-1.91-.9-.26-.09-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.56-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.43-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.28-1 1-.99 2.43.01 1.43 1.04 2.82 1.19 3.01.14.19 2.04 3.11 4.94 4.36.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.11.55-.08 1.65-.67 1.88-1.32.23-.64.23-1.19.16-1.32-.06-.12-.26-.19-.54-.33z"/>
+            <path d="M26.67 5.33C23.83 2.49 20.06.93 16.06.93 8.05.93 1.53 7.45 1.53 15.46c0 2.56.67 5.07 1.95 7.29L1.4 31.07l8.5-2.23a14.46 14.46 0 0 0 6.16 1.38h.01c8.01 0 14.53-6.52 14.53-14.53 0-4-1.56-7.77-4.4-10.36zm-10.6 22.4h-.01c-2.06 0-4.08-.55-5.86-1.6l-.42-.25-5.04 1.32 1.35-4.92-.27-.45a12.05 12.05 0 0 1-1.84-6.37c0-6.67 5.43-12.1 12.1-12.1 3.23 0 6.27 1.26 8.55 3.55a12.02 12.02 0 0 1 3.55 8.55c0 6.67-5.43 12.27-12.11 12.27z"/>
+          </svg>
+          WhatsApp
+        </a>
+
+        <a class="icon-btn" role="listitem" href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk=" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile">
+          <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 10.2A5.8 5.8 0 1 0 21.8 16 5.81 5.81 0 0 0 16 10.2zm0 9.6A3.8 3.8 0 1 1 19.8 16 3.8 3.8 0 0 1 16 19.8z"/>
+            <path d="M22.9 3.9H9.1A5.2 5.2 0 0 0 3.9 9.1v13.8a5.2 5.2 0 0 0 5.2 5.2h13.8a5.2 5.2 0 0 0 5.2-5.2V9.1a5.2 5.2 0 0 0-5.2-5.2zm3.2 19a3.2 3.2 0 0 1-3.2 3.2H9.1a3.2 3.2 0 0 1-3.2-3.2V9.1a3.2 3.2 0 0 1 3.2-3.2h13.8a3.2 3.2 0 0 1 3.2 3.2z"/>
+            <path d="M23.7 8.3a1.4 1.4 0 1 1-1.4-1.4 1.4 1.4 0 0 1 1.4 1.4z"/>
+          </svg>
+          Instagram
+        </a>
+      </div>
+
+      <div class="copyright">
+        <div><strong>Rijal</strong> · Class 12 · Age 17 · Hobby: Exploring & Growth</div>
+        <div>Built as a single-file portfolio with HTML + CSS + JavaScript. Because humans love bundling everything into one file and calling it “clean”.</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const cards = Array.from(document.querySelectorAll(".card"));
+      const nowEl = document.getElementById("nowPlaying");
+
+      const formatTime = (seconds) => {
+        if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return `${m}:${s < 10 ? '0' + s : s}`;
+      };
+
+      const setButtonState = (card, isPlaying) => {
+        const icon = card.querySelector(".js-icon");
+        const label = card.querySelector(".js-label");
+        if (!icon || !label) return;
+        icon.textContent = isPlaying ? "⏸" : "▶";
+        label.textContent = isPlaying ? "Pause" : "Play";
+      };
+
+      const pauseAllExcept = (exceptAudio) => {
+        cards.forEach((c) => {
+          const a = c.querySelector(".js-audio");
+          if (!a || a === exceptAudio) return;
+          a.pause();
+          setButtonState(c, false);
+        });
+      };
+
+      const setNowPlaying = (text) => {
+        nowEl.textContent = text ? `Now playing: ${text}` : "Now playing: none";
+      };
+
+      cards.forEach((card) => {
+        const audio = card.querySelector(".js-audio");
+        const btn = card.querySelector(".js-toggle");
+        const timeEl = card.querySelector(".js-time");
+        const progressEl = card.querySelector(".js-progress");
+        const trackName = card.getAttribute("data-track") || "Unknown track";
+
+        if (!audio) return;
+
+        const updateTimeDisplay = () => {
+          const current = audio.currentTime;
+          const total = audio.duration;
+          timeEl.textContent = `${formatTime(current)} / ${formatTime(total)}`;
+          
+          if (progressEl && isFinite(total) && total > 0) {
+            const percent = (current / total) * 100;
+            progressEl.style.width = `${percent}%`;
+          }
+        };
+
+        audio.addEventListener("loadedmetadata", updateTimeDisplay);
+        audio.addEventListener("timeupdate", updateTimeDisplay);
+
+        if (audio.readyState >= 1) {
+          updateTimeDisplay();
+        }
+
+        if (btn) {
+          btn.addEventListener("click", () => {
+            if (audio.paused) {
+              pauseAllExcept(audio);
+              audio.play().catch(e => console.error("Playback error:", e));
+            } else {
+              audio.pause();
+            }
+          });
+        }
+
+        audio.addEventListener("play", () => {
+          setButtonState(card, true);
+          setNowPlaying(trackName);
+        });
+
+        audio.addEventListener("pause", () => {
+          setButtonState(card, false);
+          const isAnyPlaying = cards.some(c => !c.querySelector(".js-audio").paused);
+          if (!isAnyPlaying) setNowPlaying("");
+        });
+
+        audio.addEventListener("ended", () => {
+          setButtonState(card, false);
+          setNowPlaying("");
+          audio.currentTime = 0; 
+          if(progressEl) progressEl.style.width = "0%";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
