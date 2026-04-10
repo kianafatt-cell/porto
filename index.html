@@ -5,34 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Rijal's Portfolio - A journey of growth, exploration, and consistent learning from Bogor.">
     <title>Rijal | Student Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ============ RESET & BASE ============ */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* Cream Palette */
             --cream-base: #faf7f0;
             --cream-light: #fffef9;
             --cream-card: #f8f4eb;
             --cream-border: #e8e0d5;
             --cream-dark: #d4c8b5;
-            
-            /* Red Accent Palette */
             --red-primary: #c41e3a;
             --red-light: #e63946;
             --red-dark: #8b0000;
             --red-glow: rgba(196, 30, 58, 0.25);
             --red-soft: rgba(196, 30, 58, 0.1);
-            
-            /* Text Colors */
             --text-primary: #2c2c2c;
             --text-secondary: #5a5a5a;
             --text-light: #7a7a7a;
             --text-cream: #faf7f0;
-            
-            /* Utilities */
             --white: #ffffff;
             --shadow-soft: 0 10px 40px rgba(196, 30, 58, 0.08);
             --shadow-hover: 0 20px 60px rgba(196, 30, 58, 0.15);
@@ -55,7 +47,6 @@
 
         a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
-        /* ============ CUSTOM CURSOR ============ */
         .cursor {
             width: 20px; height: 20px; border: 2px solid var(--red-primary);
             border-radius: 50%; position: fixed; pointer-events: none;
@@ -72,7 +63,6 @@
             background: var(--red-glow); border-color: var(--red-light);
         }
 
-        /* ============ SCROLL PROGRESS ============ */
         .scroll-progress {
             position: fixed; top: 0; left: 0; height: 3px;
             background: linear-gradient(90deg, var(--red-primary), var(--red-light), var(--red-primary));
@@ -80,13 +70,34 @@
             box-shadow: 0 0 15px var(--red-glow);
         }
 
-        /* ============ PARTICLES ============ */
         #particles-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; pointer-events: none;
         }
 
-        /* ============ NAVIGATION ============ */
+        .lang-toggle {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--cream-card); border: 2px solid var(--cream-border);
+            border-radius: 50px; padding: 6px 8px; cursor: pointer;
+            transition: all 0.3s ease; margin-left: 15px;
+        }
+        .lang-toggle:hover {
+            border-color: var(--red-primary);
+            box-shadow: 0 4px 15px var(--red-glow);
+        }
+        .lang-option {
+            font-size: 0.75rem; font-weight: 700; padding: 4px 10px;
+            border-radius: 30px; transition: all 0.2s ease;
+            color: var(--text-light);
+        }
+        .lang-option.active {
+            background: var(--red-primary); color: var(--white);
+            box-shadow: 0 2px 10px var(--red-glow);
+        }
+        .lang-divider {
+            width: 1px; height: 20px; background: var(--cream-border);
+        }
+
         .navbar {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 20px 60px; display: flex; justify-content: space-between;
@@ -99,10 +110,15 @@
             box-shadow: var(--shadow-soft);
         }
         .nav-logo {
-            font-family: 'Playfair Display', serif; font-size: 1.8rem;
-            font-weight: 900; color: var(--red-primary); position: relative;
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 1.6rem;
+            font-weight: 800; 
+            color: var(--text-primary); 
+            position: relative;
+            letter-spacing: -0.5px;
         }
-        .nav-logo span { color: var(--text-primary); }
+        .nav-logo span { color: var(--red-primary); }
+        .nav-right { display: flex; align-items: center; gap: 10px; }
         .nav-links { display: flex; list-style: none; gap: 40px; }
         .nav-links a {
             font-size: 0.9rem; font-weight: 500; letter-spacing: 2px;
@@ -128,7 +144,6 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
-        /* ============ MOBILE MENU ============ */
         .mobile-menu {
             position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
             background: rgba(250, 247, 240, 0.98); backdrop-filter: blur(20px);
@@ -144,8 +159,10 @@
             transition: color 0.3s ease;
         }
         .mobile-menu ul li a:hover { color: var(--red-primary); }
+        .mobile-lang-toggle {
+            margin-top: 30px; display: flex; justify-content: center; gap: 10px;
+        }
 
-        /* ============ HERO SECTION ============ */
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             justify-content: center; position: relative; padding: 0 60px;
@@ -260,7 +277,6 @@
         }
         @keyframes scrollDown { 0% { top: -50%; } 100% { top: 100%; } }
 
-        /* ============ SECTION STYLES ============ */
         section { padding: 120px 60px; position: relative; z-index: 2; }
         .section-header { text-align: center; margin-bottom: 80px; }
         .section-label {
@@ -279,7 +295,6 @@
             box-shadow: 0 0 10px var(--red-glow);
         }
 
-        /* ============ ABOUT SECTION ============ */
         .about { background: var(--cream-light); }
         .about-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
@@ -341,7 +356,6 @@
             color: var(--text-primary); font-weight: 600; font-size: 0.85rem;
         }
 
-        /* ============ MUSIC SECTION ============ */
         .music { background: var(--cream-base); }
         .music-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -423,7 +437,6 @@
             50% { opacity: 0.85; transform: scale(1.03); }
         }
 
-        /* ============ PROJECTS SECTION ============ */
         .projects { background: var(--cream-light); }
         .projects-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -477,7 +490,6 @@
         .project-link i { transition: transform 0.3s ease; }
         .project-link:hover i { transform: translateX(5px); }
 
-        /* ============ CONTACT SECTION ============ */
         .contact { background: var(--cream-base); }
         .contact-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
@@ -565,7 +577,6 @@
             box-shadow: var(--shadow-hover);
         }
 
-        /* ============ FOOTER ============ */
         footer {
             padding: 40px 60px; border-top: 2px solid var(--cream-border);
             display: flex; justify-content: space-between; align-items: center;
@@ -585,7 +596,6 @@
             box-shadow: var(--shadow-hover);
         }
 
-        /* ============ ANIMATIONS ============ */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -606,7 +616,6 @@
         }
         .reveal-right.active { opacity: 1; transform: translateX(0); }
 
-        /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             .hero-title { font-size: 3.5rem; }
             .about-grid { grid-template-columns: 1fr; gap: 50px; }
@@ -629,13 +638,16 @@
             footer { flex-direction: column; gap: 20px; text-align: center; padding: 30px 25px; }
             .cursor, .cursor-dot { display: none; }
             body { cursor: auto; }
+            .nav-right { gap: 5px; }
+            .lang-toggle { padding: 4px 6px; }
+            .lang-option { font-size: 0.7rem; padding: 3px 8px; }
         }
         @media (max-width: 480px) {
             .hero-title { font-size: 2rem; }
             .about-info { grid-template-columns: 1fr; }
+            .nav-logo { font-size: 1.4rem; }
         }
         
-        /* ============ UTILITY CLASSES ============ */
         .text-red { color: var(--red-primary) !important; }
         .text-red-dark { color: var(--red-dark) !important; }
         .bg-cream { background: var(--cream-card) !important; }
@@ -644,133 +656,135 @@
 </head>
 <body>
 
-    <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
-
-    <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Particles -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo">RIJAL<span class="text-red">.</span></a>
-        <ul class="nav-links">
-            <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#music">Music</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
+        <a href="#" class="nav-logo" data-i18n="nav_logo">About Me</a>
+        
+        <div class="nav-right">
+            <div class="lang-toggle" id="langToggle" onclick="toggleLanguage()">
+                <span class="lang-option" id="langId" data-lang="id">ID</span>
+                <span class="lang-divider"></span>
+                <span class="lang-option" id="langEn" data-lang="en">EN</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#hero" class="active" data-i18n="nav_home">Home</a></li>
+                <li><a href="#about" data-i18n="nav_about">About</a></li>
+                <li><a href="#music" data-i18n="nav_music">Music</a></li>
+                <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="#hero" onclick="closeMobile()">Home</a></li>
-            <li><a href="#about" onclick="closeMobile()">About</a></li>
-            <li><a href="#music" onclick="closeMobile()">Music</a></li>
-            <li><a href="#projects" onclick="closeMobile()">Projects</a></li>
-            <li><a href="#contact" onclick="closeMobile()">Contact</a></li>
+            <li><a href="#hero" onclick="closeMobile()" data-i18n="nav_home">Home</a></li>
+            <li><a href="#about" onclick="closeMobile()" data-i18n="nav_about">About</a></li>
+            <li><a href="#music" onclick="closeMobile()" data-i18n="nav_music">Music</a></li>
+            <li><a href="#projects" onclick="closeMobile()" data-i18n="nav_projects">Projects</a></li>
+            <li><a href="#contact" onclick="closeMobile()" data-i18n="nav_contact">Contact</a></li>
         </ul>
+        <div class="mobile-lang-toggle">
+            <span class="lang-option" id="langIdMobile" data-lang="id" onclick="setLanguage('id')">ID</span>
+            <span class="lang-option" id="langEnMobile" data-lang="en" onclick="setLanguage('en')">EN</span>
+        </div>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-bg-shape"></div>
         <div class="hero-content">
-            <span class="hero-badge">Student Portfolio · 2026</span>
+            <span class="hero-badge" data-i18n="hero_badge">Student Portfolio · 2026</span>
             <h1 class="hero-title">
-                Hi, I'm <span class="highlight">Rijal</span><br>
-                Student · Class 12
+                <span data-i18n="hero_greeting">Hi, I'm</span> <span class="highlight">Rijal</span><br>
+                <span data-i18n="hero_role">Student · Class 12</span>
             </h1>
-            <p class="hero-subtitle">Growth Mindset · Exploration · Consistent Learning</p>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">Growth Mindset · Exploration · Consistent Learning</p>
             <div class="typing-wrapper">
                 <span id="typed-text"></span>
             </div>
             <div class="hero-buttons">
-                <a href="#projects" class="btn-primary">View Projects</a>
-                <a href="#contact" class="btn-outline">Get In Touch</a>
+                <a href="#projects" class="btn-primary" data-i18n="btn_projects">View Projects</a>
+                <a href="#contact" class="btn-outline" data-i18n="btn_contact">Get In Touch</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="section-header reveal">
-            <span class="section-label">Get To Know</span>
-            <h2 class="section-title">About <span class="red">Me</span></h2>
+            <span class="section-label" data-i18n="about_label">Get To Know</span>
+            <h2 class="section-title"><span data-i18n="about_title_1">About</span> <span class="red" data-i18n="about_title_2">Me</span></h2>
             <div class="section-line"></div>
         </div>
         <div class="about-grid">
             <div class="about-image reveal-left">
                 <div class="about-image-wrapper">
-                    <img src="https://files.catbox.moe/zd0zv4.png" alt="Rijal profile" onerror="this.src='https://via.placeholder.com/400x533/f8f4eb/c41e3a?text=Rijal'">
+                    <img src="https://files.catbox.moe/82997e.png" alt="Rijal profile" onerror="this.src='https://via.placeholder.com/400x533/f8f4eb/c41e3a?text=Rijal'">
                 </div>
                 <div class="about-image-decoration"></div>
                 <div class="about-exp-badge">
                     <div class="number">18</div>
-                    <div class="text">Years Old</div>
+                    <div class="text" data-i18n="about_age_label">Years Old</div>
                 </div>
             </div>
             <div class="about-content reveal-right">
-                <h3>Student Based in <span class="red">Bogor</span></h3>
-                <p>
+                <h3><span data-i18n="about_location_prefix">Student Based in</span> <span class="red">Bogor</span></h3>
+                <p data-i18n="about_p1">
                     A Class 12 student, 17 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.
                 </p>
-                <p>
+                <p data-i18n="about_p2">
                     I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.
                 </p>
                 <div class="about-info">
                     <div class="about-info-item">
                         <i class="fas fa-user"></i>
                         <div>
-                            <span class="label">Name</span>
+                            <span class="label" data-i18n="info_name_label">Name</span>
                             <span class="value">Rijal</span>
                         </div>
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-graduation-cap"></i>
                         <div>
-                            <span class="label">Class</span>
+                            <span class="label" data-i18n="info_class_label">Class</span>
                             <span class="value">12</span>
                         </div>
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <span class="label">Location</span>
+                            <span class="label" data-i18n="info_location_label">Location</span>
                             <span class="value">Bogor, Indonesia</span>
                         </div>
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-heart"></i>
                         <div>
-                            <span class="label">Hobby</span>
-                            <span class="value">Exploration & Growth</span>
+                            <span class="label" data-i18n="info_hobby_label">Hobby</span>
+                            <span class="value" data-i18n="info_hobby_value">Exploration & Growth</span>
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="btn-primary">Let's Connect <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                <a href="#contact" class="btn-primary"><span data-i18n="btn_connect">Let's Connect</span> <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Music Section -->
     <section class="music" id="music">
         <div class="section-header reveal">
-            <span class="section-label">What I Listen To</span>
-            <h2 class="section-title">Top 3 <span class="red">Favorite Songs</span></h2>
+            <span class="section-label" data-i18n="music_label">What I Listen To</span>
+            <h2 class="section-title"><span data-i18n="music_title_1">Top 3</span> <span class="red" data-i18n="music_title_2">Favorite Songs</span></h2>
             <div class="section-line"></div>
         </div>
-        <div id="nowPlaying" class="now-playing">Now playing: none</div>
+        <div id="nowPlaying" class="now-playing"><span data-i18n="now_playing_prefix">Now playing:</span> <span id="nowPlayingTrack" data-i18n="now_playing_none">none</span></div>
         <div class="music-grid">
-            <!-- Song 1 -->
             <div class="music-card reveal" data-track="Voce Na Mira - Sxilwix">
                 <img class="music-cover" src="https://files.catbox.moe/ez86dx.png" alt="Voce Na Mira" onerror="this.src='https://via.placeholder.com/80/f8f4eb/c41e3a?text=♪'">
                 <div class="music-info">
@@ -786,7 +800,6 @@
                 </div>
                 <audio id="audio1" src="https://files.catbox.moe/ywfovc.mp3"></audio>
             </div>
-            <!-- Song 2 -->
             <div class="music-card reveal" data-track="Animals - Maroon 5">
                 <img class="music-cover" src="https://files.catbox.moe/vnykz7.jpeg" alt="Animals" onerror="this.src='https://via.placeholder.com/80/f8f4eb/c41e3a?text=♪'">
                 <div class="music-info">
@@ -802,7 +815,6 @@
                 </div>
                 <audio id="audio2" src="https://files.catbox.moe/a6x0fp.mp3"></audio>
             </div>
-            <!-- Song 3 -->
             <div class="music-card reveal" data-track="Tourner Dans La Vide">
                 <img class="music-cover" src="https://files.catbox.moe/9i3h8a.jpg" alt="Tourner Dans La Vide" onerror="this.src='https://via.placeholder.com/80/f8f4eb/c41e3a?text=♪'">
                 <div class="music-info">
@@ -821,75 +833,71 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="section-header reveal">
-            <span class="section-label">Things I Built</span>
-            <h2 class="section-title">My <span class="red">Projects</span></h2>
+            <span class="section-label" data-i18n="projects_label">Things I Built</span>
+            <h2 class="section-title"><span data-i18n="projects_title_1">My</span> <span class="red" data-i18n="projects_title_2">Projects</span></h2>
             <div class="section-line"></div>
         </div>
         <div class="projects-grid">
-            <!-- Project 1: GoldUploader -->
             <div class="project-card reveal">
                 <div class="project-image">
                     <img src="https://files.catbox.moe/et2ob8.jpg" alt="GoldUploader" onerror="this.src='https://via.placeholder.com/600x338/f8f4eb/c41e3a?text=GoldUploader'">
                 </div>
                 <div class="project-content">
-                    <span class="project-category">Web Tool</span>
+                    <span class="project-category" data-i18n="project_cat_webtool">Web Tool</span>
                     <h3 class="project-title">GoldUploader</h3>
-                    <p class="project-desc">A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.</p>
+                    <p class="project-desc" data-i18n="project1_desc">A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.</p>
                     <a href="https://golduploader.ijal.biz.id" target="_blank" class="project-link">
-                        See Project <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="project_link">See Project</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
-            <!-- Project 2: GoldStream -->
             <div class="project-card reveal">
                 <div class="project-image">
                     <img src="https://files.catbox.moe/hhj353.jpg" alt="GoldStream" onerror="this.src='https://via.placeholder.com/600x338/f8f4eb/c41e3a?text=GoldStream'">
                 </div>
                 <div class="project-content">
-                    <span class="project-category">Web Tool</span>
+                    <span class="project-category" data-i18n="project_cat_webtool">Web Tool</span>
                     <h3 class="project-title">GoldStream</h3>
-                    <p class="project-desc">A lightweight web tool that lets users download YouTube videos by simply pasting a video link and selecting the desired quality. Fast, simple, and easy to use.</p>
+                    <p class="project-desc" data-i18n="project2_desc">A lightweight web tool that lets users download YouTube videos by simply pasting a video link and selecting the desired quality. Fast, simple, and easy to use.</p>
                     <a href="https://goldstream.idgf.web.id" target="_blank" class="project-link">
-                        See Project <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="project_link">See Project</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="section-header reveal">
-            <span class="section-label">Get In Touch</span>
-            <h2 class="section-title">Contact <span class="red">Me</span></h2>
+            <span class="section-label" data-i18n="contact_label">Get In Touch</span>
+            <h2 class="section-title"><span data-i18n="contact_title_1">Contact</span> <span class="red" data-i18n="contact_title_2">Me</span></h2>
             <div class="section-line"></div>
         </div>
         <div class="contact-grid">
             <div class="contact-info reveal-left">
-                <h3>Let's <span class="red">Connect</span></h3>
-                <p>Embracing the journey, one step at a time. Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about growth, learning, and new experiences.</p>
+                <h3><span data-i18n="contact_connect_1">Let's</span> <span class="red" data-i18n="contact_connect_2">Connect</span></h3>
+                <p data-i18n="contact_desc">Embracing the journey, one step at a time. Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about growth, learning, and new experiences.</p>
                 <div class="contact-details">
                     <div class="contact-item">
                         <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="contact-item-text">
-                            <h4>Location</h4>
+                            <h4 data-i18n="contact_loc_label">Location</h4>
                             <p>Bogor, Indonesia</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
                         <div class="contact-item-text">
-                            <h4>WhatsApp</h4>
+                            <h4 data-i18n="contact_wa_label">WhatsApp</h4>
                             <p>+62 838 3468 3978</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-item-icon"><i class="fab fa-instagram"></i></div>
                         <div class="contact-item-text">
-                            <h4>Instagram</h4>
+                            <h4 data-i18n="contact_ig_label">Instagram</h4>
                             <p>@lestnsgr</p>
                         </div>
                     </div>
@@ -901,16 +909,164 @@
             </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>© 2026 <span class="red">Rijal</span> · Student Portfolio</p>
+        <p>© 2026 <span class="red">Rijal</span> · <span data-i18n="footer_text">Student Portfolio</span></p>
         <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
             <i class="fas fa-arrow-up"></i>
         </button>
     </footer>
 
     <script>
-        // ============ CUSTOM CURSOR ============
+        const translations = {
+            id: {
+                nav_logo: "Tentang Saya",
+                nav_home: "Beranda",
+                nav_about: "Tentang",
+                nav_music: "Musik",
+                nav_projects: "Proyek",
+                nav_contact: "Kontak",
+                hero_badge: "Portofolio Siswa · 2026",
+                hero_greeting: "Halo, Saya",
+                hero_role: "Siswa · Kelas 12",
+                hero_subtitle: "Pola Pikir Berkembang · Eksplorasi · Belajar Konsisten",
+                typing_texts: ["Pola Pikir Berkembang 🌱", "Eksplorasi 🗺️", "Belajar Konsisten 📚", "Siswa Kelas 12 🎓", "Dari Bogor 🏔️"],
+                btn_projects: "Lihat Proyek",
+                btn_contact: "Hubungi Saya",
+                about_label: "Kenali Saya",
+                about_title_1: "Tentang",
+                about_title_2: "Saya",
+                about_age_label: "Tahun",
+                about_location_prefix: "Siswa Berbasis di",
+                about_p1: "Seorang siswa Kelas 12, berusia 17 tahun, didorong oleh hasrat untuk hal-hal baru. Saya suka menyelami pengalaman baru dan menantang batas diri sendiri — bukan hanya tentang tujuan, tetapi tentang perjuangan konsisten untuk belajar, berkembang, dan membangun versi diri yang lebih baik.",
+                about_p2: "Saya percaya bahwa pertumbuhan datang dari keluar dari zona nyaman. Setiap proyek yang saya buat, setiap lagu yang saya dengarkan, dan setiap koneksi yang saya jalin adalah bagian dari perjalanan saya menuju menjadi versi terbaik dari diri saya.",
+                info_name_label: "Nama",
+                info_class_label: "Kelas",
+                info_location_label: "Lokasi",
+                info_hobby_label: "Hobi",
+                info_hobby_value: "Eksplorasi & Pertumbuhan",
+                btn_connect: "Mari Terhubung",
+                music_label: "Yang Saya Dengarkan",
+                music_title_1: "3 Lagu",
+                music_title_2: "Favorit",
+                now_playing_prefix: "Sedang diputar:",
+                now_playing_none: "tidak ada",
+                projects_label: "Yang Saya Buat",
+                projects_title_1: "Proyek",
+                projects_title_2: "Saya",
+                project_cat_webtool: "Alat Web",
+                project1_desc: "Alat sederhana yang memungkinkan pengguna mengunggah gambar, video, atau audio dan langsung mengubahnya menjadi tautan yang dapat dibagikan. Dirancang untuk berbagi file yang cepat dan ringan.",
+                project2_desc: "Alat web ringan yang memungkinkan pengguna mengunduh video YouTube hanya dengan menempelkan tautan video dan memilih kualitas yang diinginkan. Cepat, sederhana, dan mudah digunakan.",
+                project_link: "Lihat Proyek",
+                contact_label: "Hubungi Saya",
+                contact_title_1: "Kontak",
+                contact_title_2: "Saya",
+                contact_connect_1: "Mari",
+                contact_connect_2: "Terhubung",
+                contact_desc: "Merangkul perjalanan, satu langkah demi satu langkah. Hubungi saya melalui WhatsApp atau Instagram — saya ingin sekali terhubung dan berbagi ide tentang pertumbuhan, pembelajaran, dan pengalaman baru.",
+                contact_loc_label: "Lokasi",
+                contact_wa_label: "WhatsApp",
+                contact_ig_label: "Instagram",
+                footer_text: "Portofolio Siswa"
+            },
+            en: {
+                nav_logo: "About Me",
+                nav_home: "Home",
+                nav_about: "About",
+                nav_music: "Music",
+                nav_projects: "Projects",
+                nav_contact: "Contact",
+                hero_badge: "Student Portfolio · 2026",
+                hero_greeting: "Hi, I'm",
+                hero_role: "Student · Class 12",
+                hero_subtitle: "Growth Mindset · Exploration · Consistent Learning",
+                typing_texts: ['Growth Mindset 🌱', 'Exploration 🗺️', 'Consistent Learning 📚', 'Class 12 Student 🎓', 'From Bogor 🏔️'],
+                btn_projects: "View Projects",
+                btn_contact: "Get In Touch",
+                about_label: "Get To Know",
+                about_title_1: "About",
+                about_title_2: "Me",
+                about_age_label: "Years Old",
+                about_location_prefix: "Student Based in",
+                about_p1: "A Class 12 student, 17 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.",
+                about_p2: "I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.",
+                info_name_label: "Name",
+                info_class_label: "Class",
+                info_location_label: "Location",
+                info_hobby_label: "Hobby",
+                info_hobby_value: "Exploration & Growth",
+                btn_connect: "Let's Connect",
+                music_label: "What I Listen To",
+                music_title_1: "Top 3",
+                music_title_2: "Favorite Songs",
+                now_playing_prefix: "Now playing:",
+                now_playing_none: "none",
+                projects_label: "Things I Built",
+                projects_title_1: "My",
+                projects_title_2: "Projects",
+                project_cat_webtool: "Web Tool",
+                project1_desc: "A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.",
+                project2_desc: "A lightweight web tool that lets users download YouTube videos by simply pasting a video link and selecting the desired quality. Fast, simple, and easy to use.",
+                project_link: "See Project",
+                contact_label: "Get In Touch",
+                contact_title_1: "Contact",
+                contact_title_2: "Me",
+                contact_connect_1: "Let's",
+                contact_connect_2: "Connect",
+                contact_desc: "Embracing the journey, one step at a time. Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about growth, learning, and new experiences.",
+                contact_loc_label: "Location",
+                contact_wa_label: "WhatsApp",
+                contact_ig_label: "Instagram",
+                footer_text: "Student Portfolio"
+            }
+        };
+
+        let currentLang = localStorage.getItem('rijal_lang') || 'id';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('rijal_lang', lang);
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
+                    } else {
+                        if (el.children.length > 0 && !el.classList.contains('hero-title')) {
+                            Array.from(el.childNodes).forEach(node => {
+                                if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                                    node.textContent = translations[lang][key] + ' ';
+                                }
+                            });
+                        } else {
+                            el.textContent = translations[lang][key];
+                        }
+                    }
+                }
+            });
+            
+            typedTexts = translations[lang].typing_texts;
+            
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.lang === lang);
+            });
+            
+            document.documentElement.lang = lang;
+            
+            updateMobileLangToggle();
+        }
+        
+        function toggleLanguage() {
+            const newLang = currentLang === 'id' ? 'en' : 'id';
+            setLanguage(newLang);
+        }
+        
+        function updateMobileLangToggle() {
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.lang === currentLang);
+            });
+        }
+
         const cursor = document.getElementById('cursor');
         const cursorDot = document.getElementById('cursorDot');
         document.addEventListener('mousemove', (e) => {
@@ -919,12 +1075,11 @@
             cursorDot.style.left = e.clientX + 'px';
             cursorDot.style.top = e.clientY + 'px';
         });
-        document.querySelectorAll('a, button, .project-card, .music-card, .social-link, .contact-item').forEach(el => {
+        document.querySelectorAll('a, button, .project-card, .music-card, .social-link, .contact-item, .lang-toggle').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
-        // ============ SCROLL PROGRESS ============
         window.addEventListener('scroll', () => {
             const scrollTop = document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -932,7 +1087,6 @@
             document.getElementById('scrollProgress').style.width = progress + '%';
         });
 
-        // ============ NAVBAR SCROLL ============
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -942,7 +1096,6 @@
             }
         });
         
-        // ============ ACTIVE NAV LINK ============
         const sections = document.querySelectorAll('section[id]');
         window.addEventListener('scroll', () => {
             let current = '';
@@ -956,7 +1109,6 @@
             });
         });
 
-        // ============ HAMBURGER MENU ============
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         hamburger.addEventListener('click', () => {
@@ -968,14 +1120,7 @@
             mobileMenu.classList.remove('active');
         }
 
-        // ============ TYPING EFFECT ============
-        const typedTexts = [
-            'Growth Mindset 🌱',
-            'Exploration 🗺️',
-            'Consistent Learning 📚',
-            'Class 12 Student 🎓',
-            'From Bogor 🏔️'
-        ];
+        let typedTexts = translations[currentLang].typing_texts;
         let textIndex = 0, charIndex = 0, isDeleting = false;
         const typedElement = document.getElementById('typed-text');
         function typeEffect() {
@@ -997,12 +1142,11 @@
             }
             setTimeout(typeEffect, typeSpeed);
         }
-        // Start typing effect immediately after page load (no loader delay)
         document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(currentLang);
             setTimeout(typeEffect, 500);
         });
 
-        // ============ SCROLL REVEAL ============
         function revealOnScroll() {
             document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, index) => {
                 const windowHeight = window.innerHeight;
@@ -1014,12 +1158,10 @@
             });
         }
         window.addEventListener('scroll', revealOnScroll);
-        // Trigger reveal on load immediately (no loader delay)
         window.addEventListener('load', () => {
             setTimeout(revealOnScroll, 300);
         });
 
-        // ============ MUSIC PLAYER ============
         let currentAudio = null;
         let currentBtn = null;
         let currentCard = null;
@@ -1037,9 +1179,9 @@
             const progress = document.getElementById('progress' + audioId.slice(-1));
             const timeEl = document.getElementById('time' + audioId.slice(-1));
             const nowPlaying = document.getElementById('nowPlaying');
+            const nowPlayingTrack = document.getElementById('nowPlayingTrack');
             const trackName = card.dataset.track;
 
-            // Pause all other audios
             document.querySelectorAll('audio').forEach(a => {
                 if (a !== audio) {
                     a.pause();
@@ -1057,10 +1199,9 @@
                 currentAudio = audio;
                 currentBtn = btn;
                 currentCard = card;
-                nowPlaying.textContent = `Now playing: ${trackName}`;
+                nowPlayingTrack.textContent = trackName;
                 nowPlaying.classList.add('playing');
 
-                // Update progress
                 audio.addEventListener('timeupdate', function updateProgress() {
                     if (progress && audio.duration) {
                         progress.style.width = (audio.currentTime / audio.duration * 100) + '%';
@@ -1074,7 +1215,7 @@
                     btn.textContent = '▶';
                     card.classList.remove('playing');
                     if (progress) progress.style.width = '0%';
-                    nowPlaying.textContent = 'Now playing: none';
+                    nowPlayingTrack.textContent = translations[currentLang].now_playing_none;
                     nowPlaying.classList.remove('playing');
                 });
             } else {
@@ -1082,13 +1223,12 @@
                 btn.textContent = '▶';
                 card.classList.remove('playing');
                 if (currentAudio === audio) {
-                    nowPlaying.textContent = 'Now playing: none';
+                    nowPlayingTrack.textContent = translations[currentLang].now_playing_none;
                     nowPlaying.classList.remove('playing');
                 }
             }
         }
 
-        // ============ CONTACT FORM ============
         const contactForm = document.getElementById('contactForm');
         if(contactForm) {
             contactForm.addEventListener('submit', (e) => {
@@ -1105,7 +1245,6 @@
             });
         }
 
-        // ============ PARTICLES ============
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -1173,7 +1312,6 @@
         initParticles();
         animateParticles();
 
-        // ============ SMOOTH ANCHOR SCROLL ============
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1184,4 +1322,6 @@
     </script>
 </body>
 </html>
+
+
 
