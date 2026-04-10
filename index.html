@@ -80,32 +80,6 @@
             box-shadow: 0 0 15px var(--red-glow);
         }
 
-        /* ============ LOADING SCREEN ============ */
-        .loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--cream-base); display: flex; align-items: center;
-            justify-content: center; flex-direction: column; z-index: 100000;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .loader.hidden { opacity: 0; visibility: hidden; }
-        .loader-text {
-            font-family: 'Playfair Display', serif; font-size: 3rem;
-            font-weight: 900; color: var(--red-primary); letter-spacing: 10px;
-            animation: loaderPulse 1.5s ease-in-out infinite;
-            text-shadow: 0 0 20px var(--red-glow);
-        }
-        .loader-bar {
-            width: 200px; height: 2px; background: var(--cream-border);
-            margin-top: 30px; border-radius: 10px; overflow: hidden;
-        }
-        .loader-bar::after {
-            content: ''; display: block; width: 0%; height: 100%;
-            background: var(--red-primary); animation: loaderBar 2s ease-in-out forwards;
-            box-shadow: 0 0 10px var(--red-glow);
-        }
-        @keyframes loaderPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.05); } }
-        @keyframes loaderBar { 0% { width: 0%; } 100% { width: 100%; } }
-
         /* ============ PARTICLES ============ */
         #particles-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -670,12 +644,6 @@
 </head>
 <body>
 
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-text">RIJAL</div>
-        <div class="loader-bar"></div>
-    </div>
-
     <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
@@ -942,13 +910,6 @@
     </footer>
 
     <script>
-        // ============ LOADING SCREEN ============
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 2200);
-        });
-
         // ============ CUSTOM CURSOR ============
         const cursor = document.getElementById('cursor');
         const cursorDot = document.getElementById('cursorDot');
@@ -1036,7 +997,10 @@
             }
             setTimeout(typeEffect, typeSpeed);
         }
-        setTimeout(typeEffect, 2500);
+        // Start typing effect immediately after page load (no loader delay)
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeEffect, 500);
+        });
 
         // ============ SCROLL REVEAL ============
         function revealOnScroll() {
@@ -1050,7 +1014,10 @@
             });
         }
         window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', () => setTimeout(revealOnScroll, 2300));
+        // Trigger reveal on load immediately (no loader delay)
+        window.addEventListener('load', () => {
+            setTimeout(revealOnScroll, 300);
+        });
 
         // ============ MUSIC PLAYER ============
         let currentAudio = null;
