@@ -437,6 +437,7 @@
             50% { opacity: 0.85; transform: scale(1.03); }
         }
 
+        /* ===== PROJECT BASE STYLES ===== */
         .projects { background: var(--cream-light); }
         .projects-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -451,7 +452,7 @@
         .project-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%;
             height: 3px; background: linear-gradient(90deg, var(--red-primary), var(--red-light));
-            transform: scaleX(0); transition: transform 0.4s ease;
+            transform: scaleX(0); transition: transform 0.4s ease; z-index: 5;
         }
         .project-card:hover::before { transform: scaleX(1); }
         .project-card:hover {
@@ -490,6 +491,212 @@
         .project-link i { transition: transform 0.3s ease; }
         .project-link:hover i { transform: translateX(5px); }
 
+        /* ===== GOLDUPLOADER — INACTIVE STYLES ===== */
+        .project-card.inactive {
+            filter: grayscale(1) brightness(0.88);
+            border-color: #c8c8c8 !important;
+            background: #f0f0f0;
+        }
+        .project-card.inactive:hover {
+            transform: none !important;
+            box-shadow: var(--shadow-soft) !important;
+            border-color: #c8c8c8 !important;
+        }
+        .project-card.inactive::before { display: none !important; }
+        .project-card.inactive .project-image img {
+            transform: none !important;
+        }
+
+        .inactive-banner {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(360deg);
+            background: rgba(60, 60, 60, 0.90);
+            color: #ffffff;
+            font-size: 1.55rem;
+            font-weight: 900;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            padding: 16px 100px;
+            z-index: 30;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+            border-top: 2px solid rgba(255,255,255,0.2);
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .project-link-disabled {
+            color: #aaa;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.55;
+        }
+
+        /* ===== GOLDSTREAM — MIGRATION STYLES ===== */
+        .project-card.migrated {
+            border: 1px solid #ddd0b8;
+            background: linear-gradient(150deg, #fdf8ee 0%, #f5efe0 100%);
+            overflow: hidden;
+        }
+        /* Diagonal aesthetic scratch lines */
+        .project-card.migrated::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                -48deg,
+                transparent,
+                transparent 24px,
+                rgba(196, 30, 58, 0.04) 24px,
+                rgba(196, 30, 58, 0.04) 25px
+            );
+            pointer-events: none;
+            border-radius: 20px;
+            z-index: 0;
+        }
+        .project-card.migrated .project-content,
+        .project-card.migrated .project-image {
+            position: relative;
+            z-index: 1;
+        }
+        .project-card.migrated:hover {
+            border-color: #e65c00;
+            box-shadow: 0 20px 60px rgba(230, 92, 0, 0.15);
+        }
+        .project-card.migrated::before {
+            background: linear-gradient(90deg, #e65c00, #f9a825) !important;
+        }
+
+        /* Top-corner aesthetic "moved" stamp */
+        .migration-corner-stamp {
+            position: absolute;
+            top: 12px; right: 14px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 3px;
+            pointer-events: none;
+        }
+        .migration-corner-line {
+            height: 2px;
+            border-radius: 2px;
+            background: rgba(196, 30, 58, 0.18);
+        }
+
+        /* Migration badge */
+        .migration-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, #e65c00, #f9a825);
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 14px rgba(230, 92, 0, 0.4);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .migration-tag i { font-size: 0.72rem; }
+
+        /* Domain switch box */
+        .domain-switch {
+            background: rgba(196, 30, 58, 0.045);
+            border: 1px dashed rgba(196, 30, 58, 0.28);
+            border-radius: 12px;
+            padding: 13px 16px;
+            margin: 14px 0 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Subtle inner texture on domain box */
+        .domain-switch::before {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196,30,58,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .domain-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .domain-row-label {
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #aaa;
+            width: 36px;
+            flex-shrink: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .domain-row-label.new-label {
+            color: var(--red-primary);
+        }
+        .domain-row-url {
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: #bbb;
+            text-decoration: line-through;
+            text-decoration-color: #c41e3a;
+            text-decoration-thickness: 2px;
+            letter-spacing: 0.3px;
+        }
+        .domain-row-url.new-url {
+            color: var(--red-primary);
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+        }
+
+        .domain-arrow-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 46px;
+        }
+        .domain-arrow-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(196,30,58,0.15), rgba(196,30,58,0.55), rgba(196,30,58,0.15));
+            border-radius: 1px;
+        }
+        .domain-arrow-icon {
+            color: var(--red-primary);
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Migration link button style */
+        .project-link.migration-link {
+            color: #e65c00;
+        }
+        .project-link.migration-link:hover {
+            color: #c44d00;
+        }
+
+        /* ===== CONTACT ===== */
         .contact { background: var(--cream-base); }
         .contact-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
@@ -641,6 +848,7 @@
             .nav-right { gap: 5px; }
             .lang-toggle { padding: 4px 6px; }
             .lang-option { font-size: 0.7rem; padding: 3px 8px; }
+            .inactive-banner { font-size: 1.1rem; letter-spacing: 6px; padding: 12px 60px; }
         }
         @media (max-width: 480px) {
             .hero-title { font-size: 2rem; }
@@ -737,7 +945,7 @@
             <div class="about-content reveal-right">
                 <h3><span data-i18n="about_location_prefix">Student Based in</span> <span class="red">Bogor</span></h3>
                 <p data-i18n="about_p1">
-                    A Class 12 student, 17 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.
+                    A Class 12 student, 18 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.
                 </p>
                 <p data-i18n="about_p2">
                     I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.
@@ -840,7 +1048,12 @@
             <div class="section-line"></div>
         </div>
         <div class="projects-grid">
-            <div class="project-card reveal">
+
+            <!-- ===== GOLDUPLOADER — INACTIVE ===== -->
+            <div class="project-card reveal inactive">
+                <!-- Big diagonal INACTIVE banner -->
+                <div class="inactive-banner">⊘ &nbsp;INACTIVE</div>
+
                 <div class="project-image">
                     <img src="https://files.catbox.moe/et2ob8.jpg" alt="GoldUploader" onerror="this.src='https://via.placeholder.com/600x338/f8f4eb/c41e3a?text=GoldUploader'">
                 </div>
@@ -848,24 +1061,58 @@
                     <span class="project-category" data-i18n="project_cat_webtool">Web Tool</span>
                     <h3 class="project-title">GoldUploader</h3>
                     <p class="project-desc" data-i18n="project1_desc">A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.</p>
-                    <a href="https://golduploader.ijal.biz.id" target="_blank" class="project-link">
-                        <span data-i18n="project_link">See Project</span> <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <!-- Disabled button — no href, no interaction -->
+                    <span class="project-link-disabled">
+                        <i class="fas fa-ban"></i>
+                        <span data-i18n="project_link">See Project</span>
+                    </span>
                 </div>
             </div>
-            <div class="project-card reveal">
+
+            <div class="project-card reveal migrated">
+                <!-- Aesthetic corner decoration lines -->
+                <div class="migration-corner-stamp">
+                    <div class="migration-corner-line" style="width:40px;"></div>
+                    <div class="migration-corner-line" style="width:28px;"></div>
+                    <div class="migration-corner-line" style="width:16px;"></div>
+                </div>
+
                 <div class="project-image">
-                    <img src="https://files.catbox.moe/hhj353.jpg" alt="GoldStream" onerror="this.src='https://via.placeholder.com/600x338/f8f4eb/c41e3a?text=GoldStream'">
+                    <img src="https://o.uguu.se/FYpCUHnc.png" alt="YTDown" onerror="this.src='https://via.placeholder.com/600x338/f8f4eb/c41e3a?text=YTDown'">
                 </div>
                 <div class="project-content">
-                    <span class="project-category" data-i18n="project_cat_webtool">Web Tool</span>
-                    <h3 class="project-title">GoldStream</h3>
+                    <!-- Migration badge (replaces category) -->
+                    <span class="migration-tag">
+                        <i class="fas fa-exchange-alt"></i> Domain Migrated
+                    </span>
+                    <h3 class="project-title">YTDown</h3>
                     <p class="project-desc" data-i18n="project2_desc">A lightweight web tool that lets users download YouTube videos by simply pasting a video link and selecting the desired quality. Fast, simple, and easy to use.</p>
-                    <a href="https://goldstream.idgf.web.id" target="_blank" class="project-link">
-                        <span data-i18n="project_link">See Project</span> <i class="fas fa-arrow-right"></i>
+
+                    <!-- Domain switch visual -->
+                    <div class="domain-switch">
+                        <div class="domain-row">
+                            <span class="domain-row-label">OLD</span>
+                            <!-- Old domain — crossed out with red strikethrough -->
+                            <span class="domain-row-url">goldstream.idgf.web.id</span>
+                        </div>
+                        <div class="domain-arrow-row">
+                            <div class="domain-arrow-line"></div>
+                            <span class="domain-arrow-icon"><i class="fas fa-long-arrow-alt-down"></i></span>
+                            <div class="domain-arrow-line"></div>
+                        </div>
+                        <div class="domain-row">
+                            <span class="domain-row-label new-label">NEW</span>
+                            <!-- New domain — update this URL to the actual new domain -->
+                            <span class="domain-row-url new-url">down.ijal.eu.cc</span>
+                        </div>
+                    </div>
+
+                    <a href="https://down.ijal.eu.cc" target="_blank" class="project-link migration-link">
+                        <span>Visit New Domain</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -907,6 +1154,7 @@
                     <a href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk=" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
+        </div>
     </section>
 
     <footer>
@@ -937,7 +1185,7 @@
                 about_title_2: "Saya",
                 about_age_label: "Tahun",
                 about_location_prefix: "Siswa Berbasis di",
-                about_p1: "Seorang siswa Kelas 12, berusia 17 tahun, didorong oleh hasrat untuk hal-hal baru. Saya suka menyelami pengalaman baru dan menantang batas diri sendiri — bukan hanya tentang tujuan, tetapi tentang perjuangan konsisten untuk belajar, berkembang, dan membangun versi diri yang lebih baik.",
+                about_p1: "Seorang siswa Kelas 12, berusia 18 tahun, didorong oleh hasrat untuk hal-hal baru. Saya suka menyelami pengalaman baru dan menantang batas diri sendiri — bukan hanya tentang tujuan, tetapi tentang perjuangan konsisten untuk belajar, berkembang, dan membangun versi diri yang lebih baik.",
                 about_p2: "Saya percaya bahwa pertumbuhan datang dari keluar dari zona nyaman. Setiap proyek yang saya buat, setiap lagu yang saya dengarkan, dan setiap koneksi yang saya jalin adalah bagian dari perjalanan saya menuju menjadi versi terbaik dari diri saya.",
                 info_name_label: "Nama",
                 info_class_label: "Kelas",
@@ -987,7 +1235,7 @@
                 about_title_2: "Me",
                 about_age_label: "Years Old",
                 about_location_prefix: "Student Based in",
-                about_p1: "A Class 12 student, 17 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.",
+                about_p1: "A Class 12 student, 18 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.",
                 about_p2: "I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.",
                 info_name_label: "Name",
                 info_class_label: "Class",
@@ -1322,6 +1570,3 @@
     </script>
 </body>
 </html>
-
-
-
