@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,26 +12,29 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --dark-base: #0d0a1a;
-            --dark-light: #120f22;
-            --dark-card: #1a1530;
-            --dark-border: #2d2250;
-            --dark-deep: #080614;
+            --dark-base:      #0d0a1a;
+            --dark-light:     #120f22;
+            --dark-card:      #1a1530;
+            --dark-border:    #2d2250;
+            --dark-deep:      #080614;
             --purple-primary: #a855f7;
-            --purple-light: #c084fc;
-            --purple-dark: #7c3aed;
-            --purple-glow: rgba(168, 85, 247, 0.30);
-            --purple-soft: rgba(168, 85, 247, 0.12);
-            --text-primary: #f0eaff;
+            --purple-light:   #c084fc;
+            --purple-dark:    #7c3aed;
+            --purple-glow:    rgba(168, 85, 247, 0.30);
+            --purple-soft:    rgba(168, 85, 247, 0.12);
+            --text-primary:   #f0eaff;
             --text-secondary: #c4b0e0;
-            --text-light: #8e7aaa;
-            --text-cream: #f0eaff;
-            --white: #ffffff;
-            --shadow-soft: 0 10px 40px rgba(168, 85, 247, 0.12);
-            --shadow-hover: 0 20px 60px rgba(168, 85, 247, 0.25);
+            --text-light:     #8e7aaa;
+            --white:          #ffffff;
+            --shadow-soft:    0 10px 40px rgba(168, 85, 247, 0.12);
+            --shadow-hover:   0 20px 60px rgba(168, 85, 247, 0.25);
         }
 
-        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--purple-primary) var(--dark-base); }
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--purple-primary) var(--dark-base);
+        }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--dark-base); }
         ::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
@@ -44,160 +48,190 @@
             cursor: none;
             line-height: 1.6;
         }
-
         a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
+        /* ===== CURSOR ===== */
         .cursor {
-            width: 20px; height: 20px; border: 2px solid var(--purple-primary);
-            border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 99999; transition: transform 0.15s ease, background 0.15s ease;
+            width: 20px; height: 20px;
+            border: 2px solid var(--purple-primary);
+            border-radius: 50%; position: fixed;
+            pointer-events: none; z-index: 99999;
+            transition: transform 0.15s ease, background 0.15s ease;
             transform: translate(-50%, -50%);
         }
         .cursor-dot {
-            width: 6px; height: 6px; background: var(--purple-primary);
-            border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 99999; transform: translate(-50%, -50%);
+            width: 6px; height: 6px;
+            background: var(--purple-primary);
+            border-radius: 50%; position: fixed;
+            pointer-events: none; z-index: 99999;
+            transform: translate(-50%, -50%);
         }
         .cursor.hover {
             transform: translate(-50%, -50%) scale(2);
-            background: var(--purple-glow); border-color: var(--purple-light);
+            background: var(--purple-glow);
+            border-color: var(--purple-light);
         }
 
+        /* ===== SCROLL PROGRESS ===== */
         .scroll-progress {
-            position: fixed; top: 0; left: 0; height: 3px;
+            position: fixed; top: 0; left: 0;
+            height: 3px;
             background: linear-gradient(90deg, var(--purple-dark), var(--purple-light), var(--purple-primary));
             z-index: 10001; transition: width 0.1s ease;
             box-shadow: 0 0 15px var(--purple-glow);
         }
 
+        /* ===== PARTICLES ===== */
         #particles-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 0; pointer-events: none;
         }
 
+        /* ===== LANG TOGGLE ===== */
         .lang-toggle {
             display: flex; align-items: center; gap: 8px;
-            background: var(--dark-card); border: 2px solid var(--dark-border);
-            border-radius: 50px; padding: 6px 8px; cursor: pointer;
-            transition: all 0.3s ease; margin-left: 15px;
+            background: var(--dark-card);
+            border: 2px solid var(--dark-border);
+            border-radius: 50px; padding: 6px 8px;
+            cursor: pointer; transition: all 0.3s ease;
+            margin-left: 15px;
         }
         .lang-toggle:hover {
             border-color: var(--purple-primary);
             box-shadow: 0 4px 15px var(--purple-glow);
         }
         .lang-option {
-            font-size: 0.75rem; font-weight: 700; padding: 4px 10px;
-            border-radius: 30px; transition: all 0.2s ease;
-            color: var(--text-light);
+            font-size: 0.75rem; font-weight: 700;
+            padding: 4px 10px; border-radius: 30px;
+            transition: all 0.2s ease; color: var(--text-light);
         }
         .lang-option.active {
-            background: var(--purple-primary); color: var(--white);
+            background: var(--purple-primary);
+            color: var(--white);
             box-shadow: 0 2px 10px var(--purple-glow);
         }
         .lang-divider {
-            width: 1px; height: 20px; background: var(--dark-border);
+            width: 1px; height: 20px;
+            background: var(--dark-border);
         }
 
+        /* ===== NAVBAR ===== */
         .navbar {
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 20px 60px; display: flex; justify-content: space-between;
+            position: fixed; top: 0; left: 0;
+            width: 100%; padding: 20px 60px;
+            display: flex; justify-content: space-between;
             align-items: center; z-index: 10000;
             background: transparent;
+            transition: padding 0.3s ease;
         }
-        .navbar.scrolled {
-            padding: 15px 60px;
-        }
+        .navbar.scrolled { padding: 15px 60px; }
+
         .nav-logo {
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 1.6rem;
-            font-weight: 800; 
-            color: var(--text-primary); 
-            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem; font-weight: 800;
+            color: var(--text-primary);
             letter-spacing: -0.5px;
-            white-space: nowrap;
-            flex-shrink: 0;
+            white-space: nowrap; flex-shrink: 0;
         }
         .nav-logo span { color: var(--purple-primary); }
+
         .nav-right { display: flex; align-items: center; gap: 10px; }
+
         .nav-links { display: flex; list-style: none; gap: 40px; }
         .nav-links a {
-            font-size: 0.9rem; font-weight: 500; letter-spacing: 2px;
-            text-transform: uppercase; color: var(--text-secondary);
-            position: relative; transition: color 0.3s ease;
+            font-size: 0.9rem; font-weight: 500;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-secondary); position: relative;
+            transition: color 0.3s ease;
         }
         .nav-links a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0;
-            width: 0; height: 2px;
+            content: ''; position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
             background: linear-gradient(90deg, var(--purple-dark), var(--purple-light));
-            transition: width 0.3s ease; box-shadow: 0 0 5px var(--purple-glow);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 5px var(--purple-glow);
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--purple-primary); }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--purple-primary); }
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
+
         .hamburger {
-            display: none; flex-direction: column; gap: 6px;
-            cursor: pointer; z-index: 10001;
+            display: none; flex-direction: column;
+            gap: 6px; cursor: pointer; z-index: 10001;
         }
         .hamburger span {
-            width: 30px; height: 2px; background: var(--purple-primary);
+            width: 30px; height: 2px;
+            background: var(--purple-primary);
             transition: all 0.3s ease; border-radius: 2px;
         }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
+        /* ===== MOBILE MENU ===== */
         .mobile-menu {
-            position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
-            background: rgba(13, 10, 26, 0.98); backdrop-filter: blur(20px);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 9999; transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            position: fixed; top: 0; right: -100%;
+            width: 100%; height: 100%;
+            background: rgba(13, 10, 26, 0.98);
+            backdrop-filter: blur(20px);
+            display: flex; align-items: center;
+            justify-content: center; z-index: 9999;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         }
         .mobile-menu.active { right: 0; }
         .mobile-menu ul { list-style: none; text-align: center; }
         .mobile-menu ul li { margin: 25px 0; }
         .mobile-menu ul li a {
-            font-size: 2rem; font-weight: 600; color: var(--text-primary);
+            font-size: 2rem; font-weight: 600;
+            color: var(--text-primary);
             letter-spacing: 5px; text-transform: uppercase;
             transition: color 0.3s ease;
         }
         .mobile-menu ul li a:hover { color: var(--purple-primary); }
         .mobile-lang-toggle {
-            margin-top: 30px; display: flex; justify-content: center; gap: 10px;
+            margin-top: 30px;
+            display: flex; justify-content: center; gap: 10px;
         }
 
         /* ===== HERO ===== */
         .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            justify-content: center; position: relative; padding: 0 60px;
-            overflow: hidden;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; padding: 0 60px; overflow: hidden;
             background: linear-gradient(135deg, var(--dark-deep) 0%, var(--dark-base) 50%, #110d2a 100%);
         }
         .hero-bg-shape {
             position: absolute; width: 600px; height: 600px;
             border-radius: 50%;
             background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
             animation: heroGlow 4s ease-in-out infinite;
         }
         @keyframes heroGlow {
             0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
+            50%       { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
         }
+
         .hero-content {
-            position: relative; z-index: 2; text-align: center;
-            max-width: 900px;
+            position: relative; z-index: 2;
+            text-align: center; max-width: 900px;
         }
         .hero-badge {
             display: inline-block; padding: 8px 25px;
-            border: 2px solid var(--purple-primary); border-radius: 50px;
-            font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+            border: 2px solid var(--purple-primary);
+            border-radius: 50px; font-size: 0.8rem;
+            letter-spacing: 3px; text-transform: uppercase;
             color: var(--purple-light); margin-bottom: 30px;
             animation: fadeInUp 1s ease 0.5s both;
-            background: var(--purple-soft);
-            font-weight: 600;
+            background: var(--purple-soft); font-weight: 600;
         }
         .hero-title {
-            font-family: 'Playfair Display', serif; font-size: 5rem;
-            font-weight: 900; line-height: 1.1; margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem; font-weight: 900;
+            line-height: 1.1; margin-bottom: 10px;
             animation: fadeInUp 1s ease 0.7s both;
             color: var(--text-primary);
         }
@@ -210,14 +244,15 @@
             font-weight: 900;
         }
         .hero-title .highlight::after {
-            content: ''; position: absolute; bottom: 8px; left: 0;
-            width: 100%; height: 10px;
-            background: linear-gradient(90deg, rgba(124, 58, 237, 0.3), rgba(192, 132, 252, 0.3));
+            content: ''; position: absolute;
+            bottom: 8px; left: 0; width: 100%; height: 10px;
+            background: linear-gradient(90deg, rgba(124,58,237,0.3), rgba(192,132,252,0.3));
             z-index: -1; border-radius: 5px;
         }
         .hero-subtitle {
-            font-size: 1.3rem; color: var(--text-secondary); font-weight: 300;
-            margin-bottom: 15px; animation: fadeInUp 1s ease 0.9s both;
+            font-size: 1.3rem; color: var(--text-secondary);
+            font-weight: 300; margin-bottom: 15px;
+            animation: fadeInUp 1s ease 0.9s both;
         }
         .typing-wrapper {
             font-size: 1.5rem;
@@ -225,16 +260,27 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 600;
-            margin-bottom: 40px; min-height: 40px;
+            font-weight: 600; margin-bottom: 40px;
+            min-height: 40px;
             animation: fadeInUp 1s ease 1s both;
         }
-        .typing-wrapper .typed-cursor {
-            color: var(--purple-light);
+        .typed-cursor {
+            display: inline-block;
             -webkit-text-fill-color: var(--purple-light);
+            color: var(--purple-light);
             animation: blink 0.7s infinite;
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .typing-wrapper .typed-icon {
+            display: inline-block;
+            -webkit-text-fill-color: var(--purple-light);
+            color: var(--purple-light);
+            font-size: 1.1rem;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
         .hero-buttons {
             display: flex; gap: 20px; justify-content: center;
             animation: fadeInUp 1s ease 1.1s both;
@@ -242,16 +288,17 @@
         .btn-primary {
             padding: 15px 40px;
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
-            color: var(--white);
-            font-weight: 700; font-size: 0.9rem; letter-spacing: 2px;
-            text-transform: uppercase; border: 2px solid transparent;
-            border-radius: 50px; cursor: pointer; transition: all 0.4s ease;
+            color: var(--white); font-weight: 700;
+            font-size: 0.9rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid transparent; border-radius: 50px;
+            cursor: pointer; transition: all 0.4s ease;
             position: relative; overflow: hidden;
             box-shadow: 0 5px 20px var(--purple-glow);
         }
         .btn-primary::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
+            content: ''; position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.5s ease;
         }
@@ -262,10 +309,13 @@
             box-shadow: var(--shadow-hover);
         }
         .btn-outline {
-            padding: 15px 40px; background: transparent; color: var(--purple-light);
-            font-weight: 700; font-size: 0.9rem; letter-spacing: 2px;
-            text-transform: uppercase; border: 2px solid var(--purple-primary);
-            border-radius: 50px; cursor: pointer; transition: all 0.4s ease;
+            padding: 15px 40px; background: transparent;
+            color: var(--purple-light); font-weight: 700;
+            font-size: 0.9rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid var(--purple-primary);
+            border-radius: 50px; cursor: pointer;
+            transition: all 0.4s ease;
         }
         .btn-outline:hover {
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
@@ -273,41 +323,35 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
         }
-        .hero-scroll {
-            position: absolute; bottom: 40px; left: 50%;
-            transform: translateX(-50%); display: flex;
-            flex-direction: column; align-items: center; gap: 10px;
-            animation: fadeInUp 1s ease 1.3s both;
-        }
-        .hero-scroll span {
-            font-size: 0.7rem; letter-spacing: 3px;
-            text-transform: uppercase; color: var(--text-light);
-        }
+
         .scroll-line {
-            width: 1px; height: 60px; background: var(--dark-border);
+            width: 1px; height: 60px;
+            background: var(--dark-border);
             position: relative; overflow: hidden; border-radius: 2px;
         }
         .scroll-line::after {
-            content: ''; position: absolute; top: -100%; left: 0;
-            width: 100%; height: 50%;
+            content: ''; position: absolute;
+            top: -100%; left: 0; width: 100%; height: 50%;
             background: linear-gradient(180deg, var(--purple-dark), var(--purple-light));
             animation: scrollDown 2s ease-in-out infinite;
             border-radius: 2px;
         }
         @keyframes scrollDown { 0% { top: -50%; } 100% { top: 100%; } }
 
+        /* ===== SECTION COMMONS ===== */
         section { padding: 120px 60px; position: relative; z-index: 2; }
         .section-header { text-align: center; margin-bottom: 80px; }
         .section-label {
-            font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase;
-            color: var(--purple-light); margin-bottom: 15px; display: block;
-            font-weight: 600;
+            font-size: 0.8rem; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--purple-light);
+            margin-bottom: 15px; display: block; font-weight: 600;
         }
         .section-title {
-            font-family: 'Playfair Display', serif; font-size: 3.5rem;
-            font-weight: 900; color: var(--text-primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem; font-weight: 900;
+            color: var(--text-primary);
         }
-        .section-title .red { 
+        .section-title .red {
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -323,23 +367,27 @@
         /* ===== ABOUT ===== */
         .about { background: var(--dark-light); }
         .about-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-            align-items: center; max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
+            max-width: 1200px; margin: 0 auto;
         }
         .about-image { position: relative; }
         .about-image-wrapper {
-            position: relative; width: 100%; aspect-ratio: 3/4;
-            overflow: hidden; border-radius: 20px;
+            position: relative; width: 100%;
+            aspect-ratio: 3/4; overflow: hidden;
+            border-radius: 20px;
             border: 3px solid var(--dark-border);
             background: var(--dark-card);
             box-shadow: var(--shadow-soft);
         }
         .about-image-wrapper img {
             width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(10%) brightness(0.9); transition: all 0.5s ease;
+            filter: grayscale(10%) brightness(0.9);
+            transition: all 0.5s ease;
         }
         .about-image-wrapper:hover img {
-            filter: grayscale(0%) brightness(1); transform: scale(1.05);
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.05);
         }
         .about-image-decoration {
             position: absolute; top: -15px; right: -15px;
@@ -350,10 +398,9 @@
         .about-exp-badge {
             position: absolute; bottom: -20px; left: -20px;
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
-            color: var(--white);
-            padding: 20px 30px; border-radius: 15px; text-align: center; z-index: 3;
-            box-shadow: var(--shadow-hover);
-            font-weight: 600;
+            color: var(--white); padding: 20px 30px;
+            border-radius: 15px; text-align: center;
+            z-index: 3; box-shadow: var(--shadow-hover); font-weight: 600;
         }
         .about-exp-badge .number { font-size: 2.5rem; font-weight: 900; line-height: 1; }
         .about-exp-badge .text {
@@ -361,8 +408,9 @@
             letter-spacing: 1px; text-transform: uppercase;
         }
         .about-content h3 {
-            font-family: 'Playfair Display', serif; font-size: 2.5rem;
-            margin-bottom: 20px; color: var(--text-primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; margin-bottom: 20px;
+            color: var(--text-primary);
         }
         .about-content h3 .red {
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-light));
@@ -371,73 +419,71 @@
             background-clip: text;
         }
         .about-content p {
-            color: var(--text-secondary); line-height: 1.8; margin-bottom: 15px;
-            font-size: 0.95rem;
+            color: var(--text-secondary); line-height: 1.8;
+            margin-bottom: 15px; font-size: 0.95rem;
         }
         .about-info {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
-            margin: 30px 0;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 15px; margin: 30px 0;
         }
-        .about-info-item {
-            display: flex; align-items: center; gap: 10px;
-        }
+        .about-info-item { display: flex; align-items: center; gap: 10px; }
         .about-info-item i {
-            color: var(--purple-primary); font-size: 1rem; width: 20px;
+            color: var(--purple-primary);
+            font-size: 1rem; width: 20px;
         }
         .about-info-item .label { color: var(--text-light); font-size: 0.85rem; }
-        .about-info-item .value {
-            color: var(--text-primary); font-weight: 600; font-size: 0.85rem;
-        }
+        .about-info-item .value { color: var(--text-primary); font-weight: 600; font-size: 0.85rem; }
 
         /* ===== MUSIC ===== */
         .music { background: var(--dark-base); }
         .music-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 25px; max-width: 1200px; margin: 0 auto;
         }
         .music-card {
-            background: var(--dark-card); border: 1px solid var(--dark-border);
-            border-radius: 20px; padding: 25px; display: flex; gap: 20px;
-            align-items: center; transition: all 0.4s ease; position: relative;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px; padding: 25px;
+            display: flex; gap: 20px; align-items: center;
+            transition: all 0.4s ease; position: relative;
             overflow: hidden; box-shadow: var(--shadow-soft);
         }
         .music-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%;
-            height: 3px;
+            content: ''; position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
             background: linear-gradient(90deg, var(--purple-dark), var(--purple-light));
             transform: scaleX(0); transition: transform 0.4s ease;
         }
         .music-card:hover::before { transform: scaleX(1); }
         .music-card:hover {
-            transform: translateY(-5px); border-color: var(--purple-primary);
+            transform: translateY(-5px);
+            border-color: var(--purple-primary);
             box-shadow: var(--shadow-hover);
         }
         .music-card.playing { border-color: var(--purple-primary); }
         .music-card.playing::before { transform: scaleX(1); }
+
         .music-cover {
-            width: 80px; height: 80px; border-radius: 12px;
-            object-fit: cover; flex-shrink: 0;
-            border: 2px solid var(--dark-border);
+            width: 80px; height: 80px;
+            border-radius: 12px; object-fit: cover;
+            flex-shrink: 0; border: 2px solid var(--dark-border);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .music-info { flex: 1; }
         .music-title {
-            font-size: 1.2rem; font-weight: 700; margin-bottom: 5px;
-            color: var(--text-primary);
+            font-size: 1.2rem; font-weight: 700;
+            margin-bottom: 5px; color: var(--text-primary);
         }
-        .music-artist {
-            color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;
-        }
-        .music-controls {
-            display: flex; align-items: center; gap: 15px;
-        }
+        .music-artist { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px; }
+        .music-controls { display: flex; align-items: center; gap: 15px; }
         .play-btn {
             width: 40px; height: 40px; border-radius: 50%;
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
-            color: var(--white);
-            border: none; display: flex; align-items: center;
-            justify-content: center; cursor: pointer;
-            transition: all 0.3s ease; font-size: 1rem;
+            color: var(--white); border: none;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s ease;
+            font-size: 0.9rem;
             box-shadow: 0 4px 12px var(--purple-glow);
         }
         .play-btn:hover {
@@ -456,14 +502,16 @@
         .music-progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--purple-dark), var(--purple-light));
-            border-radius: 10px; width: 0%; transition: width 0.1s linear;
+            border-radius: 10px; width: 0%;
+            transition: width 0.1s linear;
             box-shadow: 0 0 8px var(--purple-glow);
         }
         .now-playing {
             display: inline-block; padding: 8px 20px;
-            background: var(--purple-soft); border: 1px solid var(--purple-primary);
-            border-radius: 50px; font-size: 0.8rem; color: var(--purple-light);
-            margin-bottom: 30px; font-weight: 600;
+            background: var(--purple-soft);
+            border: 1px solid var(--purple-primary);
+            border-radius: 50px; font-size: 0.8rem;
+            color: var(--purple-light); margin-bottom: 30px; font-weight: 600;
         }
         .now-playing.playing {
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
@@ -473,35 +521,38 @@
         }
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.85; transform: scale(1.03); }
+            50%       { opacity: 0.85; transform: scale(1.03); }
         }
 
-        /* ===== PROJECT BASE STYLES ===== */
+        /* ===== PROJECTS ===== */
         .projects { background: var(--dark-light); }
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px; max-width: 1200px; margin: 0 auto;
         }
         .project-card {
-            background: var(--dark-card); border: 1px solid var(--dark-border);
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
             border-radius: 20px; overflow: hidden;
-            transition: all 0.4s ease; position: relative;
-            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+            position: relative; box-shadow: var(--shadow-soft);
         }
         .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%;
-            height: 3px;
+            content: ''; position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
             background: linear-gradient(90deg, var(--purple-dark), var(--purple-light));
             transform: scaleX(0); transition: transform 0.4s ease; z-index: 5;
         }
         .project-card:hover::before { transform: scaleX(1); }
         .project-card:hover {
-            transform: translateY(-10px); border-color: var(--purple-primary);
+            transform: translateY(-10px);
+            border-color: var(--purple-primary);
             box-shadow: var(--shadow-hover);
         }
         .project-image {
-            width: 100%; aspect-ratio: 16/9; overflow: hidden;
-            background: var(--dark-base);
+            width: 100%; aspect-ratio: 16/9;
+            overflow: hidden; background: var(--dark-base);
         }
         .project-image img {
             width: 100%; height: 100%; object-fit: cover;
@@ -515,98 +566,42 @@
             margin-bottom: 10px; display: block; font-weight: 600;
         }
         .project-title {
-            font-size: 1.4rem; font-weight: 700; margin-bottom: 10px;
-            color: var(--text-primary);
+            font-size: 1.4rem; font-weight: 700;
+            margin-bottom: 10px; color: var(--text-primary);
         }
         .project-desc {
-            color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;
-            margin-bottom: 20px;
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.7; margin-bottom: 20px;
         }
         .project-link {
-            color: var(--purple-primary); font-size: 0.9rem; font-weight: 600;
-            display: inline-flex; align-items: center; gap: 8px;
-            transition: gap 0.3s ease;
+            color: var(--purple-primary); font-size: 0.9rem;
+            font-weight: 600; display: inline-flex;
+            align-items: center; gap: 8px; transition: gap 0.3s ease;
         }
         .project-link:hover { gap: 15px; color: var(--purple-light); }
         .project-link i { transition: transform 0.3s ease; }
         .project-link:hover i { transform: translateX(5px); }
 
-        /* ===== GOLDUPLOADER — INACTIVE STYLES ===== */
-        .project-card.inactive {
-            filter: grayscale(0.8) brightness(0.65);
-            border-color: #2a2535 !important;
-            background: #171422;
-        }
-        .project-card.inactive:hover {
-            transform: none !important;
-            box-shadow: var(--shadow-soft) !important;
-            border-color: #2a2535 !important;
-        }
-        .project-card.inactive::before { display: none !important; }
-        .project-card.inactive .project-image img {
-            transform: none !important;
-        }
-
-        .inactive-banner {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) rotate(360deg);
-            background: rgba(8, 6, 20, 0.92);
-            color: #ffffff;
-            font-size: 1.55rem;
-            font-weight: 900;
-            letter-spacing: 10px;
-            text-transform: uppercase;
-            padding: 16px 100px;
-            z-index: 30;
-            white-space: nowrap;
-            font-family: 'Montserrat', sans-serif;
-            border-top: 2px solid rgba(168, 85, 247, 0.3);
-            border-bottom: 2px solid rgba(168, 85, 247, 0.3);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(168,85,247,0.1);
-            user-select: none;
-            pointer-events: none;
-        }
-
-        .project-link-disabled {
-            color: #4a3d6a;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            cursor: not-allowed;
-            pointer-events: none;
-            opacity: 0.55;
-        }
-
-        /* ===== GOLDSTREAM — MIGRATION STYLES ===== */
+        /* ===== MIGRATED CARD ===== */
         .project-card.migrated {
             border: 1px solid #352a55;
             background: linear-gradient(150deg, #1e1840 0%, #251550 100%);
             overflow: hidden;
         }
-        /* Diagonal aesthetic lines */
         .project-card.migrated::after {
             content: '';
-            position: absolute;
-            top: 0; left: 0;
+            position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
             background: repeating-linear-gradient(
-                -48deg,
-                transparent,
-                transparent 24px,
+                -48deg, transparent, transparent 24px,
                 rgba(168, 85, 247, 0.04) 24px,
                 rgba(168, 85, 247, 0.04) 25px
             );
-            pointer-events: none;
-            border-radius: 20px;
-            z-index: 0;
+            pointer-events: none; border-radius: 20px; z-index: 0;
         }
         .project-card.migrated .project-content,
         .project-card.migrated .project-image {
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
         }
         .project-card.migrated:hover {
             border-color: var(--purple-light);
@@ -616,134 +611,89 @@
             background: linear-gradient(90deg, var(--purple-dark), var(--purple-light)) !important;
         }
 
-        /* Top-corner aesthetic "moved" stamp */
         .migration-corner-stamp {
-            position: absolute;
-            top: 12px; right: 14px;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 3px;
-            pointer-events: none;
+            position: absolute; top: 12px; right: 14px;
+            z-index: 10; display: flex;
+            flex-direction: column; align-items: flex-end;
+            gap: 3px; pointer-events: none;
         }
         .migration-corner-line {
-            height: 2px;
-            border-radius: 2px;
+            height: 2px; border-radius: 2px;
             background: rgba(168, 85, 247, 0.35);
         }
 
-        /* Migration badge */
         .migration-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
+            display: inline-flex; align-items: center; gap: 7px;
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-light));
-            color: white;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 5px 14px;
-            border-radius: 20px;
+            color: white; font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 20px;
             margin-bottom: 12px;
             box-shadow: 0 3px 14px var(--purple-glow);
             font-family: 'Montserrat', sans-serif;
         }
         .migration-tag i { font-size: 0.72rem; }
 
-        /* Domain switch box */
         .domain-switch {
             background: rgba(168, 85, 247, 0.07);
             border: 1px dashed rgba(168, 85, 247, 0.3);
-            border-radius: 12px;
-            padding: 13px 16px;
-            margin: 14px 0 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-            position: relative;
-            overflow: hidden;
+            border-radius: 12px; padding: 13px 16px;
+            margin: 14px 0 18px; display: flex;
+            flex-direction: column; gap: 9px;
+            position: relative; overflow: hidden;
         }
         .domain-switch::before {
-            content: '';
-            position: absolute;
+            content: ''; position: absolute;
             top: -20px; right: -20px;
-            width: 80px; height: 80px;
-            border-radius: 50%;
+            width: 80px; height: 80px; border-radius: 50%;
             background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%);
             pointer-events: none;
         }
-
-        .domain-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .domain-row { display: flex; align-items: center; gap: 10px; }
         .domain-row-label {
-            font-size: 0.62rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #6a5a8a;
-            width: 36px;
-            flex-shrink: 0;
+            font-size: 0.62rem; font-weight: 800;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: #6a5a8a; width: 36px; flex-shrink: 0;
             font-family: 'Montserrat', sans-serif;
         }
-        .domain-row-label.new-label {
-            color: var(--purple-primary);
-        }
+        .domain-row-label.new-label { color: var(--purple-primary); }
         .domain-row-url {
-            font-size: 0.8rem;
-            font-family: monospace;
+            font-size: 0.8rem; font-family: monospace;
             color: #6a5a8a;
             text-decoration: line-through;
             text-decoration-color: var(--purple-primary);
-            text-decoration-thickness: 2px;
-            letter-spacing: 0.3px;
+            text-decoration-thickness: 2px; letter-spacing: 0.3px;
         }
         .domain-row-url.new-url {
-            color: var(--purple-primary);
-            font-weight: 700;
-            text-decoration: none;
-            letter-spacing: 0.3px;
+            color: var(--purple-primary); font-weight: 700;
+            text-decoration: none; letter-spacing: 0.3px;
         }
-
         .domain-arrow-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-left: 46px;
+            display: flex; align-items: center;
+            gap: 8px; padding-left: 46px;
         }
         .domain-arrow-line {
-            flex: 1;
-            height: 1px;
+            flex: 1; height: 1px;
             background: linear-gradient(90deg, rgba(168,85,247,0.1), rgba(168,85,247,0.5), rgba(168,85,247,0.1));
             border-radius: 1px;
         }
         .domain-arrow-icon {
             color: var(--purple-primary);
-            font-size: 0.85rem;
-            opacity: 0.7;
+            font-size: 0.85rem; opacity: 0.7;
         }
-
-        /* Migration link button style */
-        .project-link.migration-link {
-            color: var(--purple-light);
-        }
-        .project-link.migration-link:hover {
-            color: var(--purple-primary);
-        }
+        .project-link.migration-link { color: var(--purple-light); }
+        .project-link.migration-link:hover { color: var(--purple-primary); }
 
         /* ===== CONTACT ===== */
         .contact { background: var(--dark-base); }
         .contact-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; max-width: 1200px; margin: 0 auto;
         }
         .contact-info h3 {
-            font-family: 'Playfair Display', serif; font-size: 2.5rem;
-            margin-bottom: 20px; color: var(--text-primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; margin-bottom: 20px;
+            color: var(--text-primary);
         }
         .contact-info h3 .red {
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-light));
@@ -755,15 +705,13 @@
             color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px;
         }
         .contact-details { display: flex; flex-direction: column; gap: 25px; }
-        .contact-item {
-            display: flex; align-items: center; gap: 20px;
-        }
+        .contact-item { display: flex; align-items: center; gap: 20px; }
         .contact-item-icon {
-            width: 55px; height: 55px; background: var(--purple-soft);
-            border-radius: 15px; display: flex; align-items: center;
-            justify-content: center; color: var(--purple-primary);
-            font-size: 1.2rem; flex-shrink: 0;
-            border: 1px solid var(--dark-border);
+            width: 55px; height: 55px;
+            background: var(--purple-soft); border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--purple-primary); font-size: 1.2rem;
+            flex-shrink: 0; border: 1px solid var(--dark-border);
             transition: all 0.3s ease;
         }
         .contact-item:hover .contact-item-icon {
@@ -781,72 +729,34 @@
         }
         .social-links { display: flex; gap: 15px; margin-top: 40px; }
         .social-link {
-            width: 50px; height: 50px; border: 2px solid var(--dark-border);
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: var(--text-secondary);
-            font-size: 1.1rem; transition: all 0.3s ease;
-            background: var(--dark-card);
+            width: 50px; height: 50px;
+            border: 2px solid var(--dark-border);
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            color: var(--text-secondary); font-size: 1.1rem;
+            transition: all 0.3s ease; background: var(--dark-card);
         }
         .social-link:hover {
             background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
-            color: var(--white);
-            border-color: transparent; transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        .contact-form {
-            background: var(--dark-card); border: 1px solid var(--dark-border);
-            border-radius: 20px; padding: 40px;
-            box-shadow: var(--shadow-soft);
-        }
-        .form-group { margin-bottom: 25px; }
-        .form-group label {
-            display: block; font-size: 0.85rem; color: var(--text-light);
-            margin-bottom: 8px; font-weight: 500;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 15px 20px; background: var(--dark-light);
-            border: 2px solid var(--dark-border); border-radius: 12px;
-            color: var(--text-primary); font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem; transition: all 0.3s ease;
-            outline: none;
-        }
-        .form-group input::placeholder, .form-group textarea::placeholder {
-            color: var(--text-light);
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--purple-primary);
-            box-shadow: 0 0 0 4px var(--purple-soft);
-            background: var(--dark-card);
-        }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .btn-submit {
-            width: 100%; padding: 18px;
-            background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
-            color: var(--white); font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem; font-weight: 700; letter-spacing: 2px;
-            text-transform: uppercase; border: none; border-radius: 12px;
-            cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 5px 20px var(--purple-glow);
-        }
-        .btn-submit:hover {
-            background: linear-gradient(135deg, var(--purple-primary), var(--purple-light));
-            transform: translateY(-3px);
+            color: var(--white); border-color: transparent;
+            transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
 
+        /* ===== FOOTER ===== */
         footer {
-            padding: 40px 60px; border-top: 2px solid var(--dark-border);
-            display: flex; justify-content: space-between; align-items: center;
-            position: relative; z-index: 2; background: var(--dark-light);
+            padding: 40px 60px;
+            border-top: 2px solid var(--dark-border);
+            display: flex; justify-content: space-between;
+            align-items: center; position: relative;
+            z-index: 2; background: var(--dark-light);
         }
         footer p { color: var(--text-secondary); font-size: 0.85rem; }
         footer p .red {
             background: linear-gradient(90deg, var(--purple-primary), var(--purple-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+            background-clip: text; font-weight: 700;
         }
         .back-to-top {
             width: 50px; height: 50px;
@@ -862,9 +772,10 @@
             box-shadow: var(--shadow-hover);
         }
 
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
         .reveal {
             opacity: 0; transform: translateY(50px);
@@ -882,6 +793,7 @@
         }
         .reveal-right.active { opacity: 1; transform: translateX(0); }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero-title { font-size: 3.5rem; }
             .about-grid { grid-template-columns: 1fr; gap: 50px; }
@@ -900,26 +812,22 @@
             .hero-buttons { flex-direction: column; align-items: center; }
             .section-title { font-size: 2.5rem; }
             .projects-grid, .music-grid { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            footer { flex-direction: column; gap: 20px; text-align: center; padding: 30px 25px; }
+            footer {
+                flex-direction: column; gap: 20px;
+                text-align: center; padding: 30px 25px;
+            }
             .cursor, .cursor-dot { display: none; }
             body { cursor: auto; }
             .nav-right { gap: 5px; }
             .nav-logo { font-size: 1.1rem; }
             .lang-toggle { padding: 4px 6px; }
             .lang-option { font-size: 0.7rem; padding: 3px 8px; }
-            .inactive-banner { font-size: 1.1rem; letter-spacing: 6px; padding: 12px 60px; }
         }
         @media (max-width: 480px) {
             .hero-title { font-size: 2rem; }
             .about-info { grid-template-columns: 1fr; }
             .nav-logo { font-size: 1rem; letter-spacing: -0.3px; }
         }
-        
-        .text-red { color: var(--purple-primary) !important; }
-        .text-red-dark { color: var(--purple-dark) !important; }
-        .bg-cream { background: var(--dark-card) !important; }
-        .border-red { border-color: var(--purple-primary) !important; }
     </style>
 </head>
 <body>
@@ -929,16 +837,15 @@
     <div class="scroll-progress" id="scrollProgress"></div>
     <canvas id="particles-canvas"></canvas>
 
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo" data-i18n="nav_logo">About Me</a>
-        
         <div class="nav-right">
             <div class="lang-toggle" id="langToggle" onclick="toggleLanguage()">
                 <span class="lang-option" id="langId" data-lang="id">ID</span>
                 <span class="lang-divider"></span>
                 <span class="lang-option" id="langEn" data-lang="en">EN</span>
             </div>
-            
             <ul class="nav-links">
                 <li><a href="#hero" class="active" data-i18n="nav_home">Home</a></li>
                 <li><a href="#about" data-i18n="nav_about">About</a></li>
@@ -952,20 +859,22 @@
         </div>
     </nav>
 
+    <!-- ===== MOBILE MENU ===== -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="#hero" onclick="closeMobile()" data-i18n="nav_home">Home</a></li>
-            <li><a href="#about" onclick="closeMobile()" data-i18n="nav_about">About</a></li>
-            <li><a href="#music" onclick="closeMobile()" data-i18n="nav_music">Music</a></li>
+            <li><a href="#hero"     onclick="closeMobile()" data-i18n="nav_home">Home</a></li>
+            <li><a href="#about"    onclick="closeMobile()" data-i18n="nav_about">About</a></li>
+            <li><a href="#music"    onclick="closeMobile()" data-i18n="nav_music">Music</a></li>
             <li><a href="#projects" onclick="closeMobile()" data-i18n="nav_projects">Projects</a></li>
-            <li><a href="#contact" onclick="closeMobile()" data-i18n="nav_contact">Contact</a></li>
+            <li><a href="#contact"  onclick="closeMobile()" data-i18n="nav_contact">Contact</a></li>
         </ul>
         <div class="mobile-lang-toggle">
-            <span class="lang-option" id="langIdMobile" data-lang="id" onclick="setLanguage('id')">ID</span>
-            <span class="lang-option" id="langEnMobile" data-lang="en" onclick="setLanguage('en')">EN</span>
+            <span class="lang-option" id="langIdMobile"  data-lang="id" onclick="setLanguage('id')">ID</span>
+            <span class="lang-option" id="langEnMobile"  data-lang="en" onclick="setLanguage('en')">EN</span>
         </div>
     </div>
 
+    <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
         <div class="hero-bg-shape"></div>
         <div class="hero-content">
@@ -976,25 +885,29 @@
             </h1>
             <p class="hero-subtitle" data-i18n="hero_subtitle">Growth Mindset · Exploration · Consistent Learning</p>
             <div class="typing-wrapper">
-                <span id="typed-text"></span>
+                <span id="typed-text"></span><span class="typed-cursor">|</span>
             </div>
             <div class="hero-buttons">
                 <a href="#projects" class="btn-primary" data-i18n="btn_projects">View Projects</a>
-                <a href="#contact" class="btn-outline" data-i18n="btn_contact">Get In Touch</a>
+                <a href="#contact"  class="btn-outline"  data-i18n="btn_contact">Get In Touch</a>
             </div>
-        </div>
     </section>
 
+    <!-- ===== ABOUT ===== -->
     <section class="about" id="about">
         <div class="section-header">
             <span class="section-label" data-i18n="about_label">Get To Know</span>
-            <h2 class="section-title"><span data-i18n="about_title_1">About</span> <span class="red" data-i18n="about_title_2">Me</span></h2>
+            <h2 class="section-title">
+                <span data-i18n="about_title_1">About</span>
+                <span class="red" data-i18n="about_title_2"> Me</span>
+            </h2>
             <div class="section-line"></div>
         </div>
         <div class="about-grid">
             <div class="about-image reveal">
                 <div class="about-image-wrapper">
-                    <img src="https://files.catbox.moe/82997e.png" alt="Rijal profile" onerror="this.src='https://via.placeholder.com/400x533/1a1530/a855f7?text=Rijal'">
+                    <img src="https://files.catbox.moe/82997e.png" alt="Rijal profile"
+                         onerror="this.src='https://via.placeholder.com/400x533/1a1530/a855f7?text=Rijal'">
                 </div>
                 <div class="about-image-decoration"></div>
                 <div class="about-exp-badge">
@@ -1003,140 +916,191 @@
                 </div>
             </div>
             <div class="about-content reveal">
-                <h3><span data-i18n="about_location_prefix">Student Based in</span> <span class="red">Bogor</span></h3>
-                <p data-i18n="about_p1">
-                    A Class 12 student, 18 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.
-                </p>
-                <p data-i18n="about_p2">
-                    I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.
-                </p>
+                <h3>
+                    <span data-i18n="about_location_prefix">Student Based in</span>
+                    <span class="red"> Bogor</span>
+                </h3>
+                <p data-i18n="about_p1">A Class 12 student, 18 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.</p>
+                <p data-i18n="about_p2">I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.</p>
                 <div class="about-info">
                     <div class="about-info-item">
                         <i class="fas fa-user"></i>
                         <div>
                             <span class="label" data-i18n="info_name_label">Name</span>
-                            <span class="value">Rijal</span>
+                            <span class="value"> · Rijal</span>
                         </div>
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-graduation-cap"></i>
                         <div>
                             <span class="label" data-i18n="info_class_label">Class</span>
-                            <span class="value">12</span>
+                            <span class="value"> · 12</span>
                         </div>
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <span class="label" data-i18n="info_location_label">Location</span>
-                            <span class="value">Bogor, Indonesia</span>
+                            <span class="value"> · Bogor, ID</span>
                         </div>
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-heart"></i>
                         <div>
                             <span class="label" data-i18n="info_hobby_label">Hobby</span>
-                            <span class="value" data-i18n="info_hobby_value">Exploration & Growth</span>
+                            <span class="value" data-i18n="info_hobby_value"> · Exploration</span>
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="btn-primary"><span data-i18n="btn_connect">Let's Connect</span> <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                <a href="#contact" class="btn-primary">
+                    <span data-i18n="btn_connect">Let's Connect</span>
+                    <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- ===== MUSIC ===== -->
     <section class="music" id="music">
         <div class="section-header">
             <span class="section-label" data-i18n="music_label">What I Listen To</span>
-            <h2 class="section-title"><span data-i18n="music_title_1">Top 3</span> <span class="red" data-i18n="music_title_2">Favorite Songs</span></h2>
+            <h2 class="section-title">
+                <span data-i18n="music_title_1">Top 3</span>
+                <span class="red" data-i18n="music_title_2"> Favorite Songs</span>
+            </h2>
             <div class="section-line"></div>
         </div>
-        <div id="nowPlaying" class="now-playing"><span data-i18n="now_playing_prefix">Now playing:</span> <span id="nowPlayingTrack" data-i18n="now_playing_none">none</span></div>
+        <div id="nowPlaying" class="now-playing">
+            <span data-i18n="now_playing_prefix">Now playing:</span>
+            <span id="nowPlayingTrack" data-i18n="now_playing_none"> none</span>
+        </div>
         <div class="music-grid">
+            <!-- Track 1 -->
             <div class="music-card reveal" data-track="Voce Na Mira - Sxilwix">
-                <img class="music-cover" src="https://files.catbox.moe/ez86dx.png" alt="Voce Na Mira" onerror="this.src='https://via.placeholder.com/80/1a1530/a855f7?text=♪'">
+                <img class="music-cover"
+                     src="https://files.catbox.moe/ez86dx.png" alt="Voce Na Mira"
+                     onerror="this.src='https://via.placeholder.com/80/1a1530/a855f7?text=%E2%99%AA'">
                 <div class="music-info">
                     <div class="music-title">Voce Na Mira</div>
-                    <div class="music-artist">Sxilwix, Hwungii & DJ VGK1</div>
+                    <div class="music-artist">Sxilwix, Hwungii &amp; DJ VGK1</div>
                     <div class="music-controls">
-                        <button class="play-btn" onclick="togglePlay(this, 'audio1')">▶</button>
+                        <button class="play-btn" onclick="togglePlay(this,'audio1')">
+                            <i class="fas fa-play"></i>
+                        </button>
                         <span class="music-time" id="time1">0:00 / 0:00</span>
                     </div>
                     <div class="music-progress">
                         <div class="music-progress-fill" id="progress1"></div>
                     </div>
                 </div>
-                <audio id="audio1" src="https://files.catbox.moe/ywfovc.mp3"></audio>
+                <audio id="audio1" src="https://files.catbox.moe/ywfovc.mp3" preload="metadata"></audio>
             </div>
+            <!-- Track 2 -->
             <div class="music-card reveal" data-track="Animals - Maroon 5">
-                <img class="music-cover" src="https://files.catbox.moe/vnykz7.jpeg" alt="Animals" onerror="this.src='https://via.placeholder.com/80/1a1530/a855f7?text=♪'">
+                <img class="music-cover"
+                     src="https://files.catbox.moe/vnykz7.jpeg" alt="Animals"
+                     onerror="this.src='https://via.placeholder.com/80/1a1530/a855f7?text=%E2%99%AA'">
                 <div class="music-info">
                     <div class="music-title">Animals</div>
                     <div class="music-artist">Maroon 5</div>
                     <div class="music-controls">
-                        <button class="play-btn" onclick="togglePlay(this, 'audio2')">▶</button>
+                        <button class="play-btn" onclick="togglePlay(this,'audio2')">
+                            <i class="fas fa-play"></i>
+                        </button>
                         <span class="music-time" id="time2">0:00 / 0:00</span>
                     </div>
                     <div class="music-progress">
                         <div class="music-progress-fill" id="progress2"></div>
                     </div>
                 </div>
-                <audio id="audio2" src="https://files.catbox.moe/a6x0fp.mp3"></audio>
+                <audio id="audio2" src="https://files.catbox.moe/a6x0fp.mp3" preload="metadata"></audio>
             </div>
+            <!-- Track 3 -->
             <div class="music-card reveal" data-track="Tourner Dans La Vide">
-                <img class="music-cover" src="https://files.catbox.moe/9i3h8a.jpg" alt="Tourner Dans La Vide" onerror="this.src='https://via.placeholder.com/80/1a1530/a855f7?text=♪'">
+                <img class="music-cover"
+                     src="https://files.catbox.moe/9i3h8a.jpg" alt="Tourner Dans La Vide"
+                     onerror="this.src='https://via.placeholder.com/80/1a1530/a855f7?text=%E2%99%AA'">
                 <div class="music-info">
                     <div class="music-title">Tourner Dans La Vide</div>
                     <div class="music-artist">Indilla</div>
                     <div class="music-controls">
-                        <button class="play-btn" onclick="togglePlay(this, 'audio3')">▶</button>
+                        <button class="play-btn" onclick="togglePlay(this,'audio3')">
+                            <i class="fas fa-play"></i>
+                        </button>
                         <span class="music-time" id="time3">0:00 / 0:00</span>
                     </div>
                     <div class="music-progress">
                         <div class="music-progress-fill" id="progress3"></div>
                     </div>
                 </div>
-                <audio id="audio3" src="https://files.catbox.moe/2h9ncr.mp3"></audio>
+                <audio id="audio3" src="https://files.catbox.moe/2h9ncr.mp3" preload="metadata"></audio>
             </div>
         </div>
     </section>
 
+    <!-- ===== PROJECTS ===== -->
     <section class="projects" id="projects">
         <div class="section-header">
             <span class="section-label" data-i18n="projects_label">Things I Built</span>
-            <h2 class="section-title"><span data-i18n="projects_title_1">My</span> <span class="red" data-i18n="projects_title_2">Projects</span></h2>
+            <h2 class="section-title">
+                <span data-i18n="projects_title_1">My</span>
+                <span class="red" data-i18n="projects_title_2"> Projects</span>
+            </h2>
             <div class="section-line"></div>
         </div>
         <div class="projects-grid">
 
-            <!-- ===== GOLDUPLOADER — INACTIVE ===== -->
-            <div class="project-card reveal inactive">
-                <div class="inactive-banner">⊘ &nbsp;INACTIVE</div>
-
-                <div class="project-image">
-                    <img src="https://files.catbox.moe/et2ob8.jpg" alt="GoldUploader" onerror="this.src='https://via.placeholder.com/600x338/1a1530/a855f7?text=GoldUploader'">
-                </div>
-                <div class="project-content">
-                    <span class="project-category" data-i18n="project_cat_webtool">Web Tool</span>
-                    <h3 class="project-title">GoldUploader</h3>
-                    <p class="project-desc" data-i18n="project1_desc">A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.</p>
-                    <span class="project-link-disabled">
-                        <i class="fas fa-ban"></i>
-                        <span data-i18n="project_link">See Project</span>
-                    </span>
-                </div>
-            </div>
-
+            <!-- ===== VOIDUPLOADER — MIGRATED ===== -->
             <div class="project-card reveal migrated">
-                <!-- Aesthetic corner decoration lines -->
                 <div class="migration-corner-stamp">
                     <div class="migration-corner-line" style="width:40px;"></div>
                     <div class="migration-corner-line" style="width:28px;"></div>
                     <div class="migration-corner-line" style="width:16px;"></div>
                 </div>
-
                 <div class="project-image">
-                    <img src="https://o.uguu.se/FYpCUHnc.png" alt="YTDown" onerror="this.src='https://via.placeholder.com/600x338/1e1840/c084fc?text=YTDown'">
+                    <img src="https://up.ijal.eu.cc/f/voidd" alt="VOIDUPLOADER"
+                         onerror="this.src='https://via.placeholder.com/600x338/1e1840/c084fc?text=VOIDUPLOADER'">
+                </div>
+                <div class="project-content">
+                    <span class="migration-tag">
+                        <i class="fas fa-exchange-alt"></i> Domain Migrated
+                    </span>
+                    <span class="project-category" data-i18n="project_cat_webtool">Web Tool</span>
+                    <h3 class="project-title">VOIDUPLOADER</h3>
+                    <p class="project-desc" data-i18n="project1_desc">A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.</p>
+                    <div class="domain-switch">
+                        <div class="domain-row">
+                            <span class="domain-row-label">OLD</span>
+                            <span class="domain-row-url">uploader.ijal.eu.cc</span>
+                        </div>
+                        <div class="domain-arrow-row">
+                            <div class="domain-arrow-line"></div>
+                            <span class="domain-arrow-icon"><i class="fas fa-long-arrow-alt-down"></i></span>
+                            <div class="domain-arrow-line"></div>
+                        </div>
+                        <div class="domain-row">
+                            <span class="domain-row-label new-label">NEW</span>
+                            <span class="domain-row-url new-url">up.ijal.eu.cc</span>
+                        </div>
+                    </div>
+                    <a href="https://up.ijal.eu.cc" target="_blank" rel="noopener noreferrer"
+                       class="project-link migration-link">
+                        <span data-i18n="project_link_visit">Visit New Domain</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== YTDOWN — MIGRATED ===== -->
+            <div class="project-card reveal migrated">
+                <div class="migration-corner-stamp">
+                    <div class="migration-corner-line" style="width:40px;"></div>
+                    <div class="migration-corner-line" style="width:28px;"></div>
+                    <div class="migration-corner-line" style="width:16px;"></div>
+                </div>
+                <div class="project-image">
+                    <img src="https://up.ijal.eu.cc/f/ytdownn" alt="YTDown"
+                         onerror="this.src='https://via.placeholder.com/600x338/1e1840/c084fc?text=YTDown'">
                 </div>
                 <div class="project-content">
                     <span class="migration-tag">
@@ -1144,7 +1108,6 @@
                     </span>
                     <h3 class="project-title">YTDown</h3>
                     <p class="project-desc" data-i18n="project2_desc">A lightweight web tool that lets users download YouTube videos by simply pasting a video link and selecting the desired quality. Fast, simple, and easy to use.</p>
-
                     <div class="domain-switch">
                         <div class="domain-row">
                             <span class="domain-row-label">OLD</span>
@@ -1160,9 +1123,10 @@
                             <span class="domain-row-url new-url">down.ijal.eu.cc</span>
                         </div>
                     </div>
-
-                    <a href="https://down.ijal.eu.cc" target="_blank" class="project-link migration-link">
-                        <span>Visit New Domain</span> <i class="fas fa-arrow-right"></i>
+                    <a href="https://down.ijal.eu.cc" target="_blank" rel="noopener noreferrer"
+                       class="project-link migration-link">
+                        <span data-i18n="project_link_visit">Visit New Domain</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -1170,15 +1134,22 @@
         </div>
     </section>
 
+    <!-- ===== CONTACT ===== -->
     <section class="contact" id="contact">
         <div class="section-header">
             <span class="section-label" data-i18n="contact_label">Get In Touch</span>
-            <h2 class="section-title"><span data-i18n="contact_title_1">Contact</span> <span class="red" data-i18n="contact_title_2">Me</span></h2>
+            <h2 class="section-title">
+                <span data-i18n="contact_title_1">Contact</span>
+                <span class="red" data-i18n="contact_title_2"> Me</span>
+            </h2>
             <div class="section-line"></div>
         </div>
         <div class="contact-grid">
             <div class="contact-info reveal">
-                <h3><span data-i18n="contact_connect_1">Let's</span> <span class="red" data-i18n="contact_connect_2">Connect</span></h3>
+                <h3>
+                    <span data-i18n="contact_connect_1">Let's</span>
+                    <span class="red" data-i18n="contact_connect_2"> Connect</span>
+                </h3>
                 <p data-i18n="contact_desc">Embracing the journey, one step at a time. Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about growth, learning, and new experiences.</p>
                 <div class="contact-details">
                     <div class="contact-item">
@@ -1204,430 +1175,499 @@
                     </div>
                 </div>
                 <div class="social-links">
-                    <a href="https://wa.me/6283834683978" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk=" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/6283834683978"
+                       target="_blank" rel="noopener noreferrer"
+                       class="social-link" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk="
+                       target="_blank" rel="noopener noreferrer"
+                       class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer>
         <p>© 2026 <span class="red">Rijal</span> · <span data-i18n="footer_text">Student Portfolio</span></p>
-        <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+                aria-label="Back to top">
             <i class="fas fa-arrow-up"></i>
         </button>
     </footer>
 
     <script>
-        const translations = {
-            id: {
-                nav_logo: "Tentang Saya",
-                nav_home: "Beranda",
-                nav_about: "Tentang",
-                nav_music: "Musik",
-                nav_projects: "Proyek",
-                nav_contact: "Kontak",
-                hero_badge: "Portofolio Siswa · 2026",
-                hero_greeting: "Halo, Saya",
-                hero_role: "Siswa · Kelas 12",
-                hero_subtitle: "Pola Pikir Berkembang · Eksplorasi · Belajar Konsisten",
-                typing_texts: ["Pola Pikir Berkembang 🌱", "Eksplorasi 🗺️", "Belajar Konsisten 📚", "Siswa Kelas 12 🎓", "Dari Bogor 🏔️"],
-                btn_projects: "Lihat Proyek",
-                btn_contact: "Hubungi Saya",
-                about_label: "Kenali Saya",
-                about_title_1: "Tentang",
-                about_title_2: "Saya",
-                about_age_label: "Tahun",
-                about_location_prefix: "Siswa Berbasis di",
-                about_p1: "Seorang siswa Kelas 12, berusia 18 tahun, didorong oleh hasrat untuk hal-hal baru. Saya suka menyelami pengalaman baru dan menantang batas diri sendiri — bukan hanya tentang tujuan, tetapi tentang perjuangan konsisten untuk belajar, berkembang, dan membangun versi diri yang lebih baik.",
-                about_p2: "Saya percaya bahwa pertumbuhan datang dari keluar dari zona nyaman. Setiap proyek yang saya buat, setiap lagu yang saya dengarkan, dan setiap koneksi yang saya jalin adalah bagian dari perjalanan saya menuju menjadi versi terbaik dari diri saya.",
-                info_name_label: "Nama",
-                info_class_label: "Kelas",
-                info_location_label: "Lokasi",
-                info_hobby_label: "Hobi",
-                info_hobby_value: "Eksplorasi & Pertumbuhan",
-                btn_connect: "Mari Terhubung",
-                music_label: "Yang Saya Dengarkan",
-                music_title_1: "3 Lagu",
-                music_title_2: "Favorit",
-                now_playing_prefix: "Sedang diputar:",
-                now_playing_none: "tidak ada",
-                projects_label: "Yang Saya Buat",
-                projects_title_1: "Proyek",
-                projects_title_2: "Saya",
-                project_cat_webtool: "Alat Web",
-                project1_desc: "Alat sederhana yang memungkinkan pengguna mengunggah gambar, video, atau audio dan langsung mengubahnya menjadi tautan yang dapat dibagikan. Dirancang untuk berbagi file yang cepat dan ringan.",
-                project2_desc: "Alat web ringan yang memungkinkan pengguna mengunduh video YouTube hanya dengan menempelkan tautan video dan memilih kualitas yang diinginkan. Cepat, sederhana, dan mudah digunakan.",
-                project_link: "Lihat Proyek",
-                contact_label: "Hubungi Saya",
-                contact_title_1: "Kontak",
-                contact_title_2: "Saya",
-                contact_connect_1: "Mari",
-                contact_connect_2: "Terhubung",
-                contact_desc: "Merangkul perjalanan, satu langkah demi satu langkah. Hubungi saya melalui WhatsApp atau Instagram — saya ingin sekali terhubung dan berbagi ide tentang pertumbuhan, pembelajaran, dan pengalaman baru.",
-                contact_loc_label: "Lokasi",
-                contact_wa_label: "WhatsApp",
-                contact_ig_label: "Instagram",
-                footer_text: "Portofolio Siswa"
-            },
-            en: {
-                nav_logo: "About Me",
-                nav_home: "Home",
-                nav_about: "About",
-                nav_music: "Music",
-                nav_projects: "Projects",
-                nav_contact: "Contact",
-                hero_badge: "Student Portfolio · 2026",
-                hero_greeting: "Hi, I'm",
-                hero_role: "Student · Class 12",
-                hero_subtitle: "Growth Mindset · Exploration · Consistent Learning",
-                typing_texts: ['Growth Mindset 🌱', 'Exploration 🗺️', 'Consistent Learning 📚', 'Class 12 Student 🎓', 'From Bogor 🏔️'],
-                btn_projects: "View Projects",
-                btn_contact: "Get In Touch",
-                about_label: "Get To Know",
-                about_title_1: "About",
-                about_title_2: "Me",
-                about_age_label: "Years Old",
-                about_location_prefix: "Student Based in",
-                about_p1: "A Class 12 student, 18 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.",
-                about_p2: "I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.",
-                info_name_label: "Name",
-                info_class_label: "Class",
-                info_location_label: "Location",
-                info_hobby_label: "Hobby",
-                info_hobby_value: "Exploration & Growth",
-                btn_connect: "Let's Connect",
-                music_label: "What I Listen To",
-                music_title_1: "Top 3",
-                music_title_2: "Favorite Songs",
-                now_playing_prefix: "Now playing:",
-                now_playing_none: "none",
-                projects_label: "Things I Built",
-                projects_title_1: "My",
-                projects_title_2: "Projects",
-                project_cat_webtool: "Web Tool",
-                project1_desc: "A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.",
-                project2_desc: "A lightweight web tool that lets users download YouTube videos by simply pasting a video link and selecting the desired quality. Fast, simple, and easy to use.",
-                project_link: "See Project",
-                contact_label: "Get In Touch",
-                contact_title_1: "Contact",
-                contact_title_2: "Me",
-                contact_connect_1: "Let's",
-                contact_connect_2: "Connect",
-                contact_desc: "Embracing the journey, one step at a time. Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about growth, learning, and new experiences.",
-                contact_loc_label: "Location",
-                contact_wa_label: "WhatsApp",
-                contact_ig_label: "Instagram",
-                footer_text: "Student Portfolio"
-            }
-        };
-
-        let currentLang = localStorage.getItem('rijal_lang') || 'id';
-        
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('rijal_lang', lang);
-            
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translations[lang][key];
-                    } else {
-                        if (el.children.length > 0 && !el.classList.contains('hero-title')) {
-                            Array.from(el.childNodes).forEach(node => {
-                                if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-                                    node.textContent = translations[lang][key] + ' ';
-                                }
-                            });
-                        } else {
-                            el.textContent = translations[lang][key];
-                        }
-                    }
-                }
-            });
-            
-            typedTexts = translations[lang].typing_texts;
-            
-            document.querySelectorAll('.lang-option').forEach(opt => {
-                opt.classList.toggle('active', opt.dataset.lang === lang);
-            });
-            
-            document.documentElement.lang = lang;
-            
-            updateMobileLangToggle();
+    /* ============================================================
+       TRANSLATIONS
+    ============================================================ */
+    const translations = {
+        id: {
+            nav_logo: "Tentang Saya",
+            nav_home: "Beranda",
+            nav_about: "Tentang",
+            nav_music: "Musik",
+            nav_projects: "Proyek",
+            nav_contact: "Kontak",
+            hero_badge: "Portofolio Siswa · 2026",
+            hero_greeting: "Halo, Saya",
+            hero_role: "Siswa · Kelas 12",
+            hero_subtitle: "Pola Pikir Berkembang · Eksplorasi · Belajar Konsisten",
+            typing_texts: [
+                'Pola Pikir Berkembang <i class="fas fa-seedling typed-icon"></i>',
+                'Eksplorasi <i class="fas fa-map typed-icon"></i>',
+                'Belajar Konsisten <i class="fas fa-book-open typed-icon"></i>',
+                'Siswa Kelas 12 <i class="fas fa-graduation-cap typed-icon"></i>',
+                'Dari Bogor <i class="fas fa-mountain typed-icon"></i>'
+            ],
+            btn_projects: "Lihat Proyek",
+            btn_contact: "Hubungi Saya",
+            about_label: "Kenali Saya",
+            about_title_1: "Tentang",
+            about_title_2: "Saya",
+            about_age_label: "Tahun",
+            about_location_prefix: "Siswa Berbasis di",
+            about_p1: "Seorang siswa Kelas 12, berusia 18 tahun, didorong oleh hasrat untuk hal-hal baru. Saya suka menyelami pengalaman baru dan menantang batas diri sendiri — bukan hanya tentang tujuan, tetapi tentang perjuangan konsisten untuk belajar, berkembang, dan membangun versi diri yang lebih baik.",
+            about_p2: "Saya percaya bahwa pertumbuhan datang dari keluar dari zona nyaman. Setiap proyek yang saya buat, setiap lagu yang saya dengarkan, dan setiap koneksi yang saya jalin adalah bagian dari perjalanan saya menuju menjadi versi terbaik dari diri saya.",
+            info_name_label: "Nama",
+            info_class_label: "Kelas",
+            info_location_label: "Lokasi",
+            info_hobby_label: "Hobi",
+            info_hobby_value: "· Eksplorasi",
+            btn_connect: "Mari Terhubung",
+            music_label: "Yang Saya Dengarkan",
+            music_title_1: "3 Lagu",
+            music_title_2: "Favorit",
+            now_playing_prefix: "Sedang diputar:",
+            now_playing_none: " tidak ada",
+            projects_label: "Yang Saya Buat",
+            projects_title_1: "Proyek",
+            projects_title_2: "Saya",
+            project_cat_webtool: "Alat Web",
+            project1_desc: "Alat sederhana yang memungkinkan pengguna mengunggah gambar, video, atau audio dan langsung mengubahnya menjadi tautan yang dapat dibagikan. Dirancang untuk berbagi file yang cepat dan ringan.",
+            project2_desc: "Alat web ringan yang memungkinkan pengguna mengunduh video YouTube hanya dengan menempelkan tautan video dan memilih kualitas yang diinginkan. Cepat, sederhana, dan mudah digunakan.",
+            project_link_disabled: "Tidak tersedia",
+            project_link_visit: "Kunjungi Domain Baru",
+            contact_label: "Hubungi Saya",
+            contact_title_1: "Kontak",
+            contact_title_2: "Saya",
+            contact_connect_1: "Mari",
+            contact_connect_2: "Terhubung",
+            contact_desc: "Merangkul perjalanan, satu langkah demi satu langkah. Hubungi saya melalui WhatsApp atau Instagram — saya ingin sekali terhubung dan berbagi ide tentang pertumbuhan, pembelajaran, dan pengalaman baru.",
+            contact_loc_label: "Lokasi",
+            contact_wa_label: "WhatsApp",
+            contact_ig_label: "Instagram",
+            footer_text: "Portofolio Siswa"
+        },
+        en: {
+            nav_logo: "About Me",
+            nav_home: "Home",
+            nav_about: "About",
+            nav_music: "Music",
+            nav_projects: "Projects",
+            nav_contact: "Contact",
+            hero_badge: "Student Portfolio · 2026",
+            hero_greeting: "Hi, I'm",
+            hero_role: "Student · Class 12",
+            hero_subtitle: "Growth Mindset · Exploration · Consistent Learning",
+            typing_texts: [
+                'Growth Mindset <i class="fas fa-seedling typed-icon"></i>',
+                'Exploration <i class="fas fa-map typed-icon"></i>',
+                'Consistent Learning <i class="fas fa-book-open typed-icon"></i>',
+                'Class 12 Student <i class="fas fa-graduation-cap typed-icon"></i>',
+                'From Bogor <i class="fas fa-mountain typed-icon"></i>'
+            ],
+            btn_projects: "View Projects",
+            btn_contact: "Get In Touch",
+            about_label: "Get To Know",
+            about_title_1: "About",
+            about_title_2: "Me",
+            about_age_label: "Years Old",
+            about_location_prefix: "Student Based in",
+            about_p1: "A Class 12 student, 18 years young, fuelled by a passion for the unknown. I love diving into new experiences and challenging my own limits — it's not just about the destination, but the consistent grind to learn, evolve, and build a better version of myself.",
+            about_p2: "I believe that growth comes from stepping outside your comfort zone. Every project I build, every song I listen to, and every connection I make is part of my journey toward becoming the best version of myself.",
+            info_name_label: "Name",
+            info_class_label: "Class",
+            info_location_label: "Location",
+            info_hobby_label: "Hobby",
+            info_hobby_value: "· Exploration",
+            btn_connect: "Let's Connect",
+            music_label: "What I Listen To",
+            music_title_1: "Top 3",
+            music_title_2: "Favorite Songs",
+            now_playing_prefix: "Now playing:",
+            now_playing_none: " none",
+            projects_label: "Things I Built",
+            projects_title_1: "My",
+            projects_title_2: "Projects",
+            project_cat_webtool: "Web Tool",
+            project1_desc: "A simple tool that allows users to upload images, videos, or audio and instantly convert them into a shareable link. Designed for quick and lightweight file sharing.",
+            project2_desc: "A lightweight web tool that lets users download YouTube videos by simply pasting a video link and selecting the desired quality. Fast, simple, and easy to use.",
+            project_link_disabled: "No longer available",
+            project_link_visit: "Visit New Domain",
+            contact_label: "Get In Touch",
+            contact_title_1: "Contact",
+            contact_title_2: "Me",
+            contact_connect_1: "Let's",
+            contact_connect_2: "Connect",
+            contact_desc: "Embracing the journey, one step at a time. Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about growth, learning, and new experiences.",
+            contact_loc_label: "Location",
+            contact_wa_label: "WhatsApp",
+            contact_ig_label: "Instagram",
+            footer_text: "Student Portfolio"
         }
-        
-        function toggleLanguage() {
-            const newLang = currentLang === 'id' ? 'en' : 'id';
-            setLanguage(newLang);
-        }
-        
-        function updateMobileLangToggle() {
-            document.querySelectorAll('.lang-option').forEach(opt => {
-                opt.classList.toggle('active', opt.dataset.lang === currentLang);
-            });
-        }
+    };
 
-        const cursor = document.getElementById('cursor');
-        const cursorDot = document.getElementById('cursorDot');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
-        document.querySelectorAll('a, button, .project-card, .music-card, .social-link, .contact-item, .lang-toggle').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
+    /* ============================================================
+       LANGUAGE SYSTEM
+    ============================================================ */
+    let currentLang = localStorage.getItem('rijal_lang') || 'id';
 
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const progress = (scrollTop / scrollHeight) * 100;
-            document.getElementById('scrollProgress').style.width = progress + '%';
-        });
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('rijal_lang', lang);
+        const t = translations[lang];
 
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (!t[key]) return;
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = t[key];
             } else {
-                navbar.classList.remove('scrolled');
+                el.textContent = t[key];
             }
         });
-        
-        const sections = document.querySelectorAll('section[id]');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 200;
-                if (window.scrollY >= sectionTop) current = section.getAttribute('id');
-            });
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-            });
+
+        typedTexts = t.typing_texts;
+
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.classList.toggle('active', opt.dataset.lang === lang);
         });
 
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
-        function closeMobile() {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-        }
+        document.documentElement.lang = lang;
+    }
 
-        let typedTexts = translations[currentLang].typing_texts;
-        let textIndex = 0, charIndex = 0, isDeleting = false;
-        const typedElement = document.getElementById('typed-text');
-        function typeEffect() {
-            const currentText = typedTexts[textIndex];
-            if (isDeleting) {
-                typedElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typedElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            let typeSpeed = isDeleting ? 50 : 100;
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2000; isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % typedTexts.length;
-                typeSpeed = 500;
-            }
-            setTimeout(typeEffect, typeSpeed);
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            setLanguage(currentLang);
-            setTimeout(typeEffect, 500);
-        });
+    function toggleLanguage() {
+        setLanguage(currentLang === 'id' ? 'en' : 'id');
+    }
 
-        function revealOnScroll() {
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, index) => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    el.style.transitionDelay = (index % 3) * 0.1 + 's';
-                    el.classList.add('active');
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    const cursor    = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursorDot');
+
+    document.addEventListener('mousemove', e => {
+        cursor.style.left    = e.clientX + 'px';
+        cursor.style.top     = e.clientY + 'px';
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top  = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button, .project-card, .music-card, .social-link, .contact-item, .lang-toggle').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    /* ============================================================
+       SCROLL PROGRESS BAR
+    ============================================================ */
+    window.addEventListener('scroll', () => {
+        const scrolled = document.documentElement.scrollTop;
+        const max      = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('scrollProgress').style.width = (scrolled / max * 100) + '%';
+    });
+
+    /* ============================================================
+       NAVBAR SCROLL BEHAVIOUR + ACTIVE LINK
+    ============================================================ */
+    const navbar   = document.getElementById('navbar');
+    const sections = document.querySelectorAll('section[id]');
+
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+
+        let current = '';
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+    });
+
+    /* ============================================================
+       MOBILE MENU
+    ============================================================ */
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    function closeMobile() {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+    }
+
+    /* ============================================================
+       TYPING EFFECT
+    ============================================================ */
+    let typedTexts  = translations[currentLang].typing_texts;
+    let textIndex   = 0;
+    let charIndex   = 0;
+    let isDeleting  = false;
+
+    const typedEl     = document.getElementById('typed-text');
+    function plainLen(html) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent.length;
+    }
+
+    function typeEffect() {
+        const fullHTML   = typedTexts[textIndex];
+        const fullPlain  = (() => { const d = document.createElement('div'); d.innerHTML = fullHTML; return d.textContent; })();
+
+        if (isDeleting) {
+            let visCount  = 0;
+            let slicedHTML = '';
+            let inTag = false;
+            for (let i = 0; i < fullHTML.length; i++) {
+                const ch = fullHTML[i];
+                if (ch === '<') { inTag = true; }
+                if (inTag) {
+                    slicedHTML += ch;
+                    if (ch === '>') inTag = false;
+                    continue;
                 }
-            });
-        }
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', () => {
-            setTimeout(revealOnScroll, 300);
-        });
-
-        let currentAudio = null;
-        let currentBtn = null;
-        let currentCard = null;
-
-        function formatTime(seconds) {
-            if (!isFinite(seconds) || isNaN(seconds)) return '0:00';
-            const m = Math.floor(seconds / 60);
-            const s = Math.floor(seconds % 60);
-            return `${m}:${s < 10 ? '0' + s : s}`;
-        }
-
-        function togglePlay(btn, audioId) {
-            const audio = document.getElementById(audioId);
-            const card = btn.closest('.music-card');
-            const progress = document.getElementById('progress' + audioId.slice(-1));
-            const timeEl = document.getElementById('time' + audioId.slice(-1));
-            const nowPlaying = document.getElementById('nowPlaying');
-            const nowPlayingTrack = document.getElementById('nowPlayingTrack');
-            const trackName = card.dataset.track;
-
-            document.querySelectorAll('audio').forEach(a => {
-                if (a !== audio) {
-                    a.pause();
-                    const otherBtn = a.closest('.music-card')?.querySelector('.play-btn');
-                    const otherCard = a.closest('.music-card');
-                    if (otherBtn) otherBtn.textContent = '▶';
-                    if (otherCard) otherCard.classList.remove('playing');
-                }
-            });
-
-            if (audio.paused) {
-                audio.play().catch(e => console.log('Playback error:', e));
-                btn.textContent = '⏸';
-                card.classList.add('playing');
-                currentAudio = audio;
-                currentBtn = btn;
-                currentCard = card;
-                nowPlayingTrack.textContent = trackName;
-                nowPlaying.classList.add('playing');
-
-                audio.addEventListener('timeupdate', function updateProgress() {
-                    if (progress && audio.duration) {
-                        progress.style.width = (audio.currentTime / audio.duration * 100) + '%';
-                    }
-                    if (timeEl) {
-                        timeEl.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
-                    }
-                });
-
-                audio.addEventListener('ended', () => {
-                    btn.textContent = '▶';
-                    card.classList.remove('playing');
-                    if (progress) progress.style.width = '0%';
-                    nowPlayingTrack.textContent = translations[currentLang].now_playing_none;
-                    nowPlaying.classList.remove('playing');
-                });
-            } else {
-                audio.pause();
-                btn.textContent = '▶';
-                card.classList.remove('playing');
-                if (currentAudio === audio) {
-                    nowPlayingTrack.textContent = translations[currentLang].now_playing_none;
-                    nowPlaying.classList.remove('playing');
-                }
-            }
-        }
-
-        const contactForm = document.getElementById('contactForm');
-        if(contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const btn = e.target.querySelector('.btn-submit');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '✓ <span style="margin-left:5px">Message Sent!</span>';
-                btn.style.background = '#2e7d32';
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = '';
-                    e.target.reset();
-                }, 3000);
-            });
-        }
-
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.4 + 0.15;
-                // Randomly pick between light purple and dark purple
-                this.isLight = Math.random() > 0.5;
-            }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                // Mix of light purple (192,132,252) and dark purple (124,58,237)
-                if (this.isLight) {
-                    ctx.fillStyle = `rgba(192, 132, 252, ${this.opacity})`;
+                if (visCount < charIndex) {
+                    slicedHTML += ch;
+                    visCount++;
                 } else {
-                    ctx.fillStyle = `rgba(124, 58, 237, ${this.opacity})`;
-                }
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            const count = Math.min(80, Math.floor(window.innerWidth / 15));
-            for (let i = 0; i < count; i++) particles.push(new Particle());
-        }
-
-        function connectParticles() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a + 1; b < particles.length; b++) {
-                    const dx = particles[a].x - particles[b].x;
-                    const dy = particles[a].y - particles[b].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
-                        ctx.strokeStyle = `rgba(168, 85, 247, ${0.12 * (1 - dist / 120)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
+                    break;
                 }
             }
+            typedEl.innerHTML = slicedHTML;
+            charIndex--;
+        } else {
+            let visCount  = 0;
+            let slicedHTML = '';
+            let inTag = false;
+            for (let i = 0; i < fullHTML.length; i++) {
+                const ch = fullHTML[i];
+                if (ch === '<') { inTag = true; }
+                if (inTag) {
+                    slicedHTML += ch;
+                    if (ch === '>') inTag = false;
+                    continue;
+                }
+                if (visCount <= charIndex) {
+                    slicedHTML += ch;
+                    visCount++;
+                } else {
+                    break;
+                }
+            }
+            typedEl.innerHTML = slicedHTML;
+            charIndex++;
         }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            connectParticles();
-            requestAnimationFrame(animateParticles);
+        let delay = isDeleting ? 50 : 100;
+        if (!isDeleting && charIndex === fullPlain.length) {
+            delay = 2000; isDeleting = true;
+        } else if (isDeleting && charIndex < 0) {
+            isDeleting = false;
+            charIndex  = 0;
+            textIndex  = (textIndex + 1) % typedTexts.length;
+            delay = 500;
         }
+        setTimeout(typeEffect, delay);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    function revealOnScroll() {
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i) => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                el.style.transitionDelay = (i % 3) * 0.1 + 's';
+                el.classList.add('active');
+            }
+        });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+
+    /* ============================================================
+       MUSIC PLAYER
+    ============================================================ */
+    function formatTime(s) {
+        if (!isFinite(s) || isNaN(s)) return '0:00';
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    function togglePlay(btn, audioId) {
+        const audio    = document.getElementById(audioId);
+        const card     = btn.closest('.music-card');
+        const idx      = audioId.slice(-1);
+        const progress = document.getElementById('progress' + idx);
+        const timeEl   = document.getElementById('time' + idx);
+        const nowPlaying      = document.getElementById('nowPlaying');
+        const nowPlayingTrack = document.getElementById('nowPlayingTrack');
+
+        document.querySelectorAll('audio').forEach(a => {
+            if (a !== audio) {
+                a.pause();
+                const otherCard = a.closest('.music-card');
+                if (otherCard) {
+                    otherCard.classList.remove('playing');
+                    const ob = otherCard.querySelector('.play-btn');
+                    if (ob) ob.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            }
+        });
+
+        if (audio.paused) {
+            audio.play().catch(e => console.warn('Playback blocked:', e));
+            btn.innerHTML = '<i class="fas fa-pause"></i>';
+            card.classList.add('playing');
+            nowPlayingTrack.textContent = ' ' + card.dataset.track;
+            nowPlaying.classList.add('playing');
+
+            const onTimeUpdate = () => {
+                if (audio.duration) {
+                    progress.style.width = (audio.currentTime / audio.duration * 100) + '%';
+                }
+                timeEl.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
+            };
+            audio._onTimeUpdate && audio.removeEventListener('timeupdate', audio._onTimeUpdate);
+            audio._onTimeUpdate = onTimeUpdate;
+            audio.addEventListener('timeupdate', onTimeUpdate);
+
+            audio._onEnded && audio.removeEventListener('ended', audio._onEnded);
+            audio._onEnded = () => {
+                btn.innerHTML = '<i class="fas fa-play"></i>';
+                card.classList.remove('playing');
+                progress.style.width = '0%';
+                timeEl.textContent = '0:00 / ' + formatTime(audio.duration);
+                nowPlayingTrack.textContent = translations[currentLang].now_playing_none;
+                nowPlaying.classList.remove('playing');
+            };
+            audio.addEventListener('ended', audio._onEnded);
+
+        } else {
+            audio.pause();
+            btn.innerHTML = '<i class="fas fa-play"></i>';
+            card.classList.remove('playing');
+            nowPlayingTrack.textContent = translations[currentLang].now_playing_none;
+            nowPlaying.classList.remove('playing');
+        }
+    }
+
+    /* ============================================================
+       SMOOTH ANCHOR SCROLL
+    ============================================================ */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    /* ============================================================
+       PARTICLES CANVAS
+    ============================================================ */
+    const canvas = document.getElementById('particles-canvas');
+    const ctx    = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x       = Math.random() * canvas.width;
+            this.y       = Math.random() * canvas.height;
+            this.size    = Math.random() * 2 + 0.5;
+            this.speedX  = (Math.random() - 0.5) * 0.5;
+            this.speedY  = (Math.random() - 0.5) * 0.5;
+            this.opacity = Math.random() * 0.4 + 0.15;
+            this.isLight = Math.random() > 0.5;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width)  this.x = 0;
+            if (this.x < 0)             this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0)             this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = this.isLight
+                ? `rgba(192,132,252,${this.opacity})`
+                : `rgba(124,58,237,${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        const count = Math.min(80, Math.floor(window.innerWidth / 15));
+        for (let i = 0; i < count; i++) particles.push(new Particle());
+    }
+
+    function connectParticles() {
+        for (let a = 0; a < particles.length; a++) {
+            for (let b = a + 1; b < particles.length; b++) {
+                const dx   = particles[a].x - particles[b].x;
+                const dy   = particles[a].y - particles[b].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.strokeStyle = `rgba(168,85,247,${0.12 * (1 - dist / 120)})`;
+                    ctx.lineWidth   = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[a].x, particles[a].y);
+                    ctx.lineTo(particles[b].x, particles[b].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connectParticles();
+        requestAnimationFrame(animateParticles);
+    }
+
+    /* ============================================================
+       INIT
+    ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLang);
+        setTimeout(typeEffect, 800);
+        setTimeout(revealOnScroll, 300);
         initParticles();
         animateParticles();
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+    });
     </script>
 </body>
 </html>
+
