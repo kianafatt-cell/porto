@@ -1,0 +1,59 @@
+/* Splash / intro cover. */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-splash);
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(60% 40% at 50% 50%, rgba(168, 85, 247, 0.18), transparent 60%),
+    var(--bg);
+  transition: opacity 700ms var(--ease-out-expo), transform 900ms var(--ease-out-expo);
+}
+
+.splash.is-hidden {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.splash__logo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+}
+
+.splash__logo-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent);
+  border-right-color: var(--accent-hover);
+  animation: rotate-360 1.4s linear infinite;
+  box-shadow: 0 0 50px var(--accent-glow);
+}
+
+.splash__logo-mark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 3.6rem;
+  color: transparent;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.splash__caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-wider);
+  color: var(--text-subtle);
+  font-size: 0.72rem;
+}

@@ -1,0 +1,85 @@
+/* =============================================================
+ * LAYOUT — containers, grid helpers, and page rhythm.
+ * ============================================================ */
+
+.container {
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: var(--container-narrow);
+  margin-inline: auto;
+}
+
+.container--wide {
+  width: var(--container-wide);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 6vw + 2rem, 7rem);
+}
+
+.section > .container,
+.section > .container--narrow,
+.section > .container--wide {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.grid--cards {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.stack > * + * {
+  margin-top: var(--space-4);
+}
+.stack-sm > * + * {
+  margin-top: var(--space-2);
+}
+.stack-lg > * + * {
+  margin-top: var(--space-8);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-strong),
+    transparent
+  );
+  border: 0;
+  margin-block: var(--space-8);
+}

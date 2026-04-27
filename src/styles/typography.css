@@ -1,0 +1,89 @@
+/* =============================================================
+ * TYPOGRAPHY — load the type families and define the scale.
+ * ============================================================ */
+
+/* Inter (sans) — loaded from Google Fonts via a `@font-face`-free link would
+ * normally be placed in the HTML head. Because we want the first paint to be
+ * snappy we rely on `font-display: swap` via the Google endpoint and tolerate
+ * a FOFT. Instrument Serif is loaded alongside it for the display headings.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+
+body {
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  font-variation-settings: 'slnt' 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: var(--letter-display);
+  line-height: var(--lh-tight);
+  color: var(--text-strong);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--fs-4xl); }
+h2 { font-size: var(--fs-3xl); }
+h3 { font-size: var(--fs-xl); }
+h4 { font-size: var(--fs-lg); }
+h5 { font-size: var(--fs-md); }
+
+p {
+  max-width: 62ch;
+  line-height: var(--lh-relaxed);
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+small {
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+}
+
+/* Accent word — used sparingly in section titles. */
+.accent-word {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+
+.text-gradient {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--letter-wider);
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
