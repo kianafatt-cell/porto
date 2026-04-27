@@ -1,0 +1,18 @@
+{
+  "name": "Rijal — Student Portfolio",
+  "short_name": "Rijal",
+  "description": "A Class 12 student from Bogor. Growth mindset, exploration, and the projects in between.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0912",
+  "theme_color": "#0b0912",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

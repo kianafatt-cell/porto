@@ -1,0 +1,175 @@
+/* Mobile drawer menu. */
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  background: rgba(4, 3, 9, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-md) var(--ease-out-expo);
+}
+
+.menu-sheet.is-open ~ .menu-backdrop,
+.menu-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Because the backdrop is rendered *before* the sheet we have to target
+ * its sibling with a `has()` selector on body. Fallback: we add the
+ * `.is-open` class in JS. */
+body:has([data-menu-sheet].is-open) .menu-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-sheet {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(88vw, 420px);
+  z-index: calc(var(--z-menu) + 1);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background:
+    radial-gradient(100% 140% at 100% 0%, rgba(168, 85, 247, 0.14), transparent 60%),
+    rgba(11, 9, 18, 0.96);
+  border-left: 1px solid var(--border-muted);
+  box-shadow: var(--shadow-xl);
+  transform: translateX(102%);
+  transition: transform 520ms var(--ease-out-expo);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.menu-sheet.is-open {
+  transform: translateX(0);
+}
+
+.menu-sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.25rem;
+}
+
+.menu-sheet__brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-lg);
+  color: var(--text-strong);
+}
+
+.menu-sheet__close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-muted);
+  color: var(--text-muted);
+  display: inline-grid;
+  place-items: center;
+  transition:
+    transform var(--dur-sm) ease,
+    color var(--dur-sm) ease,
+    background var(--dur-sm) ease;
+}
+
+.menu-sheet__close:hover {
+  color: var(--text-strong);
+  background: var(--bg-card);
+  transform: rotate(90deg);
+}
+
+.menu-sheet__nav {
+  flex: 1;
+  overflow-y: auto;
+  margin-block: 0.5rem;
+}
+
+.menu-sheet__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.menu-sheet__list li {
+  --menu-delay: 0ms;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.2rem;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  letter-spacing: var(--letter-display);
+  border: 1px solid transparent;
+  transition:
+    color var(--dur-sm) ease,
+    border-color var(--dur-sm) ease,
+    background var(--dur-sm) ease,
+    transform var(--dur-md) var(--ease-out-expo),
+    opacity var(--dur-md) var(--ease-out-expo);
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.menu-sheet.is-open .menu-sheet__list li {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: var(--menu-delay);
+}
+
+.menu-sheet__list li a {
+  flex: 1;
+  font-style: italic;
+}
+
+.menu-sheet__list li:hover,
+.menu-sheet__list li:focus-within {
+  color: var(--text-strong);
+  background: var(--surface-subtle);
+  border-color: var(--border);
+}
+
+.menu-sheet__chev {
+  color: var(--accent);
+  opacity: 0.6;
+  transition: transform var(--dur-sm) var(--ease-out-expo), opacity var(--dur-sm) ease;
+}
+
+.menu-sheet__list li:hover .menu-sheet__chev {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+.menu-sheet__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-muted);
+}
+
+.menu-sheet__lang {
+  align-self: flex-start;
+}
+
+.menu-sheet__signoff {
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+  letter-spacing: var(--letter-wide);
+}
+
+@media (min-width: 901px) {
+  .menu-sheet,
+  .menu-backdrop {
+    display: none !important;
+  }
+}

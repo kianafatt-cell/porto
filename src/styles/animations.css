@@ -1,0 +1,159 @@
+/* =============================================================
+ * ANIMATIONS — keyframes and generic reveal primitives.
+ * ============================================================ */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translate3d(0, 28px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes fade-down {
+  from { opacity: 0; transform: translate3d(0, -24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes fade-left {
+  from { opacity: 0; transform: translate3d(-32px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes fade-right {
+  from { opacity: 0; transform: translate3d(32px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@keyframes rotate-360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-2 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes bounce-slight {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes caret-blink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+
+@keyframes wave-equaliser {
+  0% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.4); }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* --- Reveal primitives --- */
+[data-reveal] {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition:
+    opacity 820ms var(--ease-out-expo) var(--reveal-delay),
+    transform 900ms var(--ease-out-expo) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-reveal-child] {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 720ms var(--ease-out-expo) var(--reveal-delay),
+    transform 820ms var(--ease-out-expo) var(--reveal-delay);
+}
+[data-reveal-child].is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Respect reduced-motion globally. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-child] {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+/* A shared tilt transform so cards can share the same easing. */
+[data-tilt] {
+  --tilt-rx: 0deg;
+  --tilt-ry: 0deg;
+  --tilt-sheen-x: 50%;
+  --tilt-sheen-y: 50%;
+  transform: perspective(900px) rotateX(var(--tilt-rx)) rotateY(var(--tilt-ry));
+  transition: transform 420ms var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+
+/* Magnetic offset helper. Components opt in by using the custom properties. */
+[data-magnetic] {
+  --mx: 0px;
+  --my: 0px;
+  transition: transform 320ms var(--ease-out-expo);
+}
+
+/* Parallax helper. */
+[data-parallax] {
+  --parallax-y: 0px;
+  will-change: transform;
+}

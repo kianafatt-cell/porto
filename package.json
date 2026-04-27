@@ -1,0 +1,27 @@
+{
+  "name": "rijal-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Rijal's personal portfolio — mobile-first, dark, minimalist, modern.",
+  "author": {
+    "name": "Rijal",
+    "url": "https://ijal.eu.cc"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host --port 4173",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .vite node_modules/.vite"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.10"
+  }
+}

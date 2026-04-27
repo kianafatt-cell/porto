@@ -1,0 +1,21 @@
+/* Top-of-page scroll progress bar. */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: var(--z-nav);
+  pointer-events: none;
+  background: transparent;
+}
+
+.scroll-progress__fill {
+  display: block;
+  height: 100%;
+  width: calc(var(--progress, 0) * 100%);
+  background: var(--grad-progress);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.4);
+  transition: width 120ms linear;
+}
