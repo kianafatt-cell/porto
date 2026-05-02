@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Mobile-only viewport: lock width scaling, prevent zoom clashes -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#FF00FF" />
   <title>RIJAL — Student Portfolio</title>
   <meta name="description" content="Rijal's Portfolio — A journey of growth, exploration, and consistent learning from Bogor." />
 
-  <!-- Fonts: Bangers for headers (Shonen comic), Inter for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;700;800&display=swap" />
@@ -16,14 +14,13 @@
   <style>
     /* ================================================================
        DESIGN TOKENS
-       Strict palette: pink / cyan / black / white — no gradients.
        ================================================================ */
     :root {
       --pink:   #FF00FF;
       --cyan:   #00F2FF;
       --ink:    #000000;
       --paper:  #FFFFFF;
-      --stroke: 4px;      /* outline thickness */
+      --stroke: 4px;
       --shadow: 6px 6px 0 var(--ink);
       --shadow-sm: 4px 4px 0 var(--ink);
       --radius: 10px;
@@ -41,7 +38,6 @@
       color: var(--ink);
       background: var(--paper);
       line-height: 1.5;
-      /* Prevent accidental horizontal scroll on any device */
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -52,8 +48,14 @@
     button { font: inherit; border: none; background: none; color: inherit; cursor: pointer; }
 
     /* ================================================================
+       LANGUAGE TOGGLE LOGIC (CSS)
+       Menyembunyikan bahasa yang tidak aktif berdasarkan atribut body
+       ================================================================ */
+    body[data-active-lang="en"] .lang-id { display: none !important; }
+    body[data-active-lang="id"] .lang-en { display: none !important; }
+
+    /* ================================================================
        APP SHELL
-       Mobile-only: lock layout to a 360–480px column, centered on wider screens.
        ================================================================ */
     .app {
       width: 100%;
@@ -67,7 +69,7 @@
     }
 
     /* ================================================================
-       STICKY HEADER
+       STICKY HEADER & LANG SWITCH
        ================================================================ */
     .header {
       position: sticky; top: 0; z-index: 30;
@@ -93,12 +95,60 @@
     .logo-text { color: var(--ink); }
     .logo-text .dot { color: var(--pink); }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Language Switch Button */
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Bangers', Impact, sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang-lbl {
+      color: var(--ink);
+      letter-spacing: 1px;
+    }
+    .toggle-track {
+      width: 40px;
+      height: 22px;
+      border: 3px solid var(--ink);
+      background: var(--paper);
+      border-radius: 12px;
+      position: relative;
+    }
+    .toggle-knob {
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      transition: transform .2s var(--ease), background .2s var(--ease);
+    }
+    .lang-switch[data-lang="en"] .toggle-knob {
+      background: var(--pink);
+      transform: translateX(0);
+    }
+    .lang-switch[data-lang="id"] .toggle-knob {
+      background: var(--cyan);
+      transform: translateX(18px);
+    }
+
     .header-cta {
       display: inline-flex; align-items: center;
       padding: 6px 12px;
       background: var(--cyan);
       color: var(--ink);
-      border: var(--stroke) solid var(--ink);
+      border: 3px solid var(--ink);
       font-family: 'Bangers', Impact, sans-serif;
       letter-spacing: 1px;
       font-size: 14px;
@@ -218,7 +268,7 @@
       display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
     }
 
-    /* ---------- BUTTONS (tactile click feedback) ---------- */
+    /* ---------- BUTTONS ---------- */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
       padding: 10px 14px;
@@ -240,6 +290,23 @@
     .btn-cyan  { background: var(--cyan); color: var(--ink); }
     .btn-white { background: var(--paper); color: var(--ink); }
     .btn-ink   { background: var(--ink); color: var(--cyan); }
+
+    /* DISABLED BUTTON CLASS */
+    .btn-disabled {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 8px 12px;
+      font-family: 'Bangers', Impact, sans-serif;
+      letter-spacing: 1.2px;
+      font-size: 13px;
+      background: #D3D3D3;
+      color: #888888;
+      border: 3px solid #999999;
+      align-self: stretch;
+      text-align: center;
+      cursor: not-allowed;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 rgba(0,0,0,0);
+    }
 
     /* ---------- ABOUT ---------- */
     .about { background: var(--paper); }
@@ -287,7 +354,7 @@
       word-break: break-word;
     }
 
-    /* ---------- MUSIC (Top 3 Favorite Songs) ---------- */
+    /* ---------- MUSIC ---------- */
     .music { background: var(--cyan); border-top: var(--stroke) solid var(--ink); border-bottom: var(--stroke) solid var(--ink); }
     .music .section-title { color: var(--ink); }
     .now-playing {
@@ -431,7 +498,23 @@
     }
     .project-foot p { font-size: 13px; line-height: 1.45; }
 
-    /* Migration / domain panels inside a project */
+    /* Khusus untuk Rumor / Construction Card */
+    .project-body.rumor {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--ink),
+        var(--ink) 15px,
+        #222 15px,
+        #222 30px
+      );
+      color: var(--paper);
+    }
+    .project-body.rumor .project-title {
+      color: var(--cyan);
+      -webkit-text-stroke: 1px var(--ink);
+      text-shadow: none;
+    }
+
     .domain-switch {
       display: flex; flex-direction: column; gap: 6px;
       background: var(--paper);
@@ -558,9 +641,6 @@
       outline-offset: 3px;
     }
 
-    /* ================================================================
-       EXTRA SAFETY FOR NARROW 360px DEVICES
-       ================================================================ */
     @media (max-width: 359px) {
       .hero-title { font-size: 38px; }
       .section-title { font-size: 24px; }
@@ -568,23 +648,28 @@
     }
   </style>
 </head>
-<body>
+<body data-active-lang="en">
   <main class="app" aria-label="Rijal's mobile portfolio">
 
-    <!-- =========================================================
-         STICKY HEADER
-         ========================================================= -->
     <header class="header" role="banner">
       <a href="#hero" class="logo" aria-label="Go to top">
         <span class="logo-mark" aria-hidden="true">R!</span>
         <span class="logo-text">RIJAL<span class="dot">.</span>DEV</span>
       </a>
-      <a href="#contact" class="header-cta">CONNECT</a>
+      
+      <div class="header-actions">
+        <div class="lang-switch" id="langSwitch" data-lang="en" aria-label="Toggle language">
+          <span class="lang-lbl">EN</span>
+          <div class="toggle-track">
+            <div class="toggle-knob"></div>
+          </div>
+          <span class="lang-lbl">ID</span>
+        </div>
+        
+        <a href="#contact" class="header-cta">CONNECT</a>
+      </div>
     </header>
 
-    <!-- =========================================================
-         HERO — Neubrutalism framed avatar
-         ========================================================= -->
     <section class="hero" id="hero" aria-labelledby="hero-title">
       <div class="hero-top">
         <span class="level-chip"><span class="star">★</span> LVL. 18</span>
@@ -593,7 +678,6 @@
 
       <div class="avatar-wrap reveal">
         <div class="avatar-frame" aria-hidden="true">
-          <!-- Uses original portfolio profile image; inline SVG is fallback if it fails -->
           <img
             class="avatar-img"
             src="https://files.catbox.moe/82997e.png"
@@ -616,84 +700,136 @@
             </svg>
           </template>
         </div>
-        <span class="avatar-badge">FROM BOGOR</span>
+        <span class="avatar-badge">
+          <span class="lang-en">FROM BOGOR</span>
+          <span class="lang-id">DARI BOGOR</span>
+        </span>
       </div>
 
       <h1 id="hero-title" class="hero-title h-shout">HI, I'M<br/>RIJAL</h1>
-      <p class="hero-sub">STUDENT <span class="pipe">|</span> CLASS 12 <span class="pipe">|</span> EXPLORER</p>
+      <p class="hero-sub">
+        <span class="lang-en">STUDENT</span><span class="lang-id">PELAJAR</span> 
+        <span class="pipe">|</span> 
+        <span class="lang-en">CLASS 12</span><span class="lang-id">KELAS 12</span> 
+        <span class="pipe">|</span> 
+        <span class="lang-en">EXPLORER</span><span class="lang-id">PENJELAJAH</span>
+      </p>
 
       <div class="hero-cta-row">
-        <a href="#projects" class="btn btn-cyan">VIEW PROJECTS</a>
-        <a href="#contact"  class="btn btn-white">GET IN TOUCH</a>
+        <a href="#projects" class="btn btn-cyan">
+          <span class="lang-en">VIEW PROJECTS</span>
+          <span class="lang-id">LIHAT PROYEK</span>
+        </a>
+        <a href="#contact"  class="btn btn-white">
+          <span class="lang-en">GET IN TOUCH</span>
+          <span class="lang-id">HUBUNGI SAYA</span>
+        </a>
       </div>
     </section>
 
-    <!-- =========================================================
-         ABOUT + DATA DIRI (cards)
-         ========================================================= -->
     <section class="about" id="about" aria-labelledby="about-title">
-      <span class="chapter-tag">CHAPTER 01</span>
-      <h2 id="about-title" class="section-title">ABOUT ME</h2>
-      <p class="lede reveal">
+      <span class="chapter-tag">
+        <span class="lang-en">CHAPTER 01</span>
+        <span class="lang-id">BAB 01</span>
+      </span>
+      <h2 id="about-title" class="section-title">
+        <span class="lang-en">ABOUT ME</span>
+        <span class="lang-id">TENTANG SAYA</span>
+      </h2>
+      
+      <p class="lede reveal lang-en">
         A <strong>Class 12 student</strong>, 18 years young, fuelled by a passion for the unknown.
         I love diving into new experiences and challenging my own limits — it's not just about
         the destination, but the consistent grind to learn, evolve, and build a better version
         of myself.
       </p>
-      <p class="lede reveal">
+      <p class="lede reveal lang-id">
+        Seorang <strong>Pelajar Kelas 12</strong>, berumur 18 tahun, yang didorong oleh rasa ingin tahu.
+        Saya suka mencoba pengalaman baru dan menantang batasan diri saya — ini bukan hanya tentang
+        tujuan akhir, tetapi tentang konsistensi untuk belajar, berkembang, dan membangun versi
+        terbaik dari diri saya.
+      </p>
+
+      <p class="lede reveal lang-en">
         I believe that growth comes from stepping outside your comfort zone. Every project I
         build, every song I listen to, and every connection I make is part of my journey.
       </p>
+      <p class="lede reveal lang-id">
+        Saya percaya bahwa pertumbuhan datang dari keberanian keluar dari zona nyaman. Setiap proyek yang
+        saya bangun, setiap lagu yang saya dengarkan, dan setiap koneksi yang saya buat adalah bagian dari perjalanan saya.
+      </p>
 
-      <!-- Data diri cards -->
       <ul class="info-list" aria-label="Personal information">
         <li class="info-item reveal">
           <span class="info-icon" aria-hidden="true">★</span>
           <div>
-            <div class="info-label">NAME</div>
+            <div class="info-label">
+              <span class="lang-en">NAME</span>
+              <span class="lang-id">NAMA</span>
+            </div>
             <div class="info-value">Rijal</div>
           </div>
         </li>
         <li class="info-item reveal">
           <span class="info-icon" aria-hidden="true">✎</span>
           <div>
-            <div class="info-label">CLASS</div>
+            <div class="info-label">
+              <span class="lang-en">CLASS</span>
+              <span class="lang-id">KELAS</span>
+            </div>
             <div class="info-value">12</div>
           </div>
         </li>
         <li class="info-item reveal">
           <span class="info-icon" aria-hidden="true">⌖</span>
           <div>
-            <div class="info-label">LOCATION</div>
+            <div class="info-label">
+              <span class="lang-en">LOCATION</span>
+              <span class="lang-id">LOKASI</span>
+            </div>
             <div class="info-value">Bogor, Indonesia</div>
           </div>
         </li>
         <li class="info-item reveal">
           <span class="info-icon" aria-hidden="true">♥</span>
           <div>
-            <div class="info-label">HOBBY</div>
-            <div class="info-value">Exploration &middot; Coding &middot; Music</div>
+            <div class="info-label">
+              <span class="lang-en">HOBBY</span>
+              <span class="lang-id">HOBI</span>
+            </div>
+            <div class="info-value">
+              <span class="lang-en">Exploration &middot; Coding &middot; Music</span>
+              <span class="lang-id">Eksplorasi &middot; Coding &middot; Musik</span>
+            </div>
           </div>
         </li>
         <li class="info-item reveal">
           <span class="info-icon" aria-hidden="true">◆</span>
           <div>
             <div class="info-label">STATUS</div>
-            <div class="info-value">Growth Mindset &middot; Open to collab</div>
+            <div class="info-value">
+              <span class="lang-en">Growth Mindset &middot; Open to collab</span>
+              <span class="lang-id">Pola Pikir Berkembang &middot; Terbuka untuk kolaborasi</span>
+            </div>
           </div>
         </li>
       </ul>
     </section>
 
-    <!-- =========================================================
-         MUSIC — Top 3 Favorite Songs
-         ========================================================= -->
     <section class="music" id="music" aria-labelledby="music-title">
-      <span class="chapter-tag">CHAPTER 02</span>
-      <h2 id="music-title" class="section-title">TOP 3 FAVORITE SONGS</h2>
+      <span class="chapter-tag">
+        <span class="lang-en">CHAPTER 02</span>
+        <span class="lang-id">BAB 02</span>
+      </span>
+      <h2 id="music-title" class="section-title">
+        <span class="lang-en">TOP 3 FAVORITE SONGS</span>
+        <span class="lang-id">3 LAGU FAVORIT TERATAS</span>
+      </h2>
 
       <div class="now-playing" id="nowPlaying" aria-live="polite">
-        <span>NOW PLAYING:</span> <span class="accent" id="nowPlayingTrack">NONE</span>
+        <span class="lang-en">NOW PLAYING:</span>
+        <span class="lang-id">SEDANG DIPUTAR:</span>
+        <span class="accent" id="nowPlayingTrack">NONE</span>
       </div>
 
       <ol class="music-list">
@@ -744,139 +880,243 @@
       </ol>
     </section>
 
-    <!-- =========================================================
-         PROJECTS
-         ========================================================= -->
     <section class="projects" id="projects" aria-labelledby="projects-title">
-      <span class="chapter-tag">CHAPTER 03</span>
-      <h2 id="projects-title" class="section-title">MY PROJECTS</h2>
+      <span class="chapter-tag">
+        <span class="lang-en">CHAPTER 03</span>
+        <span class="lang-id">BAB 03</span>
+      </span>
+      <h2 id="projects-title" class="section-title">
+        <span class="lang-en">MY PROJECTS</span>
+        <span class="lang-id">PROYEK SAYA</span>
+      </h2>
 
       <div class="projects-list">
 
-        <!-- ===== IGNITE PLAYER — new ===== -->
         <article class="project-card reveal">
           <header class="project-head">
-            <span class="flavor">WEB MUSIC PLAYER</span>
-            <span>01 &middot; NEW</span>
+            <span class="flavor">TELEGRAM BOT</span>
+            <span>
+              <span class="lang-en">01 &middot; NEW</span>
+              <span class="lang-id">01 &middot; BARU</span>
+            </span>
           </header>
           <div class="project-body">
-            <div class="project-title">IGNITE PLAYER</div>
-            <span class="project-tag">music.ijal.eu.cc</span>
+            <div class="project-title">IGNITE BOT</div>
+            <span class="project-tag">@IgniteBot</span>
           </div>
           <div class="project-foot">
-            <span class="new-tag">★ LATEST PROJECT</span>
-            <p>
-              A lightweight <strong>web-based music player</strong> you can open straight from
-              your browser — no install needed. Stream and play tracks, pause / resume, skip
-              between songs, and enjoy a clean mobile-friendly interface. Built as a simple
-              personal music hub so you can carry your favorite vibes anywhere, on any device,
-              in one tap.
+            <span class="new-tag">
+              <span class="lang-en">★ AUTOMATION & MEDIA</span>
+              <span class="lang-id">★ OTOMATISASI & MEDIA</span>
+            </span>
+            <p class="lang-en">
+              A smart Telegram chatbot that functions to instantly download video and audio via YouTube links, and automatically play songs. Powered by a strong integration of <strong>yt-search</strong> and my own custom web downloader.
             </p>
-            <div class="domain-switch" aria-label="Domain info">
-              <div class="domain-row">
-                <span class="lbl new">LIVE</span>
-                <span class="url new">music.ijal.eu.cc</span>
-              </div>
-              <div class="domain-row" style="opacity:.7;">
-                <span class="lbl" style="background:#fff;color:#000;border:3px solid #000;">NOTE</span>
-                <span class="url">No domain migration — runs directly here.</span>
-              </div>
-            </div>
-            <a href="https://music.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="project-link">
-              OPEN PLAYER →
+            <p class="lang-id">
+              Bot obrolan pintar di Telegram yang berfungsi untuk mengunduh video dan audio secara instan melalui link YouTube, serta dapat memutar lagu secara otomatis. Sistem ini ditenagai oleh integrasi kuat antara <strong>yt-search</strong> dan <em>custom web downloader</em> buatan saya sendiri.
+            </p>
+            <a href="https://t.me/ignitttee_bot" target="_blank" rel="noopener noreferrer" class="project-link">
+              <span class="lang-en">CHAT ON TELEGRAM →</span>
+              <span class="lang-id">CHAT DI TELEGRAM →</span>
             </a>
           </div>
         </article>
 
-        <!-- ===== VOIDUPLOADER — migrated ===== -->
         <article class="project-card reveal">
           <header class="project-head">
-            <span class="flavor">WEB TOOL</span>
-            <span>02</span>
+            <span class="flavor">WHATSAPP BOT</span>
+            <span>02 &middot; MULTI-DEVICE</span>
+          </header>
+          <div class="project-body">
+            <div class="project-title">K1BRAT BOT</div>
+            <span class="project-tag">WA MD TOOL</span>
+          </div>
+          <div class="project-foot">
+            <span class="new-tag">
+              <span class="lang-en">★ MULTI-TOOL</span>
+              <span class="lang-id">★ ALAT MULTI-FUNGSI</span>
+            </span>
+            <p class="lang-en">
+              An advanced Multi-Device (MD) WhatsApp bot designed to help group management and simplify daily tasks. Features include <strong>Downloader, HD Photo Enhancer, Remove Background</strong>, and fun tools like <strong>Brat and Brat Video</strong> maker. An all-in-one assistant right in your chat!
+            </p>
+            <p class="lang-id">
+              Bot WhatsApp Multi-Device (MD) canggih yang dirancang untuk membantu manajemen grup dan mempermudah tugas harian. Memiliki fitur lengkap mulai dari <strong>Downloader, Penjernih Foto (HD), Remove Background</strong>, hingga <em>tools</em> seru seperti pembuat <strong>Brat dan Brat Video</strong>. Asisten serba bisa langsung di chat-mu!
+            </p>
+            <a href="https://chat.whatsapp.com/Ds2KpajGHexBrgSuLo4xku" target="_blank" rel="noopener noreferrer" class="project-link">
+              <span class="lang-en">TRY ON WHATSAPP →</span>
+              <span class="lang-id">COBA DI WHATSAPP →</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <header class="project-head">
+            <span class="flavor">
+              <span class="lang-en">WEB TOOL</span>
+              <span class="lang-id">ALAT WEB</span>
+            </span>
+            <span>03</span>
           </header>
           <div class="project-body">
             <div class="project-title">VOIDUPLOADER</div>
             <span class="project-tag">up.ijal.eu.cc</span>
           </div>
           <div class="project-foot">
-            <span class="migration-tag">⇄ DOMAIN MIGRATED</span>
-            <p>
+            <span class="migration-tag">
+              <span class="lang-en">⇄ DOMAIN MIGRATED</span>
+              <span class="lang-id">⇄ DOMAIN BERPINDAH</span>
+            </span>
+            <p class="lang-en">
               A simple tool that allows users to upload images, videos, or audio and instantly
               convert them into a shareable link. Designed for quick and lightweight file
               sharing.
             </p>
+            <p class="lang-id">
+              Alat sederhana yang memungkinkan pengguna mengunggah gambar, video, atau audio dan langsung mengubahnya menjadi tautan yang dapat dibagikan. Didesain untuk berbagi file yang cepat dan ringan.
+            </p>
             <div class="domain-switch" aria-label="Domain migration info">
               <div class="domain-row">
-                <span class="lbl">OLD</span>
+                <span class="lbl">
+                  <span class="lang-en">OLD</span>
+                  <span class="lang-id">LAMA</span>
+                </span>
                 <span class="url">uploader.ijal.eu.cc</span>
               </div>
               <div class="domain-arrow">↓</div>
               <div class="domain-row">
-                <span class="lbl new">NEW</span>
+                <span class="lbl new">
+                  <span class="lang-en">NEW</span>
+                  <span class="lang-id">BARU</span>
+                </span>
                 <span class="url new">up.ijal.eu.cc</span>
               </div>
             </div>
             <a href="https://up.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="project-link">
-              VISIT NEW DOMAIN →
+              <span class="lang-en">VISIT NEW DOMAIN →</span>
+              <span class="lang-id">KUNJUNGI DOMAIN BARU →</span>
             </a>
           </div>
         </article>
 
-        <!-- ===== YTDown — migrated ===== -->
         <article class="project-card reveal">
           <header class="project-head">
-            <span class="flavor">WEB TOOL</span>
-            <span>03</span>
+            <span class="flavor">
+              <span class="lang-en">WEB TOOL</span>
+              <span class="lang-id">ALAT WEB</span>
+            </span>
+            <span>04</span>
           </header>
           <div class="project-body">
             <div class="project-title">YTDOWN</div>
             <span class="project-tag">down.ijal.eu.cc</span>
           </div>
           <div class="project-foot">
-            <span class="migration-tag">⇄ DOMAIN MIGRATED</span>
-            <p>
+            <span class="migration-tag">
+              <span class="lang-en">⇄ DOMAIN MIGRATED</span>
+              <span class="lang-id">⇄ DOMAIN BERPINDAH</span>
+            </span>
+            <p class="lang-en">
               A lightweight web tool that lets users download YouTube videos by simply pasting
               a video link and selecting the desired quality. Fast, simple, and easy to use.
             </p>
+            <p class="lang-id">
+              Alat web ringan yang memungkinkan pengguna mengunduh video YouTube hanya dengan menempelkan link video dan memilih kualitas yang diinginkan. Cepat, sederhana, dan mudah digunakan.
+            </p>
             <div class="domain-switch" aria-label="Domain migration info">
               <div class="domain-row">
-                <span class="lbl">OLD</span>
+                <span class="lbl">
+                  <span class="lang-en">OLD</span>
+                  <span class="lang-id">LAMA</span>
+                </span>
                 <span class="url">goldstream.idgf.web.id</span>
               </div>
               <div class="domain-arrow">↓</div>
               <div class="domain-row">
-                <span class="lbl new">NEW</span>
+                <span class="lbl new">
+                  <span class="lang-en">NEW</span>
+                  <span class="lang-id">BARU</span>
+                </span>
                 <span class="url new">down.ijal.eu.cc</span>
               </div>
             </div>
             <a href="https://down.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="project-link">
-              VISIT NEW DOMAIN →
+              <span class="lang-en">VISIT NEW DOMAIN →</span>
+              <span class="lang-id">KUNJUNGI DOMAIN BARU →</span>
             </a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <header class="project-head" style="background: #E0E0E0; color: var(--ink);">
+            <span class="flavor">
+              <span class="lang-en">WEB TOOL</span>
+              <span class="lang-id">ALAT WEB</span>
+            </span>
+            <span>05 &middot; RUMOR</span>
+          </header>
+          <div class="project-body rumor">
+            <div class="project-title">TIKTOK DOWNLOADER</div>
+            <span class="project-tag" style="background: var(--pink); color: var(--paper); border: 2px solid var(--ink);">
+              <span class="lang-en">IN DEVELOPMENT</span>
+              <span class="lang-id">DALAM PENGEMBANGAN</span>
+            </span>
+          </div>
+          <div class="project-foot">
+            <span class="new-tag" style="background: var(--ink); color: var(--paper);">
+              <span class="lang-en">[!] IN DEVELOPMENT</span>
+              <span class="lang-id">[!] TAHAP PENGEMBANGAN</span>
+            </span>
+            <p class="lang-en">
+              <strong>Project Leak:</strong> A fast and responsive web platform specifically designed to download your favorite TikTok videos <strong>without watermark</strong> (HD) and extract high-quality audio.
+            </p>
+            <p class="lang-id">
+              <strong>Bocoran Project:</strong> Sebuah platform <em>web tool</em> cepat dan responsif yang didesain khusus untuk mengunduh video TikTok favoritmu <strong>tanpa watermark</strong> (HD) dan mengekstrak audio berkualitas tinggi.
+            </p>
+            <p style="background: #F5F5F5; border-left: 4px solid var(--pink); padding: 6px 10px; margin-top: 4px;">
+              <span class="lang-en"><strong>Overall Release Estimate:</strong> May 16, 2026</span>
+              <span class="lang-id"><strong>Estimasi Rilis Keseluruhan:</strong> 16 Mei 2026</span>
+            </p>
+            
+            <button class="project-link btn-disabled" disabled aria-disabled="true">
+              COMING SOON [X]
+            </button>
           </div>
         </article>
 
       </div>
     </section>
 
-    <!-- =========================================================
-         CONTACT
-         ========================================================= -->
     <section class="contact" id="contact" aria-labelledby="contact-title">
-      <span class="chapter-tag">FINAL CHAPTER</span>
-      <h2 id="contact-title" class="section-title">LET'S CONNECT</h2>
+      <span class="chapter-tag">
+        <span class="lang-en">FINAL CHAPTER</span>
+        <span class="lang-id">BAB TERAKHIR</span>
+      </span>
+      <h2 id="contact-title" class="section-title">
+        <span class="lang-en">LET'S CONNECT</span>
+        <span class="lang-id">MARI TERHUBUNG</span>
+      </h2>
 
       <div class="contact-card reveal">
-        <h3>EMBRACING<br/>THE JOURNEY</h3>
-        <p>
+        <h3>
+          <span class="lang-en">EMBRACING<br/>THE JOURNEY</span>
+          <span class="lang-id">MENIKMATI<br/>PERJALANAN</span>
+        </h3>
+        <p class="lang-en">
           Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about
           growth, learning, and new experiences.
+        </p>
+        <p class="lang-id">
+          Hubungi melalui WhatsApp atau Instagram — Saya ingin terhubung dan berbagi ide tentang pertumbuhan, pembelajaran, dan pengalaman baru.
         </p>
 
         <ul class="info-list" style="text-align:left;">
           <li class="info-item" style="background:var(--paper);">
             <span class="info-icon" aria-hidden="true">⌖</span>
             <div>
-              <div class="info-label">LOCATION</div>
+              <div class="info-label">
+                <span class="lang-en">LOCATION</span>
+                <span class="lang-id">LOKASI</span>
+              </div>
               <div class="info-value">Bogor, Indonesia</div>
             </div>
           </li>
@@ -897,16 +1137,15 @@
         </ul>
 
         <div class="contact-links" style="margin-top:14px;">
-          <a class="btn btn-pink"  href="https://wa.me/6283834683978" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">WHATSAPP ME</a>
+          <a class="btn btn-pink"  href="https://wa.me/6283834683978" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+            <span class="lang-en">WHATSAPP ME</span>
+            <span class="lang-id">WHATSAPP SAYA</span>
+          </a>
           <a class="btn btn-white" href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk=" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram">INSTAGRAM</a>
-          <a class="btn btn-ink"   href="https://music.ijal.eu.cc" target="_blank" rel="noopener noreferrer" aria-label="Open Ignite Player">IGNITE PLAYER</a>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================
-         FOOTER
-         ========================================================= -->
     <footer class="footer">
       © <span id="year"></span> <span class="accent">RIJAL</span> · STUDENT PORTFOLIO
     </footer>
@@ -914,15 +1153,32 @@
 
   <script>
     // =============================================================
-    // LIGHT JS: year, scroll-reveal, simple audio player
-    // No heavy effects, no particles — only vanilla + IntersectionObserver.
+    // LIGHT JS: year, scroll-reveal, simple audio player, lang toggle
     // =============================================================
     (function () {
       'use strict';
 
-      // Footer year
+      // --- Footer year ---
       var y = document.getElementById('year');
       if (y) y.textContent = new Date().getFullYear();
+
+      // --- Language Toggle Interaction ---
+      var langSwitch = document.getElementById('langSwitch');
+      if(langSwitch) {
+        langSwitch.addEventListener('click', function() {
+          // Ambil bahasa saat ini (en / id)
+          var currentLang = this.getAttribute('data-lang');
+          
+          // Tentukan bahasa baru (Jika EN, ubah ke ID. Jika ID, ubah ke EN)
+          var newLang = currentLang === 'en' ? 'id' : 'en';
+          
+          // Terapkan bahasa baru ke tombol switch
+          this.setAttribute('data-lang', newLang);
+          
+          // Terapkan bahasa baru ke tag BODY. (Ini akan memicu CSS untuk menyembunyikan/menampilkan teks!)
+          document.body.setAttribute('data-active-lang', newLang);
+        });
+      }
 
       // --- IntersectionObserver for scroll reveal ---
       if ('IntersectionObserver' in window) {
