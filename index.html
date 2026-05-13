@@ -1,823 +1,1536 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <meta name="theme-color" content="#080808"/>
-  <title>RIJAL — Portfolio</title>
-  <meta name="description" content="Rijal's Portfolio — Fresh Graduate. Builder, Explorer. Bogor."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;800&family=IBM+Plex+Mono:wght@400;700&display=swap"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#060608"/>
+<title>AFRIZAL VANDLEST — Portfolio</title>
+<meta name="description" content="Afrizal Vandlest (Rijal) — Fresh Graduate. Builder, Explorer. Bogor."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap"/>
+<style>
+:root {
+  --bg:    #060608;
+  --bg2:   #0C0C10;
+  --bg3:   #121218;
+  --bg4:   #1A1A22;
+  --bg5:   #20202A;
+  --ln:    #1E1E28;
+  --ln2:   #2A2A38;
+  --ln3:   #38384A;
+  --or:    #FF5500;
+  --or2:   #FF6B22;
+  --or3:   #FF8C55;
+  --ord:   rgba(255,85,0,.08);
+  --orb:   rgba(255,85,0,.15);
+  --txt:   #F0F0F5;
+  --txt2:  #9090A8;
+  --txt3:  #505068;
+  --grn:   #00E676;
+  --cyn:   #00D4E8;
+  --blu:   #4B7BFF;
+  --D: 'Kanit', sans-serif;
+  --M: 'Fira Code', 'Courier New', monospace;
+}
 
-  <style>
-    :root {
-      --bg:      #080808;
-      --bg2:     #0F0F0F;
-      --bg3:     #161616;
-      --bg4:     #1E1E1E;
-      --ln:      #222222;
-      --ln2:     #303030;
-      --ln3:     #3C3C3C;
-      --or:      #FF5500;
-      --or2:     #FF7733;
-      --ord:     rgba(255,85,0,.1);
-      --txt:     #EBEBEB;
-      --txt2:    #AAAAAA;
-      --txt3:    #5A5A5A;
-      --grn:     #22D65F;
-      --cyn:     #00C8D4;
-      --D: 'Barlow Condensed', Impact, sans-serif;
-      --M: 'IBM Plex Mono', 'Courier New', monospace;
-      --ease: cubic-bezier(.22,.8,.22,1);
-    }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: var(--M);
+  background: var(--bg);
+  color: var(--txt);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font: inherit; border: none; background: none; color: inherit; cursor: pointer; }
 
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-    body{
-      font-family:var(--M);
-      background:var(--bg);color:var(--txt);
-      line-height:1.6;overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-    }
-    img{display:block;max-width:100%}
-    a{color:inherit;text-decoration:none}
-    ul,ol{list-style:none}
-    button{font:inherit;border:none;background:none;color:inherit;cursor:pointer}
+body[data-lang="en"] .id { display: none !important; }
+body[data-lang="id"] .en { display: none !important; }
 
-    body[data-active-lang="en"] .lang-id{display:none!important}
-    body[data-active-lang="id"] .lang-en{display:none!important}
+.app {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
 
-    .app{width:100%;max-width:480px;min-height:100vh;margin:0 auto;background:var(--bg);position:relative;overflow:hidden}
+.corner-glow {
+  position: fixed;
+  bottom: -80px;
+  left: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255,85,0,.18) 0%, rgba(255,85,0,.06) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+.corner-glow-right {
+  position: fixed;
+  top: -120px;
+  right: -120px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(75,123,255,.06) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
 
-    /* ─── HEADER ─── */
-    .header{
-      position:sticky;top:0;z-index:40;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:11px 18px;
-      background:rgba(8,8,8,.96);
-      border-bottom:1px solid var(--ln);
-      backdrop-filter:blur(14px);
-    }
-    .logo{
-      display:inline-flex;align-items:center;gap:9px;
-      font-family:var(--D);font-weight:800;font-size:22px;letter-spacing:3px;line-height:1;
-    }
-    .logo-mark{
-      width:30px;height:30px;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:var(--or);color:var(--bg);
-      font-family:var(--M);font-size:13px;font-weight:700;
-    }
-    .logo-text .dot{color:var(--or)}
-    .header-r{display:flex;align-items:center;gap:10px}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(6,6,8,.95);
+  border-bottom: 1px solid var(--ln);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--D);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--or);
+  color: #000;
+  font-family: var(--M);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.logo-text { color: var(--txt); }
+.logo-text .dot { color: var(--or); }
+.header-r { display: flex; align-items: center; gap: 10px; }
 
-    .lsw{
-      display:flex;align-items:center;gap:5px;
-      font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:1px;
-      color:var(--txt3);cursor:pointer;user-select:none;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .tt{width:34px;height:19px;border:1px solid var(--ln2);background:var(--bg3);border-radius:10px;position:relative}
-    .tk{
-      width:11px;height:11px;border-radius:50%;
-      position:absolute;top:3px;left:3px;
-      transition:transform .2s var(--ease),background .2s var(--ease);
-    }
-    .lsw[data-lang="en"] .tk{background:var(--or);transform:translateX(0)}
-    .lsw[data-lang="id"] .tk{background:var(--cyn);transform:translateX(15px)}
-    .lsw[data-lang="id"]{color:var(--cyn)}
+.lsw {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--M);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--txt3);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.tt {
+  width: 34px;
+  height: 18px;
+  border: 1px solid var(--ln2);
+  background: var(--bg3);
+  border-radius: 9px;
+  position: relative;
+}
+.tk {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2.5px;
+  left: 3px;
+  transition: transform .25s cubic-bezier(.22,.8,.22,1), background .25s;
+}
+.lsw[data-lang="en"] .tk { background: var(--or); transform: translateX(0); }
+.lsw[data-lang="id"] .tk { background: var(--cyn); transform: translateX(15px); }
+.lsw[data-lang="id"] { color: var(--cyn); }
 
-    .hcta{
-      display:inline-flex;align-items:center;
-      padding:6px 14px;
-      background:var(--or);color:var(--bg);
-      font-family:var(--M);font-size:11px;font-weight:700;letter-spacing:1.5px;
-      transition:background .15s;
-    }
-    .hcta:active{background:var(--or2)}
+.hcta {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  background: var(--or);
+  color: #000;
+  font-family: var(--M);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-radius: 6px;
+  transition: background .15s;
+}
+.hcta:active { background: var(--or2); }
 
-    /* ─── TICKER ─── */
-    .ticker{
-      display:flex;align-items:center;gap:8px;
-      padding:7px 18px;
-      background:var(--bg2);border-bottom:1px solid var(--ln);
-      font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--txt3);
-      overflow-x:auto;white-space:nowrap;
-      -ms-overflow-style:none;scrollbar-width:none;
-    }
-    .ticker::-webkit-scrollbar{display:none}
-    .sdot{width:6px;height:6px;border-radius:50%;background:var(--grn);flex-shrink:0;animation:blink 2.5s infinite}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-    .pill{padding:2px 7px;border:1px solid var(--ln2);color:var(--txt3);font-size:10px;font-weight:700;letter-spacing:1px}
-    .pill.on{border-color:var(--or);color:var(--or);background:var(--ord)}
-    .sp{color:var(--ln2)}
+.statusbar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--ln);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--txt3);
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.statusbar::-webkit-scrollbar { display: none; }
+.pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--grn);
+  flex-shrink: 0;
+  animation: pulseAnim 2s infinite;
+  box-shadow: 0 0 0 0 rgba(0,230,118,.4);
+}
+@keyframes pulseAnim {
+  0% { box-shadow: 0 0 0 0 rgba(0,230,118,.4); }
+  70% { box-shadow: 0 0 0 6px rgba(0,230,118,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,230,118,0); }
+}
+.sbadge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--ln2);
+  color: var(--txt3);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.sbadge.active {
+  border-color: rgba(255,85,0,.5);
+  color: var(--or);
+  background: var(--ord);
+}
+.sbadge.grn {
+  border-color: rgba(0,230,118,.3);
+  color: var(--grn);
+  background: rgba(0,230,118,.05);
+}
+.sp { color: var(--ln2); }
 
-    /* ─── HERO ─── */
-    .hero{
-      padding:32px 18px 30px;
-      background:var(--bg);border-bottom:1px solid var(--ln);
-      position:relative;overflow:hidden;
-    }
-    .hero::after{
-      content:'';position:absolute;top:-100px;right:-100px;
-      width:340px;height:340px;
-      background:radial-gradient(circle,rgba(255,85,0,.07) 0%,transparent 60%);
-      pointer-events:none;
-    }
+.hero {
+  padding: 36px 20px 32px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--ln);
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,85,0,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,85,0,.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  top: -60px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,85,0,.09) 0%, transparent 65%);
+  pointer-events: none;
+}
 
-    .chips{display:flex;gap:7px;margin-bottom:24px;flex-wrap:wrap;position:relative;z-index:1}
-    .chip{
-      display:inline-flex;align-items:center;gap:5px;
-      padding:4px 10px;
-      border:1px solid var(--ln2);background:var(--bg2);
-      font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--txt3);
-    }
-    .chip.on{border-color:var(--grn);color:var(--grn);background:rgba(34,214,95,.06)}
-    .chip.hot{border-color:var(--or);color:var(--or);background:var(--ord)}
-    .cdot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.hero-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.hchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border: 1px solid var(--ln2);
+  background: var(--bg2);
+  font-family: var(--M);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--txt3);
+  border-radius: 4px;
+}
+.hchip.active { border-color: rgba(0,230,118,.4); color: var(--grn); background: rgba(0,230,118,.05); }
+.hchip.hot { border-color: rgba(255,85,0,.5); color: var(--or); background: var(--ord); }
+.hchip-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
 
-    .av-wrap{position:relative;width:96px;height:96px;margin-bottom:24px;z-index:1}
-    .av-frame{width:100%;height:100%;border:2px solid var(--or);overflow:hidden;background:var(--bg3);position:relative}
-    .av-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .av-tag{
-      position:absolute;bottom:-1px;right:-1px;
-      background:var(--bg);border:1px solid var(--or);
-      padding:2px 7px;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--or);
-    }
+.av-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin-bottom: 28px;
+  z-index: 1;
+}
+.av-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,85,0,.3);
+  animation: spinRing 8s linear infinite;
+}
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.av-ring::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--or);
+}
+.av-frame {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg3);
+  border: 2px solid var(--ln2);
+  position: relative;
+}
+.av-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.av-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--grn);
+  border: 2.5px solid var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.av-badge::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000;
+}
 
-    .eyebrow{font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:3px;color:var(--txt3);margin-bottom:7px}
-    .hero-name{
-      font-family:var(--D);font-weight:800;
-      font-size:86px;line-height:.86;letter-spacing:2px;
-      color:var(--txt);margin-bottom:10px;position:relative;z-index:1;
-    }
-    .hero-name em{font-style:normal;color:var(--or)}
-    .hero-sub{
-      font-family:var(--D);font-weight:600;
-      font-size:17px;letter-spacing:3.5px;line-height:1;
-      color:var(--txt3);margin-bottom:24px;
-    }
-    .hero-sub .hl{color:var(--or2)}
-    .hero-sub .pipe{color:var(--ln2);margin:0 8px}
+.hero-eyebrow {
+  font-family: var(--M);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: var(--or);
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+.hero-name {
+  font-family: var(--D);
+  font-weight: 900;
+  font-size: 72px;
+  line-height: .92;
+  letter-spacing: -1px;
+  color: var(--txt);
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+.hero-name em { font-style: normal; color: var(--or); }
+.hero-fullname {
+  font-family: var(--M);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--txt3);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+.hero-fullname span { color: var(--or3); }
+.hero-sub {
+  font-family: var(--D);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--txt3);
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.hero-sub .hl { color: var(--or2); }
+.hero-sub .pipe { color: var(--ln2); margin: 0 8px; }
 
-    .btns{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:7px;
-      padding:10px 18px;
-      font-family:var(--M);font-size:12px;font-weight:700;letter-spacing:1.5px;
-      transition:all .15s var(--ease);
-      -webkit-tap-highlight-color:transparent;user-select:none;cursor:pointer;
-    }
-    .b-solid{background:var(--or);color:var(--bg);border:1px solid var(--or)}
-    .b-solid:active{background:var(--or2)}
-    .b-out{background:transparent;color:var(--txt);border:1px solid var(--ln2)}
-    .b-out:active{background:var(--bg3)}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--ln);
+  border: 1px solid var(--ln);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.hstat {
+  background: var(--bg2);
+  padding: 12px 10px;
+  text-align: center;
+}
+.hstat-val {
+  font-family: var(--D);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--or);
+  margin-bottom: 3px;
+}
+.hstat-lbl {
+  font-family: var(--M);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--txt3);
+}
 
-    /* ─── SECTION WRAPPER ─── */
-    section{padding:28px 18px;border-bottom:1px solid var(--ln)}
+.btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 18px;
+  font-family: var(--M);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-radius: 6px;
+  transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+.b-solid { background: var(--or); color: #000; border: 1px solid var(--or); }
+.b-solid:active { background: var(--or2); }
+.b-out { background: transparent; color: var(--txt); border: 1px solid var(--ln2); }
+.b-out:active { background: var(--bg3); }
 
-    .stag{
-      display:inline-flex;align-items:center;gap:8px;
-      margin-bottom:10px;
-    }
-    .stag-lbl{
-      font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:2px;
-      color:var(--or);border:1px solid var(--or);padding:2px 8px;
-    }
-    .sheader{
-      display:flex;align-items:flex-end;gap:14px;
-      padding-bottom:16px;margin-bottom:20px;
-      border-bottom:1px solid var(--ln);
-    }
-    .snum{
-      font-family:var(--D);font-weight:800;
-      font-size:70px;line-height:1;letter-spacing:1px;
-      color:var(--ln2);flex-shrink:0;margin-bottom:-5px;
-    }
-    .stitle{
-      font-family:var(--D);font-weight:800;
-      font-size:42px;line-height:.95;letter-spacing:2px;color:var(--txt);
-    }
+section {
+  padding: 28px 20px;
+  border-bottom: 1px solid var(--ln);
+  position: relative;
+}
 
-    /* ─── ABOUT ─── */
-    .abody{font-size:13px;color:var(--txt2);line-height:1.85;margin-bottom:20px}
-    .abody strong{color:var(--or)}
+.stag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.stag-lbl {
+  font-family: var(--M);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--or);
+  border: 1px solid rgba(255,85,0,.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--ord);
+}
+.sheader {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--ln);
+}
+.snum {
+  font-family: var(--D);
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: var(--ln2);
+  flex-shrink: 0;
+  margin-bottom: -4px;
+}
+.stitle {
+  font-family: var(--D);
+  font-weight: 800;
+  font-size: 38px;
+  line-height: .95;
+  letter-spacing: 1px;
+  color: var(--txt);
+}
 
-    .tgrid{display:flex;flex-direction:column}
-    .tr{
-      display:grid;grid-template-columns:88px 14px 1fr;align-items:start;
-      padding:10px 14px;
-      border:1px solid var(--ln);border-top:none;
-      background:var(--bg2);transition:background .1s;
-    }
-    .tr:first-child{border-top:1px solid var(--ln)}
-    .tr:hover{background:var(--bg3)}
-    .tk2{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--txt3);padding-top:2px}
-    .tsep{color:var(--ln2);font-size:13px;padding-top:1px}
-    .tv{font-size:13px;font-weight:700;color:var(--txt);word-break:break-word}
-    .tv.ac{color:var(--or)}
-    .tv.gr{color:var(--grn)}
+.abody {
+  font-size: 13px;
+  color: var(--txt2);
+  line-height: 1.9;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.abody strong { color: var(--or3); font-weight: 700; }
+.abody em { color: var(--txt); font-style: normal; font-weight: 600; }
 
-    /* ─── MUSIC ─── */
-    .npbar{
-      display:flex;align-items:center;gap:8px;
-      padding:9px 13px;
-      background:var(--bg2);border:1px solid var(--ln);
-      margin-bottom:1px;
-    }
-    .npbars{display:flex;align-items:flex-end;gap:2px;height:13px;flex-shrink:0}
-    .npb{width:3px;background:var(--or);animation:wav 1s ease-in-out infinite;transform-origin:bottom}
-    .npb:nth-child(2){animation-delay:.15s}
-    .npb:nth-child(3){animation-delay:.3s}
-    .npbars.idle .npb{animation:none;height:3px}
-    @keyframes wav{0%,100%{height:3px}50%{height:13px}}
-    .nplbl{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--or);flex-shrink:0}
-    .nptk{font-size:11px;font-weight:700;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.about-quote {
+  border-left: 2px solid var(--or);
+  padding: 12px 16px;
+  background: var(--bg2);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 22px;
+}
+.about-quote p {
+  font-family: var(--D);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--txt);
+  letter-spacing: .5px;
+}
+.about-quote span {
+  display: block;
+  font-family: var(--M);
+  font-size: 10px;
+  color: var(--or);
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
 
-    .mlist{display:flex;flex-direction:column}
-    .mc{
-      background:var(--bg2);border:1px solid var(--ln);border-top:none;
-      padding:13px;
-      display:grid;grid-template-columns:60px 1fr;
-      gap:13px;align-items:start;
-      transition:background .1s,border-color .1s;
-    }
-    .mc:hover{background:var(--bg3);border-color:var(--ln2)}
-    .mcov{width:60px;height:60px;object-fit:cover;border:1px solid var(--ln2);background:var(--bg3)}
-    .mmeta{min-width:0}
-    .midx{
-      font-family:var(--D);font-weight:800;font-size:36px;line-height:1;letter-spacing:1px;
-      color:var(--ln2);margin-bottom:1px;
-    }
-    .mc.playing .midx{color:var(--or)}
-    .mtitle{
-      font-family:var(--D);font-weight:800;font-size:20px;line-height:1.1;letter-spacing:.5px;
-      color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px;
-    }
-    .martist{font-size:11px;color:var(--txt3);margin-bottom:9px}
-    .mctrl{display:flex;align-items:center;gap:9px;margin-bottom:7px}
-    .pbtn{
-      width:26px;height:26px;flex-shrink:0;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:var(--or);color:var(--bg);
-      font-size:9px;font-weight:700;border:none;transition:opacity .12s;
-    }
-    .pbtn:active{opacity:.7}
-    .pbtn.playing{background:transparent;color:var(--or);border:1px solid var(--or)}
-    .mtime2{font-size:10px;color:var(--txt3)}
-    .mpbar{width:100%;height:2px;background:var(--bg4);border:none}
-    .mpfill{height:100%;width:0;background:var(--or);transition:width .1s linear}
+.tgrid { display: flex; flex-direction: column; border-radius: 8px; overflow: hidden; border: 1px solid var(--ln); }
+.tr {
+  display: grid;
+  grid-template-columns: 90px 14px 1fr;
+  align-items: start;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--ln);
+  background: var(--bg2);
+  transition: background .1s;
+}
+.tr:last-child { border-bottom: none; }
+.tr:hover { background: var(--bg3); }
+.tk2 { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); padding-top: 2px; }
+.tsep { color: var(--ln2); font-size: 13px; padding-top: 1px; }
+.tv { font-size: 13px; font-weight: 600; color: var(--txt); word-break: break-word; }
+.tv.ac { color: var(--or); }
+.tv.gr { color: var(--grn); }
 
-    /* ─── PROJECTS ─── */
-    .plist{display:flex;flex-direction:column}
-    .pcard{
-      background:var(--bg2);border:1px solid var(--ln);border-top:none;
-      overflow:hidden;transition:border-color .1s;
-    }
-    .pcard:first-child{border-top:1px solid var(--ln)}
-    .pcard:hover{border-color:var(--ln2)}
-    .phead{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:8px 14px;
-      background:var(--bg3);border-bottom:1px solid var(--ln);
-    }
-    .ptype{font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--or)}
-    .pnum{font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:1px;color:var(--txt3)}
-    .pbody{padding:16px 14px 14px}
-    .ptitle{
-      font-family:var(--D);font-weight:800;
-      font-size:36px;line-height:.95;letter-spacing:2px;
-      color:var(--txt);margin-bottom:10px;
-    }
-    .badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
-    .badge{
-      display:inline-flex;align-items:center;gap:4px;
-      padding:3px 9px;
-      font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:1px;
-      border:1px solid;
-    }
-    .bor{border-color:var(--or);color:var(--or);background:var(--ord)}
-    .bmu{border-color:var(--ln2);color:var(--txt3)}
-    .bcy{border-color:var(--cyn);color:var(--cyn);background:rgba(0,200,212,.07)}
-    .brm{border-color:var(--ln);color:var(--txt3)}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+.skill-card {
+  background: var(--bg2);
+  border: 1px solid var(--ln);
+  border-radius: 8px;
+  padding: 14px;
+  transition: border-color .15s;
+}
+.skill-card:hover { border-color: var(--ln2); }
+.skill-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--ord);
+  border: 1px solid rgba(255,85,0,.2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.skill-name {
+  font-family: var(--D);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: .5px;
+  color: var(--txt);
+  margin-bottom: 3px;
+}
+.skill-lvl {
+  font-family: var(--M);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--or);
+  margin-bottom: 8px;
+}
+.skill-bar { height: 3px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
+.skill-fill { height: 100%; background: linear-gradient(90deg, var(--or), var(--or3)); border-radius: 2px; }
 
-    .pdesc{font-size:12px;color:var(--txt2);line-height:1.8;margin-bottom:12px}
-    .pdesc strong{color:var(--txt);font-weight:700}
+.npbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--ln);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 1px;
+}
+.npbars { display: flex; align-items: flex-end; gap: 2px; height: 14px; flex-shrink: 0; }
+.npb { width: 3px; background: var(--or); animation: wav 1s ease-in-out infinite; transform-origin: bottom; border-radius: 2px; }
+.npb:nth-child(2) { animation-delay: .15s; }
+.npb:nth-child(3) { animation-delay: .3s; }
+.npbars.idle .npb { animation: none; height: 3px; background: var(--txt3); }
+@keyframes wav { 0%,100% { height: 3px; } 50% { height: 14px; } }
+.nplbl { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: var(--or); flex-shrink: 0; }
+.nptk { font-size: 11px; font-weight: 700; color: var(--txt); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    .dbox{background:var(--bg3);border:1px solid var(--ln);padding:10px 13px;margin-bottom:12px}
-    .drow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700}
-    .dtag{font-size:9px;font-weight:700;letter-spacing:1.5px;padding:2px 6px;flex-shrink:0}
-    .dtag.old{background:var(--bg4);border:1px solid var(--ln2);color:var(--txt3)}
-    .dtag.new{background:var(--or);color:var(--bg)}
-    .durl{color:var(--txt)}
-    .durl.old{color:var(--txt3);text-decoration:line-through}
-    .darr{text-align:center;color:var(--ln2);font-size:11px;margin:4px 0}
+.mlist { display: flex; flex-direction: column; }
+.mc {
+  background: var(--bg2);
+  border: 1px solid var(--ln);
+  border-top: none;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 14px;
+  align-items: start;
+  transition: background .1s, border-color .1s;
+}
+.mc:last-child { border-radius: 0 0 8px 8px; }
+.mc:hover { background: var(--bg3); border-color: var(--ln2); }
+.mcov {
+  width: 62px;
+  height: 62px;
+  object-fit: cover;
+  border: 1px solid var(--ln2);
+  background: var(--bg3);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.mmeta { min-width: 0; }
+.midx {
+  font-family: var(--D);
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: var(--ln2);
+  margin-bottom: 2px;
+}
+.mc.playing .midx { color: var(--or); }
+.mtitle {
+  font-family: var(--D);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1;
+  letter-spacing: .5px;
+  color: var(--txt);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 2px;
+}
+.martist { font-size: 11px; color: var(--txt3); margin-bottom: 10px; }
+.mctrl { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.pbtn {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--or);
+  color: #000;
+  font-size: 9px;
+  font-weight: 700;
+  border: none;
+  border-radius: 50%;
+  transition: opacity .12s, transform .12s;
+}
+.pbtn:active { opacity: .7; transform: scale(.9); }
+.pbtn.playing { background: transparent; color: var(--or); border: 1.5px solid var(--or); }
+.mtime2 { font-size: 10px; color: var(--txt3); }
+.mpbar { width: 100%; height: 2px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
+.mpfill { height: 100%; width: 0; background: linear-gradient(90deg, var(--or), var(--or3)); border-radius: 2px; transition: width .1s linear; }
 
-    .rbox{
-      background:var(--bg3);border:1px solid var(--ln);border-left:2px solid var(--or);
-      padding:8px 13px;margin-bottom:12px;
-      font-size:11px;font-weight:700;color:var(--txt2);
-    }
-    .rbox strong{color:var(--or)}
+.plist { display: flex; flex-direction: column; gap: 0; }
+.pcard {
+  background: var(--bg2);
+  border: 1px solid var(--ln);
+  border-top: none;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.pcard:first-child { border-top: 1px solid var(--ln); border-radius: 8px 8px 0 0; }
+.pcard:last-child { border-radius: 0 0 8px 8px; }
+.pcard:hover { border-color: var(--ln2); }
+.phead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 14px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--ln);
+}
+.ptype { font-family: var(--M); font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--or); }
+.pnum { font-family: var(--M); font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--txt3); }
+.pbody { padding: 18px 14px 14px; }
+.ptitle {
+  font-family: var(--D);
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: .5px;
+  color: var(--txt);
+  margin-bottom: 12px;
+}
 
-    .plink{
-      display:flex;align-items:center;justify-content:center;gap:6px;
-      padding:10px;
-      background:var(--bg3);border:1px solid var(--ln2);
-      font-family:var(--M);font-size:11px;font-weight:700;letter-spacing:1.5px;
-      color:var(--txt);transition:all .15s;
-    }
-    .plink:hover{border-color:var(--or);color:var(--or)}
-    .plink .ar{color:var(--or)}
-    .plink.off{pointer-events:none;color:var(--txt3);border-color:var(--ln)}
+.badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  font-family: var(--M);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+.bor { border-color: rgba(255,85,0,.4); color: var(--or); background: var(--ord); }
+.bmu { border-color: var(--ln2); color: var(--txt3); }
+.bcy { border-color: rgba(0,212,232,.3); color: var(--cyn); background: rgba(0,212,232,.05); }
+.brm { border-color: var(--ln); color: var(--txt3); }
+.bgrn { border-color: rgba(0,230,118,.3); color: var(--grn); background: rgba(0,230,118,.05); }
 
-    .pcard.rmr .phead{background:var(--bg2)}
-    .pcard.rmr .ptitle{color:var(--txt3)}
-    .pcard.rmr .ptype{color:var(--txt3)}
+.pdesc { font-size: 12.5px; color: var(--txt2); line-height: 1.85; margin-bottom: 14px; font-weight: 400; }
+.pdesc strong { color: var(--txt); font-weight: 700; }
 
-    /* ─── CONTACT ─── */
-    .cpanel{background:var(--bg2);border:1px solid var(--ln);overflow:hidden}
-    .cphead{padding:18px;border-bottom:1px solid var(--ln);background:var(--bg3)}
-    .cptitle{
-      font-family:var(--D);font-weight:800;
-      font-size:34px;line-height:.95;letter-spacing:2px;color:var(--txt);margin-bottom:6px;
-    }
-    .cpsub{font-size:12px;color:var(--txt2);line-height:1.75}
-    .cprows{padding:6px 0}
-    .cprow{
-      display:flex;align-items:center;gap:13px;
-      padding:11px 18px;border-bottom:1px solid var(--ln);
-    }
-    .cprow:last-child{border-bottom:none}
-    .cpico{
-      width:34px;height:34px;flex-shrink:0;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:var(--bg3);border:1px solid var(--ln2);
-      font-size:10px;font-weight:700;color:var(--or);
-    }
-    .cpkey{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--txt3)}
-    .cpval{font-size:13px;font-weight:700;color:var(--txt);margin-top:2px}
-    .cpbtns{padding:14px 18px 18px;display:flex;flex-direction:column;gap:9px}
+.feat-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--txt2);
+  line-height: 1.7;
+}
+.feat-bullet {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feat-bullet::before { content: '▸'; color: var(--or); font-size: 10px; }
 
-    /* ─── FOOTER ─── */
-    .footer{
-      padding:18px;background:var(--bg);border-top:1px solid var(--ln);
-      text-align:center;font-size:10px;font-weight:700;letter-spacing:2.5px;color:var(--txt3);
-    }
-    .footer .ac{color:var(--or)}
+.dbox {
+  background: var(--bg3);
+  border: 1px solid var(--ln);
+  border-radius: 6px;
+  padding: 10px 13px;
+  margin-bottom: 14px;
+}
+.drow { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; }
+.dtag { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 6px; flex-shrink: 0; border-radius: 3px; }
+.dtag.old { background: var(--bg4); border: 1px solid var(--ln2); color: var(--txt3); }
+.dtag.new { background: var(--or); color: #000; }
+.durl { color: var(--txt); }
+.durl.old { color: var(--txt3); text-decoration: line-through; }
+.darr { text-align: center; color: var(--ln2); font-size: 11px; margin: 5px 0; }
 
-    /* ─── REVEAL ─── */
-    .rv{opacity:0;transform:translateY(14px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
-    .rv.in{opacity:1;transform:translateY(0)}
+.rbox {
+  background: var(--bg3);
+  border: 1px solid var(--ln);
+  border-left: 2px solid var(--or);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--txt2);
+}
+.rbox strong { color: var(--or); }
 
-    @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
-      .rv{opacity:1;transform:none}
-    }
-    a:focus-visible,button:focus-visible{outline:2px solid var(--or);outline-offset:2px}
-    ::-webkit-scrollbar{width:3px;height:3px}
-    ::-webkit-scrollbar-track{background:var(--bg)}
-    ::-webkit-scrollbar-thumb{background:var(--ln2)}
-  </style>
+.plink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px;
+  background: var(--bg3);
+  border: 1px solid var(--ln2);
+  border-radius: 6px;
+  font-family: var(--M);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--txt);
+  transition: all .15s;
+}
+.plink:hover { border-color: var(--or); color: var(--or); background: var(--ord); }
+.plink .ar { color: var(--or); }
+.plink.off { pointer-events: none; color: var(--txt3); border-color: var(--ln); }
+
+.pcard.rmr .phead { background: var(--bg2); }
+.pcard.rmr .ptitle { color: var(--txt3); }
+.pcard.rmr .ptype { color: var(--txt3); }
+
+.countdown-wrap {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.cd-unit {
+  flex: 1;
+  background: var(--bg3);
+  border: 1px solid var(--ln);
+  border-radius: 6px;
+  padding: 10px 6px;
+  text-align: center;
+}
+.cd-num {
+  font-family: var(--D);
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--or);
+  margin-bottom: 3px;
+}
+.cd-lbl {
+  font-family: var(--M);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--txt3);
+}
+
+.cpanel {
+  background: var(--bg2);
+  border: 1px solid var(--ln);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.cphead {
+  padding: 20px;
+  border-bottom: 1px solid var(--ln);
+  background: var(--bg3);
+  position: relative;
+  overflow: hidden;
+}
+.cphead-glow {
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255,85,0,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cptitle {
+  font-family: var(--D);
+  font-weight: 900;
+  font-size: 32px;
+  line-height: .95;
+  letter-spacing: .5px;
+  color: var(--txt);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.cpsub {
+  font-size: 12.5px;
+  color: var(--txt2);
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+.cprows { padding: 6px 0; }
+.cprow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--ln);
+  transition: background .1s;
+}
+.cprow:last-child { border-bottom: none; }
+.cprow:hover { background: var(--bg3); }
+.cpico {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg3);
+  border: 1px solid var(--ln2);
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--or);
+}
+.cpkey { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); margin-bottom: 2px; }
+.cpval { font-size: 13px; font-weight: 600; color: var(--txt); }
+.cpbtns { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
+
+.footer {
+  padding: 20px;
+  background: var(--bg2);
+  border-top: 1px solid var(--ln);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--txt3);
+}
+.footer .ac { color: var(--or); }
+.footer-meta {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--txt3);
+  letter-spacing: 1px;
+}
+
+.rv { opacity: 0; transform: translateY(16px); transition: opacity .5s cubic-bezier(.22,.8,.22,1), transform .5s cubic-bezier(.22,.8,.22,1); }
+.rv.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001s !important; transition-duration: .001s !important; }
+  .rv { opacity: 1; transform: none; }
+}
+a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-offset: 2px; }
+::-webkit-scrollbar { width: 2px; height: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--ln2); }
+</style>
 </head>
-<body data-active-lang="en">
-<main class="app" aria-label="Rijal portfolio">
+<body data-lang="en">
+<div class="corner-glow"></div>
+<div class="corner-glow-right"></div>
+<main class="app" aria-label="Afrizal Vandlest portfolio">
 
-  <!-- HEADER -->
-  <header class="header">
-    <a href="#hero" class="logo" aria-label="Back to top">
-      <span class="logo-mark">R!</span>
-      <span class="logo-text">RIJAL<span class="dot">.</span>DEV</span>
-    </a>
-    <div class="header-r">
-      <div class="lsw" id="lsw" data-lang="en" role="button" tabindex="0" aria-label="Toggle language">
-        <span>EN</span>
-        <div class="tt"><div class="tk"></div></div>
-        <span>ID</span>
-      </div>
-      <a href="#contact" class="hcta">CONNECT</a>
+<header class="header">
+  <a href="#hero" class="logo" aria-label="Back to top">
+    <span class="logo-mark">AV</span>
+    <span class="logo-text">RIJAL<span class="dot">.</span>DEV</span>
+  </a>
+  <div class="header-r">
+    <div class="lsw" id="lsw" data-lang="en" role="button" tabindex="0" aria-label="Toggle language">
+      <span>EN</span>
+      <div class="tt"><div class="tk"></div></div>
+      <span>ID</span>
     </div>
-  </header>
+    <a href="#contact" class="hcta">CONNECT</a>
+  </div>
+</header>
 
-  <!-- TICKER -->
-  <div class="ticker">
-    <span class="sdot"></span>
-    <span class="pill on">ONLINE</span>
-    <span class="sp">·</span>
-    <span>FRESH GRADUATE</span>
-    <span class="sp">·</span>
-    <span>BOGOR, ID</span>
-    <span class="sp">·</span>
-    <span>AGE 18</span>
-    <span class="sp">·</span>
-    <span class="pill">4 PROJECTS</span>
+<div class="statusbar">
+  <span class="pulse"></span>
+  <span class="sbadge active">ONLINE</span>
+  <span class="sp">·</span>
+  <span>FRESH GRADUATE</span>
+  <span class="sp">·</span>
+  <span>BOGOR, ID</span>
+  <span class="sp">·</span>
+  <span>AGE 18</span>
+  <span class="sp">·</span>
+  <span class="sbadge grn">OPEN TO WORK</span>
+  <span class="sp">·</span>
+  <span>4 PROJECTS</span>
+</div>
+
+<section class="hero" id="hero" aria-labelledby="hero-name">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-chips">
+    <span class="hchip active"><span class="hchip-dot"></span>ACTIVE</span>
+    <span class="hchip hot">FRESH GRAD</span>
+    <span class="hchip">BOGOR</span>
+    <span class="hchip en">OPEN TO WORK</span>
+    <span class="hchip id">SIAP BEKERJA</span>
   </div>
 
-  <!-- HERO -->
-  <section class="hero" id="hero" aria-labelledby="hero-name">
-    <div class="chips">
-      <span class="chip on"><span class="cdot"></span>ACTIVE</span>
-      <span class="chip hot">FRESH GRADUATE</span>
-      <span class="chip">BOGOR</span>
-      <span class="chip">
-        <span class="lang-en">OPEN TO WORK</span>
-        <span class="lang-id">SIAP BEKERJA</span>
+  <div class="av-wrap rv">
+    <div class="av-ring"></div>
+    <div class="av-frame">
+      <img class="av-img" src="https://files.catbox.moe/82997e.png" alt="Rijal profile photo" onerror="this.onerror=null;this.style.display='none'"/>
+    </div>
+    <div class="av-badge"></div>
+  </div>
+
+  <div class="hero-eyebrow">// PORTFOLIO 2025 — AFRIZAL VANDLEST</div>
+  <h1 id="hero-name" class="hero-name">HI, I'M<br/><em>RIJAL</em></h1>
+  <div class="hero-fullname">FULL NAME: <span>AFRIZAL VANDLEST</span></div>
+  <p class="hero-sub">
+    <span class="en"><span class="hl">FRESH GRADUATE</span><span class="pipe">|</span>BUILDER<span class="pipe">|</span>EXPLORER</span>
+    <span class="id"><span class="hl">FRESH GRADUATE</span><span class="pipe">|</span>PEMBUAT<span class="pipe">|</span>PENJELAJAH</span>
+  </p>
+
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-val">4</div><div class="hstat-lbl">PROJECTS</div></div>
+    <div class="hstat"><div class="hstat-val">18</div><div class="hstat-lbl">YEARS OLD</div></div>
+    <div class="hstat"><div class="hstat-val">∞</div><div class="hstat-lbl">DRIVE</div></div>
+  </div>
+
+  <div class="btns">
+    <a href="#projects" class="btn b-solid">
+      <span class="en">→ VIEW PROJECTS</span>
+      <span class="id">→ LIHAT PROYEK</span>
+    </a>
+    <a href="#contact" class="btn b-out">
+      <span class="en">GET IN TOUCH</span>
+      <span class="id">HUBUNGI SAYA</span>
+    </a>
+  </div>
+</section>
+
+<section id="about" aria-labelledby="about-h">
+  <div class="stag"><span class="stag-lbl"><span class="en">// CHAPTER 01</span><span class="id">// BAB 01</span></span></div>
+  <div class="sheader">
+    <span class="snum">01</span>
+    <h2 id="about-h" class="stitle"><span class="en">ABOUT ME</span><span class="id">TENTANG SAYA</span></h2>
+  </div>
+
+  <div class="about-quote rv">
+    <p class="en">"Not just chasing a destination — I'm here for the journey, the grind, and everything in between."</p>
+    <p class="id">"Bukan sekadar mengejar tujuan — aku di sini untuk perjalanannya, prosesnya, dan semua yang ada di antaranya."</p>
+    <span>— AFRIZAL VANDLEST</span>
+  </div>
+
+  <p class="abody rv en">
+    My name is <strong>Afrizal Vandlest</strong>, better known as <em>Rijal</em> — a <strong>Fresh Graduate</strong> at 18 years old from Bogor, Indonesia, with an intense passion for technology, exploration, and self-improvement. I believe that growth doesn't come from comfort, it comes from constantly stepping into the unknown and challenging everything I think I already know. Every project I start is a reflection of that mindset — curiosity turned into code.
+  </p>
+  <p class="abody rv id">
+    Nama saya <strong>Afrizal Vandlest</strong>, biasa dipanggil <em>Rijal</em> — seorang <strong>Fresh Graduate</strong> berusia 18 tahun dari Bogor, Indonesia, dengan semangat besar terhadap teknologi, eksplorasi, dan pengembangan diri. Aku percaya bahwa pertumbuhan sejati tidak datang dari zona nyaman, melainkan dari keberanian untuk melangkah ke hal-hal baru dan mempertanyakan semua yang sudah diketahui. Setiap proyek yang aku mulai adalah cerminan dari mindset itu — rasa ingin tahu yang diwujudkan dalam kode.
+  </p>
+
+  <p class="abody rv en">
+    From building <strong>Telegram and WhatsApp bots</strong> that solve real everyday problems, to crafting web tools for fast media sharing and downloading — I'm drawn to building things that <em>actually get used</em>. I don't just write code to learn syntax; I build products that people interact with. I care deeply about user experience, clean functionality, and making technology feel effortless.
+  </p>
+  <p class="abody rv id">
+    Dari membangun <strong>bot Telegram dan WhatsApp</strong> yang menyelesaikan masalah nyata, hingga membuat web tool untuk berbagi dan mengunduh media dengan cepat — aku tertarik untuk membangun hal-hal yang <em>benar-benar digunakan</em>. Aku tidak hanya menulis kode untuk belajar sintaks; aku membangun produk yang berinteraksi langsung dengan orang-orang. Aku sangat peduli terhadap pengalaman pengguna, fungsionalitas yang bersih, dan membuat teknologi terasa mudah dan natural.
+  </p>
+
+  <p class="abody rv en">
+    Outside of code, I'm someone who finds meaning in <strong>music</strong>, values <strong>genuine connection</strong> with others, and is always on the lookout for the next adventure — whether that's a hiking trail, a new skill to master, or a completely different domain to explore. I thrive in collaborative environments and believe that the best ideas are born when different minds come together.
+  </p>
+  <p class="abody rv id">
+    Di luar koding, aku adalah seseorang yang menemukan makna dalam <strong>musik</strong>, menghargai <strong>hubungan tulus</strong> dengan orang lain, dan selalu mencari petualangan berikutnya — baik itu jalur pendakian, keahlian baru untuk dikuasai, atau domain yang sama sekali berbeda untuk dijelajahi. Aku tumbuh berkembang dalam lingkungan kolaboratif dan percaya bahwa ide terbaik lahir saat pikiran-pikiran berbeda bertemu.
+  </p>
+
+  <div class="tgrid rv" style="margin-bottom:20px">
+    <div class="tr">
+      <span class="tk2"><span class="en">FULL NAME</span><span class="id">NAMA LENGKAP</span></span>
+      <span class="tsep">:</span><span class="tv ac">Afrizal Vandlest</span>
+    </div>
+    <div class="tr">
+      <span class="tk2"><span class="en">NICKNAME</span><span class="id">PANGGILAN</span></span>
+      <span class="tsep">:</span><span class="tv">Rijal</span>
+    </div>
+    <div class="tr">
+      <span class="tk2">STATUS</span>
+      <span class="tsep">:</span><span class="tv ac">Fresh Graduate</span>
+    </div>
+    <div class="tr">
+      <span class="tk2">AGE</span>
+      <span class="tsep">:</span><span class="tv">18 <span class="en">Years Old</span><span class="id">Tahun</span></span>
+    </div>
+    <div class="tr">
+      <span class="tk2"><span class="en">LOCATION</span><span class="id">LOKASI</span></span>
+      <span class="tsep">:</span><span class="tv">Bogor, Indonesia 🇮🇩</span>
+    </div>
+    <div class="tr">
+      <span class="tk2"><span class="en">HOBBY</span><span class="id">HOBI</span></span>
+      <span class="tsep">:</span>
+      <span class="tv">
+        <span class="en">Exploration · Coding · Music</span>
+        <span class="id">Eksplorasi · Coding · Musik</span>
       </span>
     </div>
-
-    <div class="av-wrap rv">
-      <div class="av-frame">
-        <img class="av-img"
-          src="https://files.catbox.moe/82997e.png"
-          alt="Rijal profile photo"
-          onerror="this.onerror=null;this.style.display='none'"/>
-      </div>
-      <span class="av-tag">● ONLINE</span>
+    <div class="tr">
+      <span class="tk2">MINDSET</span>
+      <span class="tsep">:</span>
+      <span class="tv gr">
+        <span class="en">Growth · Open to collaborate</span>
+        <span class="id">Berkembang · Terbuka kolaborasi</span>
+      </span>
     </div>
-
-    <div class="eyebrow">// PORTFOLIO 2025</div>
-    <h1 id="hero-name" class="hero-name">HI, I'M<br/><em>RIJAL</em></h1>
-    <p class="hero-sub">
-      <span class="lang-en"><span class="hl">FRESH GRADUATE</span><span class="pipe">|</span>BUILDER<span class="pipe">|</span>EXPLORER</span>
-      <span class="lang-id"><span class="hl">FRESH GRADUATE</span><span class="pipe">|</span>PEMBUAT<span class="pipe">|</span>PENJELAJAH</span>
-    </p>
-    <div class="btns">
-      <a href="#projects" class="btn b-solid">
-        <span class="lang-en">→ VIEW PROJECTS</span>
-        <span class="lang-id">→ LIHAT PROYEK</span>
-      </a>
-      <a href="#contact" class="btn b-out">
-        <span class="lang-en">GET IN TOUCH</span>
-        <span class="lang-id">HUBUNGI SAYA</span>
-      </a>
+    <div class="tr">
+      <span class="tk2"><span class="en">AVAILABLE</span><span class="id">TERSEDIA</span></span>
+      <span class="tsep">:</span>
+      <span class="tv ac">
+        <span class="en">Yes — Open to Work</span>
+        <span class="id">Ya — Siap Bekerja</span>
+      </span>
     </div>
-  </section>
+  </div>
 
-  <!-- ABOUT -->
-  <section id="about" aria-labelledby="about-h">
-    <div class="stag"><span class="stag-lbl"><span class="lang-en">// CHAPTER 01</span><span class="lang-id">// BAB 01</span></span></div>
-    <div class="sheader">
-      <span class="snum">01</span>
-      <h2 id="about-h" class="stitle"><span class="lang-en">ABOUT ME</span><span class="lang-id">TENTANG SAYA</span></h2>
+  <div class="skills-grid rv">
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">Bot Dev</div>
+      <div class="skill-lvl">INTERMEDIATE</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
     </div>
-
-    <p class="abody rv lang-en">
-      A <strong>Fresh Graduate</strong>, 18 years young, fuelled by a passion for the unknown.
-      I love diving into new experiences and challenging my own limits — it's not just about
-      the destination, but the consistent grind to learn, evolve, and build a better version of myself.
-    </p>
-    <p class="abody rv lang-id">
-      Seorang <strong>Fresh Graduate</strong>, berumur 18 tahun, yang didorong rasa ingin tahu.
-      Suka mencoba pengalaman baru dan menantang batasan diri — bukan hanya soal tujuan akhir,
-      tapi konsistensi untuk terus belajar, berkembang, dan menjadi versi terbaik dari diri sendiri.
-    </p>
-
-    <div class="tgrid">
-      <div class="tr rv">
-        <span class="tk2"><span class="lang-en">NAME</span><span class="lang-id">NAMA</span></span>
-        <span class="tsep">:</span><span class="tv ac">Rijal</span>
-      </div>
-      <div class="tr rv">
-        <span class="tk2">STATUS</span>
-        <span class="tsep">:</span><span class="tv ac">Fresh Graduate</span>
-      </div>
-      <div class="tr rv">
-        <span class="tk2"><span class="lang-en">LOCATION</span><span class="lang-id">LOKASI</span></span>
-        <span class="tsep">:</span><span class="tv">Bogor, Indonesia</span>
-      </div>
-      <div class="tr rv">
-        <span class="tk2"><span class="lang-en">HOBBY</span><span class="lang-id">HOBI</span></span>
-        <span class="tsep">:</span>
-        <span class="tv">
-          <span class="lang-en">Exploration · Coding · Music</span>
-          <span class="lang-id">Eksplorasi · Coding · Musik</span>
-        </span>
-      </div>
-      <div class="tr rv">
-        <span class="tk2">MINDSET</span>
-        <span class="tsep">:</span>
-        <span class="tv gr">
-          <span class="lang-en">Growth · Open to collab</span>
-          <span class="lang-id">Berkembang · Terbuka kolaborasi</span>
-        </span>
-      </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Web Dev</div>
+      <div class="skill-lvl">GROWING</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
     </div>
-  </section>
-
-  <!-- MUSIC -->
-  <section id="music" aria-labelledby="music-h">
-    <div class="stag"><span class="stag-lbl"><span class="lang-en">// CHAPTER 02</span><span class="lang-id">// BAB 02</span></span></div>
-    <div class="sheader">
-      <span class="snum">02</span>
-      <h2 id="music-h" class="stitle"><span class="lang-en">TOP 3 SONGS</span><span class="lang-id">3 LAGU FAVORIT</span></h2>
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">JavaScript</div>
+      <div class="skill-lvl">INTERMEDIATE</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
     </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-name">Node.js</div>
+      <div class="skill-lvl">INTERMEDIATE</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="npbar" aria-live="polite">
-      <div class="npbars idle" id="npA">
-        <div class="npb"></div><div class="npb"></div><div class="npb"></div>
+<section id="music" aria-labelledby="music-h">
+  <div class="stag"><span class="stag-lbl"><span class="en">// CHAPTER 02</span><span class="id">// BAB 02</span></span></div>
+  <div class="sheader">
+    <span class="snum">02</span>
+    <h2 id="music-h" class="stitle"><span class="en">TOP 3 SONGS</span><span class="id">3 LAGU FAVORIT</span></h2>
+  </div>
+
+  <p class="abody rv en">Music is more than background noise to me — it's fuel. These three tracks define my current headspace: upbeat, nostalgic, and bold. Whether I'm coding late into the night or just winding down, these songs keep me locked in.</p>
+  <p class="abody rv id">Musik bukan sekadar suara latar bagiku — ini adalah bahan bakar. Tiga lagu ini mendefinisikan kondisi mentalku saat ini: ceria, nostalgik, dan berani. Baik saat coding larut malam atau sekadar bersantai, lagu-lagu ini selalu menemani.</p>
+
+  <div class="npbar rv" aria-live="polite">
+    <div class="npbars idle" id="npA">
+      <div class="npb"></div><div class="npb"></div><div class="npb"></div>
+    </div>
+    <span class="nplbl"><span class="en">NOW PLAYING</span><span class="id">DIPUTAR</span> &gt;&gt;</span>
+    <span class="nptk" id="npT">─</span>
+  </div>
+
+  <ol class="mlist">
+    <li class="mc" id="mc1" data-track="Eenie Meenie — Justin Bieber &amp; Sean Kingston">
+      <img class="mcov" src="https://up.ijal.eu.cc/f/inimini" alt="Eenie Meenie cover" onerror="this.onerror=null;this.style.background='#161616'"/>
+      <div class="mmeta">
+        <div class="midx">01</div>
+        <div class="mtitle">Eenie Meenie</div>
+        <div class="martist">Justin Bieber &amp; Sean Kingston</div>
+        <div class="mctrl">
+          <button class="pbtn" data-audio="a1" aria-label="Play Eenie Meenie">▶</button>
+          <span class="mtime2" id="t1">0:00 / 0:00</span>
+        </div>
+        <div class="mpbar"><div class="mpfill" id="p1"></div></div>
       </div>
-      <span class="nplbl"><span class="lang-en">NOW PLAYING</span><span class="lang-id">DIPUTAR</span> &gt;&gt;</span>
-      <span class="nptk" id="npT">─</span>
-    </div>
-
-    <ol class="mlist">
-      <li class="mc" id="mc1" data-track="Eenie Meenie — Justin Bieber &amp; Sean Kingston">
-        <img class="mcov" src="https://up.ijal.eu.cc/f/inimini" alt="Eenie Meenie cover"
-             onerror="this.onerror=null;this.style.background='#161616'"/>
-        <div class="mmeta">
-          <div class="midx">01</div>
-          <div class="mtitle">Eenie Meenie</div>
-          <div class="martist">Justin Bieber &amp; Sean Kingston</div>
-          <div class="mctrl">
-            <button class="pbtn" data-audio="a1" aria-label="Play Eenie Meenie">▶</button>
-            <span class="mtime2" id="t1">0:00 / 0:00</span>
-          </div>
-          <div class="mpbar"><div class="mpfill" id="p1"></div></div>
+      <audio id="a1" src="https://up.ijal.eu.cc/f/iniminilagu" preload="metadata"></audio>
+    </li>
+    <li class="mc" id="mc2" data-track="Locked Out of Heaven — Bruno Mars">
+      <img class="mcov" src="https://up.ijal.eu.cc/f/fortulong" alt="Locked Out cover" onerror="this.onerror=null;this.style.background='#161616'"/>
+      <div class="mmeta">
+        <div class="midx">02</div>
+        <div class="mtitle">Locked Out of Heaven</div>
+        <div class="martist">Bruno Mars</div>
+        <div class="mctrl">
+          <button class="pbtn" data-audio="a2" aria-label="Play Locked Out of Heaven">▶</button>
+          <span class="mtime2" id="t2">0:00 / 0:00</span>
         </div>
-        <audio id="a1" src="https://up.ijal.eu.cc/f/iniminilagu" preload="metadata"></audio>
-      </li>
-      <li class="mc" id="mc2" data-track="Locked Out of Heaven — Bruno Mars">
-        <img class="mcov" src="https://up.ijal.eu.cc/f/fortulong" alt="Locked Out cover"
-             onerror="this.onerror=null;this.style.background='#161616'"/>
-        <div class="mmeta">
-          <div class="midx">02</div>
-          <div class="mtitle">Locked Out of Heaven</div>
-          <div class="martist">Bruno Mars</div>
-          <div class="mctrl">
-            <button class="pbtn" data-audio="a2" aria-label="Play Locked Out of Heaven">▶</button>
-            <span class="mtime2" id="t2">0:00 / 0:00</span>
-          </div>
-          <div class="mpbar"><div class="mpfill" id="p2"></div></div>
-        </div>
-        <audio id="a2" src="https://up.ijal.eu.cc/f/portulong" preload="metadata"></audio>
-      </li>
-      <li class="mc" id="mc3" data-track="Cook Pardom — Unknown Artist">
-        <img class="mcov" src="https://up.ijal.eu.cc/f/pardomm" alt="Cook Pardom cover"
-             onerror="this.onerror=null;this.style.background='#161616'"/>
-        <div class="mmeta">
-          <div class="midx">03</div>
-          <div class="mtitle">Cook Pardom</div>
-          <div class="martist">Unknown Artist</div>
-          <div class="mctrl">
-            <button class="pbtn" data-audio="a3" aria-label="Play Cook Pardom">▶</button>
-            <span class="mtime2" id="t3">0:00 / 0:00</span>
-          </div>
-          <div class="mpbar"><div class="mpfill" id="p3"></div></div>
-        </div>
-        <audio id="a3" src="https://up.ijal.eu.cc/f/tulongg" preload="metadata"></audio>
-      </li>
-    </ol>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" aria-labelledby="proj-h">
-    <div class="stag"><span class="stag-lbl"><span class="lang-en">// CHAPTER 03</span><span class="lang-id">// BAB 03</span></span></div>
-    <div class="sheader">
-      <span class="snum">03</span>
-      <h2 id="proj-h" class="stitle"><span class="lang-en">MY PROJECTS</span><span class="lang-id">PROYEK SAYA</span></h2>
-    </div>
-
-    <div class="plist">
-
-      <article class="pcard rv">
-        <header class="phead">
-          <span class="ptype">TELEGRAM BOT</span>
-          <span class="pnum">01 · <span class="lang-en">NEW</span><span class="lang-id">BARU</span></span>
-        </header>
-        <div class="pbody">
-          <div class="ptitle">IGNITE BOT</div>
-          <div class="badges">
-            <span class="badge bor">★ <span class="lang-en">AUTOMATION &amp; MEDIA</span><span class="lang-id">OTOMATISASI &amp; MEDIA</span></span>
-            <span class="badge bmu">@IgniteBot</span>
-          </div>
-          <p class="pdesc lang-en">Smart Telegram chatbot that downloads video and audio via YouTube links, and auto-plays songs. Powered by <strong>yt-search</strong> + custom web downloader.</p>
-          <p class="pdesc lang-id">Bot pintar di Telegram untuk unduh video &amp; audio via YouTube dan memutar lagu otomatis. Ditenagai <strong>yt-search</strong> + custom web downloader.</p>
-          <a href="https://t.me/ignitttee_bot" target="_blank" rel="noopener noreferrer" class="plink">
-            <span class="lang-en">CHAT ON TELEGRAM</span><span class="lang-id">CHAT DI TELEGRAM</span>
-            <span class="ar">→</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <header class="phead">
-          <span class="ptype">WHATSAPP BOT</span>
-          <span class="pnum">02 · MULTI-DEVICE</span>
-        </header>
-        <div class="pbody">
-          <div class="ptitle">K1BRAT BOT</div>
-          <div class="badges">
-            <span class="badge bor">★ MULTI-TOOL</span>
-            <span class="badge bmu">WA MD</span>
-          </div>
-          <p class="pdesc lang-en">Advanced MD WhatsApp bot for group management. Features <strong>Downloader, HD Photo Enhancer, Remove BG</strong>, and <strong>Brat / Brat Video</strong> maker.</p>
-          <p class="pdesc lang-id">Bot WhatsApp MD canggih untuk manajemen grup. Fitur <strong>Downloader, Penjernih Foto HD, Remove BG</strong>, dan pembuat <strong>Brat / Brat Video</strong>.</p>
-          <a href="https://chat.whatsapp.com/Ds2KpajGHexBrgSuLo4xku" target="_blank" rel="noopener noreferrer" class="plink">
-            <span class="lang-en">TRY ON WHATSAPP</span><span class="lang-id">COBA DI WHATSAPP</span>
-            <span class="ar">→</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <header class="phead">
-          <span class="ptype"><span class="lang-en">WEB TOOL</span><span class="lang-id">ALAT WEB</span></span>
-          <span class="pnum">03</span>
-        </header>
-        <div class="pbody">
-          <div class="ptitle">VOIDUPLOADER</div>
-          <div class="badges">
-            <span class="badge bcy">⇄ <span class="lang-en">DOMAIN MIGRATED</span><span class="lang-id">DOMAIN BERPINDAH</span></span>
-          </div>
-          <p class="pdesc lang-en">Upload images, videos, or audio — instantly get a shareable link. Fast and lightweight file sharing.</p>
-          <p class="pdesc lang-id">Unggah gambar, video, atau audio — langsung dapat tautan yang bisa dibagikan. Berbagi file cepat dan ringan.</p>
-          <div class="dbox">
-            <div class="drow"><span class="dtag old"><span class="lang-en">OLD</span><span class="lang-id">LAMA</span></span><span class="durl old">uploader.ijal.eu.cc</span></div>
-            <div class="darr">↓</div>
-            <div class="drow"><span class="dtag new"><span class="lang-en">NEW</span><span class="lang-id">BARU</span></span><span class="durl">up.ijal.eu.cc</span></div>
-          </div>
-          <a href="https://up.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
-            <span class="lang-en">VISIT NEW DOMAIN</span><span class="lang-id">KUNJUNGI DOMAIN BARU</span>
-            <span class="ar">→</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <header class="phead">
-          <span class="ptype"><span class="lang-en">WEB TOOL</span><span class="lang-id">ALAT WEB</span></span>
-          <span class="pnum">04</span>
-        </header>
-        <div class="pbody">
-          <div class="ptitle">YTDOWN</div>
-          <div class="badges">
-            <span class="badge bcy">⇄ <span class="lang-en">DOMAIN MIGRATED</span><span class="lang-id">DOMAIN BERPINDAH</span></span>
-          </div>
-          <p class="pdesc lang-en">Download YouTube videos — paste a link, pick quality, done. Fast, simple, easy to use.</p>
-          <p class="pdesc lang-id">Unduh video YouTube — tempel link, pilih kualitas, selesai. Cepat, sederhana, mudah digunakan.</p>
-          <div class="dbox">
-            <div class="drow"><span class="dtag old"><span class="lang-en">OLD</span><span class="lang-id">LAMA</span></span><span class="durl old">goldstream.idgf.web.id</span></div>
-            <div class="darr">↓</div>
-            <div class="drow"><span class="dtag new"><span class="lang-en">NEW</span><span class="lang-id">BARU</span></span><span class="durl">down.ijal.eu.cc</span></div>
-          </div>
-          <a href="https://down.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
-            <span class="lang-en">VISIT NEW DOMAIN</span><span class="lang-id">KUNJUNGI DOMAIN BARU</span>
-            <span class="ar">→</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="pcard rmr rv">
-        <header class="phead">
-          <span class="ptype"><span class="lang-en">WEB TOOL</span><span class="lang-id">ALAT WEB</span></span>
-          <span class="pnum">05 · RUMOR</span>
-        </header>
-        <div class="pbody">
-          <div class="ptitle">TIKTOK DL</div>
-          <div class="badges">
-            <span class="badge brm">[!] <span class="lang-en">IN DEVELOPMENT</span><span class="lang-id">DALAM PENGEMBANGAN</span></span>
-          </div>
-          <p class="pdesc lang-en"><strong style="color:var(--txt2)">Project Leak:</strong> Download TikTok videos <strong style="color:var(--txt2)">without watermark</strong> (HD) + high-quality audio extraction.</p>
-          <p class="pdesc lang-id"><strong style="color:var(--txt2)">Bocoran Project:</strong> Unduh video TikTok <strong style="color:var(--txt2)">tanpa watermark</strong> (HD) + ekstrak audio berkualitas tinggi.</p>
-          <div class="rbox">
-            <strong><span class="lang-en">ESTIMATED RELEASE:</span><span class="lang-id">ESTIMASI RILIS:</span></strong>
-            <span class="lang-en"> May 16, 2026</span><span class="lang-id"> 16 Mei 2026</span>
-          </div>
-          <span class="plink off">COMING SOON [X]</span>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" aria-labelledby="contact-h">
-    <div class="stag"><span class="stag-lbl"><span class="lang-en">// FINAL</span><span class="lang-id">// TERAKHIR</span></span></div>
-    <div class="sheader">
-      <span class="snum">04</span>
-      <h2 id="contact-h" class="stitle"><span class="lang-en">LET'S CONNECT</span><span class="lang-id">MARI TERHUBUNG</span></h2>
-    </div>
-
-    <div class="cpanel rv">
-      <div class="cphead">
-        <div class="cptitle">
-          <span class="lang-en">EMBRACING<br/>THE JOURNEY</span>
-          <span class="lang-id">MENIKMATI<br/>PERJALANAN</span>
-        </div>
-        <p class="cpsub lang-en">Reach out on WhatsApp or Instagram — I'd love to connect and share ideas about growth and new experiences.</p>
-        <p class="cpsub lang-id">Hubungi via WhatsApp atau Instagram — terbuka untuk bertukar ide dan berkolaborasi.</p>
+        <div class="mpbar"><div class="mpfill" id="p2"></div></div>
       </div>
-      <div class="cprows">
-        <div class="cprow">
-          <span class="cpico">⌖</span>
-          <div><div class="cpkey"><span class="lang-en">LOCATION</span><span class="lang-id">LOKASI</span></div><div class="cpval">Bogor, Indonesia</div></div>
+      <audio id="a2" src="https://up.ijal.eu.cc/f/portulong" preload="metadata"></audio>
+    </li>
+    <li class="mc" id="mc3" data-track="Cook Pardom — Unknown Artist">
+      <img class="mcov" src="https://up.ijal.eu.cc/f/pardomm" alt="Cook Pardom cover" onerror="this.onerror=null;this.style.background='#161616'"/>
+      <div class="mmeta">
+        <div class="midx">03</div>
+        <div class="mtitle">Cook Pardom</div>
+        <div class="martist">Unknown Artist</div>
+        <div class="mctrl">
+          <button class="pbtn" data-audio="a3" aria-label="Play Cook Pardom">▶</button>
+          <span class="mtime2" id="t3">0:00 / 0:00</span>
         </div>
-        <div class="cprow">
-          <span class="cpico">WA</span>
-          <div><div class="cpkey">WHATSAPP</div><div class="cpval">+62 838 3468 3978</div></div>
-        </div>
-        <div class="cprow">
-          <span class="cpico">IG</span>
-          <div><div class="cpkey">INSTAGRAM</div><div class="cpval">@lestnsgr</div></div>
-        </div>
+        <div class="mpbar"><div class="mpfill" id="p3"></div></div>
       </div>
-      <div class="cpbtns">
-        <a class="btn b-solid" href="https://wa.me/6283834683978" target="_blank" rel="noopener noreferrer">
-          <span class="lang-en">→ WHATSAPP ME</span><span class="lang-id">→ WHATSAPP SAYA</span>
-        </a>
-        <a class="btn b-out" href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk=" target="_blank" rel="noopener noreferrer">
-          → INSTAGRAM
+      <audio id="a3" src="https://up.ijal.eu.cc/f/tulongg" preload="metadata"></audio>
+    </li>
+  </ol>
+</section>
+
+<section id="projects" aria-labelledby="proj-h">
+  <div class="stag"><span class="stag-lbl"><span class="en">// CHAPTER 03</span><span class="id">// BAB 03</span></span></div>
+  <div class="sheader">
+    <span class="snum">03</span>
+    <h2 id="proj-h" class="stitle"><span class="en">MY PROJECTS</span><span class="id">PROYEK SAYA</span></h2>
+  </div>
+
+  <p class="abody rv en">Every project here started as an idea to fix a problem or scratch a curiosity — built from the ground up, learned along the way, and shipped with pride. Each one represents a step forward in my journey as a developer who cares about both code quality and real-world impact.</p>
+  <p class="abody rv id">Setiap proyek di sini dimulai sebagai ide untuk menyelesaikan masalah atau mewujudkan rasa ingin tahu — dibangun dari nol, dipelajari sepanjang jalan, dan dirilis dengan bangga. Masing-masing mewakili langkah maju dalam perjalananku sebagai developer yang peduli terhadap kualitas kode dan dampak di dunia nyata.</p>
+
+  <div class="plist">
+    <article class="pcard rv">
+      <header class="phead">
+        <span class="ptype">TELEGRAM BOT</span>
+        <span class="pnum">01 · <span class="en">NEW</span><span class="id">BARU</span></span>
+      </header>
+      <div class="pbody">
+        <div class="ptitle">IGNITE BOT</div>
+        <div class="badges">
+          <span class="badge bor">★ <span class="en">AUTOMATION</span><span class="id">OTOMATISASI</span></span>
+          <span class="badge bmu">@IgniteBot</span>
+          <span class="badge bgrn">LIVE</span>
+        </div>
+        <p class="pdesc en">Ignite Bot is a smart Telegram chatbot engineered to handle <strong>YouTube media downloading</strong> with ease. Paste any YouTube link, and the bot instantly processes and delivers the audio or video file directly in chat — no third-party apps needed. It's powered by <strong>yt-search</strong> combined with a custom-built web downloader I designed for speed and reliability.</p>
+        <p class="pdesc id">Ignite Bot adalah bot Telegram cerdas yang dirancang untuk menangani <strong>pengunduhan media YouTube</strong> dengan mudah. Tempel link YouTube apa pun, dan bot langsung memproses serta mengirimkan file audio atau video langsung di chat — tanpa aplikasi pihak ketiga. Ditenagai <strong>yt-search</strong> dikombinasikan dengan web downloader yang aku rancang sendiri untuk kecepatan dan keandalan.</p>
+        <div class="feat-list en">
+          <div class="feat-item"><span class="feat-bullet"></span>Download YouTube videos in multiple formats and resolutions</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Auto-play and stream audio directly inside Telegram</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Smart search — just type a song name, no URL required</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Fast, lightweight, and built for daily use</div>
+        </div>
+        <div class="feat-list id">
+          <div class="feat-item"><span class="feat-bullet"></span>Unduh video YouTube dalam berbagai format dan resolusi</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Auto-play dan stream audio langsung di Telegram</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Pencarian cerdas — cukup ketik nama lagu, tanpa perlu URL</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Cepat, ringan, dan dibangun untuk penggunaan harian</div>
+        </div>
+        <a href="https://t.me/ignitttee_bot" target="_blank" rel="noopener noreferrer" class="plink">
+          <span class="en">CHAT ON TELEGRAM</span><span class="id">CHAT DI TELEGRAM</span>
+          <span class="ar">→</span>
         </a>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <footer class="footer">
-    © <span id="yr"></span> <span class="ac">RIJAL</span> · FRESH GRADUATE PORTFOLIO
-  </footer>
+    <article class="pcard rv">
+      <header class="phead">
+        <span class="ptype">WHATSAPP BOT</span>
+        <span class="pnum">02 · MULTI-DEVICE</span>
+      </header>
+      <div class="pbody">
+        <div class="ptitle">K1BRAT BOT</div>
+        <div class="badges">
+          <span class="badge bor">★ MULTI-TOOL</span>
+          <span class="badge bmu">WA MD</span>
+          <span class="badge bgrn">ACTIVE</span>
+        </div>
+        <p class="pdesc en">K1Brat Bot is a powerful multi-device WhatsApp bot built for <strong>group management and creative tools</strong>. Designed to handle everything from media downloading to AI-powered image enhancement, it's a complete toolkit that makes WhatsApp groups more productive and entertaining. The bot was built using the latest WhatsApp MD protocol for maximum stability across devices.</p>
+        <p class="pdesc id">K1Brat Bot adalah bot WhatsApp multi-device bertenaga tinggi yang dibangun untuk <strong>manajemen grup dan alat kreatif</strong>. Dirancang untuk menangani segalanya mulai dari pengunduhan media hingga peningkatan gambar berbasis AI, ini adalah toolkit lengkap yang membuat grup WhatsApp lebih produktif dan menghibur. Bot dibangun menggunakan protokol WhatsApp MD terbaru untuk stabilitas maksimal di semua perangkat.</p>
+        <div class="feat-list en">
+          <div class="feat-item"><span class="feat-bullet"></span>Multi-platform downloader: YouTube, Instagram, TikTok & more</div>
+          <div class="feat-item"><span class="feat-bullet"></span>HD Photo Enhancer — upscale low-quality images with AI</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Remove BG — instant background removal for any photo</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Brat & Brat Video maker — trending content creation tool</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Group management commands for admins</div>
+        </div>
+        <div class="feat-list id">
+          <div class="feat-item"><span class="feat-bullet"></span>Downloader multi-platform: YouTube, Instagram, TikTok & lainnya</div>
+          <div class="feat-item"><span class="feat-bullet"></span>HD Photo Enhancer — tingkatkan gambar beresolusi rendah dengan AI</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Remove BG — hapus latar belakang foto secara instan</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Pembuat Brat & Brat Video — alat pembuatan konten trending</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Perintah manajemen grup untuk admin</div>
+        </div>
+        <a href="https://chat.whatsapp.com/Ds2KpajGHexBrgSuLo4xku" target="_blank" rel="noopener noreferrer" class="plink">
+          <span class="en">TRY ON WHATSAPP</span><span class="id">COBA DI WHATSAPP</span>
+          <span class="ar">→</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="pcard rv">
+      <header class="phead">
+        <span class="ptype"><span class="en">WEB TOOL</span><span class="id">ALAT WEB</span></span>
+        <span class="pnum">03</span>
+      </header>
+      <div class="pbody">
+        <div class="ptitle">VOIDUPLOADER</div>
+        <div class="badges">
+          <span class="badge bcy">⇄ <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
+          <span class="badge bgrn">LIVE</span>
+        </div>
+        <p class="pdesc en">VoidUploader is a lightweight, no-nonsense file hosting tool built for speed. Upload <strong>images, videos, or audio files</strong> and receive an instant shareable link — no accounts, no fuss, no ads. It was one of my first solo web projects and taught me a tremendous amount about backend architecture, file handling, and building for real user needs. The domain recently migrated for improved performance and reliability.</p>
+        <p class="pdesc id">VoidUploader adalah alat hosting file yang ringan dan langsung ke intinya, dibangun untuk kecepatan. Unggah <strong>gambar, video, atau file audio</strong> dan terima tautan yang bisa dibagikan secara instan — tanpa akun, tanpa ribet, tanpa iklan. Ini adalah salah satu proyek web solo pertamaku dan mengajarkan banyak hal tentang arsitektur backend, penanganan file, dan membangun sesuai kebutuhan pengguna nyata. Domain baru saja dipindahkan untuk performa dan keandalan yang lebih baik.</p>
+        <div class="dbox">
+          <div class="drow"><span class="dtag old"><span class="en">OLD</span><span class="id">LAMA</span></span><span class="durl old">uploader.ijal.eu.cc</span></div>
+          <div class="darr">↓</div>
+          <div class="drow"><span class="dtag new"><span class="en">NEW</span><span class="id">BARU</span></span><span class="durl">up.ijal.eu.cc</span></div>
+        </div>
+        <a href="https://up.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
+          <span class="en">VISIT NEW DOMAIN</span><span class="id">KUNJUNGI DOMAIN BARU</span>
+          <span class="ar">→</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="pcard rv">
+      <header class="phead">
+        <span class="ptype"><span class="en">WEB TOOL</span><span class="id">ALAT WEB</span></span>
+        <span class="pnum">04</span>
+      </header>
+      <div class="pbody">
+        <div class="ptitle">YTDOWN</div>
+        <div class="badges">
+          <span class="badge bcy">⇄ <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
+          <span class="badge bgrn">LIVE</span>
+        </div>
+        <p class="pdesc en">YTDOWN is a clean, focused YouTube downloader web app — no bloat, no distractions, just <strong>pure functionality</strong>. Paste a link, select your preferred quality from HD to audio-only, and download in seconds. Built with a minimalist philosophy: do one thing and do it extremely well. This project sharpened my skills in frontend UX design, API integration, and creating tools that respect the user's time.</p>
+        <p class="pdesc id">YTDOWN adalah aplikasi web downloader YouTube yang bersih dan terfokus — tanpa bloat, tanpa gangguan, hanya <strong>fungsionalitas murni</strong>. Tempel link, pilih kualitas yang diinginkan dari HD hingga audio saja, dan unduh dalam hitungan detik. Dibangun dengan filosofi minimalis: lakukan satu hal dan lakukan dengan sangat baik. Proyek ini mengasah kemampuanku dalam desain UX frontend, integrasi API, dan membuat alat yang menghargai waktu pengguna.</p>
+        <div class="feat-list en">
+          <div class="feat-item"><span class="feat-bullet"></span>Download any YouTube video in HD quality</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Extract audio as MP3 — clean, high bitrate</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Zero ads, zero registration required</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Fast processing with real-time progress feedback</div>
+        </div>
+        <div class="feat-list id">
+          <div class="feat-item"><span class="feat-bullet"></span>Unduh video YouTube apa pun dalam kualitas HD</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Ekstrak audio sebagai MP3 — bersih, bitrate tinggi</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Tanpa iklan, tanpa pendaftaran</div>
+          <div class="feat-item"><span class="feat-bullet"></span>Pemrosesan cepat dengan umpan balik progres real-time</div>
+        </div>
+        <div class="dbox">
+          <div class="drow"><span class="dtag old"><span class="en">OLD</span><span class="id">LAMA</span></span><span class="durl old">goldstream.idgf.web.id</span></div>
+          <div class="darr">↓</div>
+          <div class="drow"><span class="dtag new"><span class="en">NEW</span><span class="id">BARU</span></span><span class="durl">down.ijal.eu.cc</span></div>
+        </div>
+        <a href="https://down.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
+          <span class="en">VISIT NEW DOMAIN</span><span class="id">KUNJUNGI DOMAIN BARU</span>
+          <span class="ar">→</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="pcard rmr rv">
+      <header class="phead">
+        <span class="ptype"><span class="en">WEB TOOL</span><span class="id">ALAT WEB</span></span>
+        <span class="pnum">05 · RUMOR</span>
+      </header>
+      <div class="pbody">
+        <div class="ptitle">TIKTOK DL</div>
+        <div class="badges">
+          <span class="badge brm">[!] <span class="en">IN DEV</span><span class="id">DALAM PENGEMBANGAN</span></span>
+        </div>
+        <p class="pdesc en"><strong style="color:var(--txt2)">Project Leak:</strong> The next tool in the lineup is a dedicated TikTok downloader — built to grab videos in <strong style="color:var(--txt2)">full HD without watermark</strong>, plus high-quality audio extraction as MP3. The goal is to make TikTok content saving as seamless as possible — instant link processing, no filler screens, just the file you need. Architecture is already planned; release is right around the corner.</p>
+        <p class="pdesc id"><strong style="color:var(--txt2)">Bocoran Project:</strong> Alat berikutnya adalah TikTok downloader yang didedikasikan — dibangun untuk mengambil video dalam <strong style="color:var(--txt2)">kualitas HD penuh tanpa watermark</strong>, plus ekstraksi audio berkualitas tinggi sebagai MP3. Tujuannya adalah membuat penyimpanan konten TikTok semudah mungkin — pemrosesan link instan, tanpa layar filler, langsung file yang dibutuhkan. Arsitektur sudah direncanakan; rilis sudah di depan mata.</p>
+        <div class="rbox">
+          <strong><span class="en">ESTIMATED RELEASE:</span><span class="id">ESTIMASI RILIS:</span></strong>
+          <span class="en"> May 16, 2026</span><span class="id"> 16 Mei 2026</span>
+        </div>
+        <div class="countdown-wrap" id="cdWrap">
+          <div class="cd-unit"><div class="cd-num" id="cdD">─</div><div class="cd-lbl">DAYS</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdH">─</div><div class="cd-lbl">HRS</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdM">─</div><div class="cd-lbl">MIN</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdS">─</div><div class="cd-lbl">SEC</div></div>
+        </div>
+        <span class="plink off">COMING SOON [X]</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="contact" aria-labelledby="contact-h">
+  <div class="stag"><span class="stag-lbl"><span class="en">// FINAL</span><span class="id">// TERAKHIR</span></span></div>
+  <div class="sheader">
+    <span class="snum">04</span>
+    <h2 id="contact-h" class="stitle"><span class="en">LET'S CONNECT</span><span class="id">MARI TERHUBUNG</span></h2>
+  </div>
+
+  <div class="cpanel rv">
+    <div class="cphead">
+      <div class="cphead-glow"></div>
+      <div class="cptitle">
+        <span class="en">EMBRACING<br/>THE JOURNEY</span>
+        <span class="id">MENIKMATI<br/>PERJALANAN</span>
+      </div>
+      <p class="cpsub en">I'm always open to new conversations, collaborations, and opportunities — whether you want to build something together, talk tech, or just say hi. Reach out on WhatsApp or Instagram, and let's make something happen.</p>
+      <p class="cpsub id">Aku selalu terbuka untuk percakapan baru, kolaborasi, dan peluang — baik kamu ingin membangun sesuatu bersama, ngobrol soal teknologi, atau sekadar menyapa. Hubungi via WhatsApp atau Instagram, dan mari kita wujudkan sesuatu.</p>
+    </div>
+    <div class="cprows">
+      <div class="cprow">
+        <span class="cpico">⌖</span>
+        <div><div class="cpkey"><span class="en">LOCATION</span><span class="id">LOKASI</span></div><div class="cpval">Bogor, Indonesia 🇮🇩</div></div>
+      </div>
+      <div class="cprow">
+        <span class="cpico">ID</span>
+        <div><div class="cpkey">FULL NAME</div><div class="cpval">Afrizal Vandlest</div></div>
+      </div>
+      <div class="cprow">
+        <span class="cpico">WA</span>
+        <div><div class="cpkey">WHATSAPP</div><div class="cpval">+62 838 3468 3978</div></div>
+      </div>
+      <div class="cprow">
+        <span class="cpico">IG</span>
+        <div><div class="cpkey">INSTAGRAM</div><div class="cpval">@lestnsgr</div></div>
+      </div>
+    </div>
+    <div class="cpbtns">
+      <a class="btn b-solid" href="https://wa.me/6283834683978" target="_blank" rel="noopener noreferrer">
+        <span class="en">→ WHATSAPP ME</span><span class="id">→ WHATSAPP SAYA</span>
+      </a>
+      <a class="btn b-out" href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk=" target="_blank" rel="noopener noreferrer">
+        → INSTAGRAM
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © <span id="yr"></span> <span class="ac">AFRIZAL VANDLEST</span> · RIJAL.DEV
+  <div class="footer-meta">FRESH GRADUATE · BOGOR · INDONESIA</div>
+</footer>
 
 </main>
+
 <script>
 (function(){
   'use strict';
-  document.getElementById('yr').textContent=new Date().getFullYear();
 
-  var ls=document.getElementById('lsw');
-  function tgl(){
-    var n=ls.getAttribute('data-lang')==='en'?'id':'en';
-    ls.setAttribute('data-lang',n);
-    document.body.setAttribute('data-active-lang',n);
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var ls = document.getElementById('lsw');
+  function tgl() {
+    var n = ls.getAttribute('data-lang') === 'en' ? 'id' : 'en';
+    ls.setAttribute('data-lang', n);
+    document.body.setAttribute('data-lang', n);
   }
-  ls.addEventListener('click',tgl);
-  ls.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tgl();}});
+  ls.addEventListener('click', tgl);
+  ls.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tgl(); }
+  });
 
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(ents){
-      ents.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);});
-    },{threshold:.1});
-    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(ents) {
+      ents.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { threshold: .08 });
+    document.querySelectorAll('.rv').forEach(function(el) { io.observe(el); });
   } else {
-    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
+    document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); });
   }
 
-  var npT=document.getElementById('npT');
-  var npA=document.getElementById('npA');
-  var btns=document.querySelectorAll('.pbtn');
-  var auds=document.querySelectorAll('audio');
-
-  function fmt(s){
-    if(isNaN(s)||s===Infinity)return'0:00';
-    var m=Math.floor(s/60),ss=Math.floor(s%60);
-    return m+':'+(ss<10?'0':'')+ss;
+  var release = new Date('2026-05-16T00:00:00');
+  function updateCountdown() {
+    var now = new Date();
+    var diff = release - now;
+    if (diff <= 0) {
+      document.getElementById('cdD').textContent = '0';
+      document.getElementById('cdH').textContent = '0';
+      document.getElementById('cdM').textContent = '0';
+      document.getElementById('cdS').textContent = '0';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdD').textContent = d;
+    document.getElementById('cdH').textContent = h;
+    document.getElementById('cdM').textContent = m < 10 ? '0' + m : m;
+    document.getElementById('cdS').textContent = s < 10 ? '0' + s : s;
   }
-  function stopAll(keep){
-    auds.forEach(function(a){if(a.id!==keep)a.pause();});
-    btns.forEach(function(b){
-      if(b.dataset.audio!==keep){
-        b.classList.remove('playing');b.textContent='▶';
-        var c=b.closest('.mc');if(c)c.classList.remove('playing');
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  var npT = document.getElementById('npT');
+  var npA = document.getElementById('npA');
+  var btns = document.querySelectorAll('.pbtn');
+  var auds = document.querySelectorAll('audio');
+
+  function fmt(s) {
+    if (isNaN(s) || s === Infinity) return '0:00';
+    var m = Math.floor(s / 60), ss = Math.floor(s % 60);
+    return m + ':' + (ss < 10 ? '0' : '') + ss;
+  }
+  function stopAll(keep) {
+    auds.forEach(function(a) { if (a.id !== keep) a.pause(); });
+    btns.forEach(function(b) {
+      if (b.dataset.audio !== keep) {
+        b.classList.remove('playing');
+        b.textContent = '▶';
+        var c = b.closest('.mc');
+        if (c) c.classList.remove('playing');
       }
     });
   }
 
-  btns.forEach(function(btn){
-    var aid=btn.dataset.audio;
-    var aud=document.getElementById(aid);
-    if(!aud)return;
-    var card=btn.closest('.mc');
-    var idx=(aid.match(/\d+/)||['1'])[0];
-    var tEl=document.getElementById('t'+idx);
-    var pEl=document.getElementById('p'+idx);
+  btns.forEach(function(btn) {
+    var aid = btn.dataset.audio;
+    var aud = document.getElementById(aid);
+    if (!aud) return;
+    var card = btn.closest('.mc');
+    var idx = (aid.match(/\d+/) || ['1'])[0];
+    var tEl = document.getElementById('t' + idx);
+    var pEl = document.getElementById('p' + idx);
 
-    btn.addEventListener('click',function(){
-      if(aud.paused){stopAll(aid);aud.play().catch(function(){});}
+    btn.addEventListener('click', function() {
+      if (aud.paused) { stopAll(aid); aud.play().catch(function(){}); }
       else aud.pause();
     });
-    aud.addEventListener('play',function(){
-      btn.classList.add('playing');btn.textContent='❚❚';
-      if(card)card.classList.add('playing');
-      if(npT&&card)npT.textContent=card.dataset.track||'─';
-      if(npA)npA.classList.remove('idle');
+    aud.addEventListener('play', function() {
+      btn.classList.add('playing'); btn.textContent = '❚❚';
+      if (card) card.classList.add('playing');
+      if (npT && card) npT.textContent = card.dataset.track || '─';
+      if (npA) npA.classList.remove('idle');
     });
-    aud.addEventListener('pause',function(){
-      btn.classList.remove('playing');btn.textContent='▶';
-      if(card)card.classList.remove('playing');
-      if(npA)npA.classList.add('idle');
+    aud.addEventListener('pause', function() {
+      btn.classList.remove('playing'); btn.textContent = '▶';
+      if (card) card.classList.remove('playing');
+      if (npA) npA.classList.add('idle');
     });
-    aud.addEventListener('ended',function(){
-      btn.classList.remove('playing');btn.textContent='▶';
-      if(card)card.classList.remove('playing');
-      if(pEl)pEl.style.width='0%';
-      if(npT)npT.textContent='─';
-      if(npA)npA.classList.add('idle');
+    aud.addEventListener('ended', function() {
+      btn.classList.remove('playing'); btn.textContent = '▶';
+      if (card) card.classList.remove('playing');
+      if (pEl) pEl.style.width = '0%';
+      if (npT) npT.textContent = '─';
+      if (npA) npA.classList.add('idle');
     });
-    aud.addEventListener('timeupdate',function(){
-      if(tEl)tEl.textContent=fmt(aud.currentTime)+' / '+fmt(aud.duration);
-      if(pEl&&aud.duration)pEl.style.width=((aud.currentTime/aud.duration)*100)+'%';
+    aud.addEventListener('timeupdate', function() {
+      if (tEl) tEl.textContent = fmt(aud.currentTime) + ' / ' + fmt(aud.duration);
+      if (pEl && aud.duration) pEl.style.width = ((aud.currentTime / aud.duration) * 100) + '%';
     });
-    aud.addEventListener('loadedmetadata',function(){
-      if(tEl)tEl.textContent='0:00 / '+fmt(aud.duration);
+    aud.addEventListener('loadedmetadata', function() {
+      if (tEl) tEl.textContent = '0:00 / ' + fmt(aud.duration);
     });
   });
 })();
