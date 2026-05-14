@@ -5,28 +5,55 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#060608"/>
 <title>AFRIZAL VANDLEST — Portfolio</title>
-<meta name="description" content="Afrizal Vandlest (Rijal) — Fresh Graduate. Builder, Explorer. Bogor."/>
+<meta name="description" content="Afrizal Vandlest (Rijal) — Fresh Graduate, Bot Developer &amp; Web Builder from Bogor, Indonesia. Open to Work."/>
+<meta name="author" content="Afrizal Vandlest"/>
+<meta name="keywords" content="Afrizal Vandlest, Rijal, Portfolio, Bot Developer, Web Developer, JavaScript, Node.js, Telegram Bot, WhatsApp Bot, Bogor, Indonesia"/>
+<meta name="robots" content="index, follow"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="AFRIZAL VANDLEST — Portfolio"/>
+<meta property="og:description" content="Fresh Graduate · Builder · Explorer — Bot &amp; Web Developer from Bogor, Indonesia."/>
+<meta property="og:image" content="https://up.ijal.eu.cc/f/rj"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://ijal.eu.cc"/>
+<meta property="og:site_name" content="RIJAL.DEV"/>
+<meta property="og:locale" content="en_US"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="AFRIZAL VANDLEST — Portfolio"/>
+<meta name="twitter:description" content="Fresh Graduate · Builder · Explorer — Bot &amp; Web Developer from Bogor, Indonesia."/>
+<meta name="twitter:image" content="https://up.ijal.eu.cc/f/rj"/>
+
+<link rel="icon" type="image/png" href="https://up.ijal.eu.cc/f/rj"/>
+<link rel="shortcut icon" href="https://up.ijal.eu.cc/f/rj"/>
+<link rel="apple-touch-icon" href="https://up.ijal.eu.cc/f/rj"/>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap"/>
 <style>
 :root {
   --bg:    #060608;
-  --bg2:   #0C0C10;
-  --bg3:   #121218;
-  --bg4:   #1A1A22;
-  --bg5:   #20202A;
-  --ln:    #1E1E28;
-  --ln2:   #2A2A38;
-  --ln3:   #38384A;
+  --bg2:   #0E0E16;
+  --bg3:   #16161E;
+  --bg4:   #1F1F2A;
+  --bg5:   #26262E;
+  --ln:    #262633;
+  --ln2:   #38384A;
+  --ln3:   #4D4D63;
   --or:    #FF5500;
   --or2:   #FF6B22;
   --or3:   #FF8C55;
-  --ord:   rgba(255,85,0,.08);
-  --orb:   rgba(255,85,0,.15);
+  --ord:   rgba(255,85,0,.07);
+  --orb:   rgba(255,85,0,.14);
+  --bd-or:      rgba(255,85,0,.22);
+  --bd-or-sft:  rgba(255,85,0,.10);
+  --surf-hi:    rgba(255,255,255,.025);
+  --surf-grad:  linear-gradient(180deg, rgba(255,255,255,.028) 0%, rgba(255,255,255,0) 55%);
   --txt:   #F0F0F5;
-  --txt2:  #9090A8;
-  --txt3:  #505068;
+  --txt2:  #9CA0B6;
+  --txt3:  #686880;
   --grn:   #00E676;
   --cyn:   #00D4E8;
   --blu:   #4B7BFF;
@@ -44,7 +71,6 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
-  font-feature-settings: "kern" 1, "liga" 1;
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -64,24 +90,27 @@ body[data-lang="id"] .en { display: none !important; }
   overflow: hidden;
 }
 
-.corner-glow {
+/* REMOVED: scanline overlay — redundant visual cost */
+
+/* OPTIMIZED: static ambient, no animation */
+.ambient-l {
   position: fixed;
-  bottom: -80px;
-  left: -80px;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(255,85,0,.18) 0%, rgba(255,85,0,.06) 40%, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,85,0,.09) 0%, rgba(255,85,0,.03) 40%, transparent 68%);
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
 }
-.corner-glow-right {
+.ambient-r {
   position: fixed;
-  top: -120px;
-  right: -120px;
+  top: -140px;
+  right: -140px;
   width: 280px;
   height: 280px;
-  background: radial-gradient(circle, rgba(75,123,255,.06) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(75,123,255,.04) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
@@ -96,9 +125,10 @@ body[data-lang="id"] .en { display: none !important; }
   justify-content: space-between;
   padding: 12px 18px;
   background: rgba(6,6,8,.95);
-  border-bottom: 1px solid var(--ln);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--ln2);
+  /* OPTIMIZED: reduced blur amount */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .logo {
   display: inline-flex;
@@ -121,9 +151,9 @@ body[data-lang="id"] .en { display: none !important; }
   font-family: var(--M);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0;
   border-radius: 6px;
   flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(255,85,0,.35);
 }
 .logo-text { color: var(--txt); }
 .logo-text .dot { color: var(--or); }
@@ -133,7 +163,6 @@ body[data-lang="id"] .en { display: none !important; }
   display: flex;
   align-items: center;
   gap: 5px;
-  font-family: var(--M);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -141,14 +170,16 @@ body[data-lang="id"] .en { display: none !important; }
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  transition: color .2s;
 }
 .tt {
   width: 34px;
   height: 18px;
-  border: 1px solid var(--ln2);
+  border: 1.5px solid var(--ln2);
   background: var(--bg3);
   border-radius: 9px;
   position: relative;
+  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
 .tk {
   width: 11px;
@@ -159,8 +190,8 @@ body[data-lang="id"] .en { display: none !important; }
   left: 3px;
   transition: transform .25s cubic-bezier(.22,.8,.22,1), background .25s;
 }
-.lsw[data-lang="en"] .tk { background: var(--or); transform: translateX(0); }
-.lsw[data-lang="id"] .tk { background: var(--cyn); transform: translateX(15px); }
+.lsw[data-lang="en"] .tk { background: var(--or); transform: translateX(0); box-shadow: 0 0 6px rgba(255,85,0,.4); }
+.lsw[data-lang="id"] .tk { background: var(--cyn); transform: translateX(15px); box-shadow: 0 0 6px rgba(0,212,232,.4); }
 .lsw[data-lang="id"] { color: var(--cyn); }
 
 .hcta {
@@ -174,85 +205,84 @@ body[data-lang="id"] .en { display: none !important; }
   font-weight: 700;
   letter-spacing: 1.5px;
   border-radius: 6px;
-  transition: background .15s;
+  box-shadow: 0 0 10px rgba(255,85,0,.25);
+  transition: background .15s, transform .15s;
 }
-.hcta:active { background: var(--or2); }
+.hcta:active { background: var(--or2); transform: scale(.97); }
 
+/* OPTIMIZED: shorter statusbar content */
 .statusbar {
   display: flex;
   align-items: center;
   gap: 7px;
   padding: 8px 18px;
   background: var(--bg2);
-  border-bottom: 1px solid var(--ln);
+  border-bottom: 2px solid var(--ln2);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--txt3);
-  overflow-x: auto;
   white-space: nowrap;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
-.statusbar::-webkit-scrollbar { display: none; }
 .pulse {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--grn);
   flex-shrink: 0;
-  animation: pulseAnim 2s infinite;
-  box-shadow: 0 0 0 0 rgba(0,230,118,.4);
+  animation: pulseAnim 2.5s infinite;
 }
 @keyframes pulseAnim {
-  0% { box-shadow: 0 0 0 0 rgba(0,230,118,.4); }
-  70% { box-shadow: 0 0 0 6px rgba(0,230,118,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(0,230,118,.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(0,230,118,0); }
   100% { box-shadow: 0 0 0 0 rgba(0,230,118,0); }
 }
 .sbadge {
   padding: 2px 8px;
   border-radius: 4px;
-  border: 1px solid var(--ln2);
+  border: 1.5px solid var(--ln2);
   color: var(--txt3);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
+  background: var(--bg3);
 }
-.sbadge.active {
-  border-color: rgba(255,85,0,.5);
-  color: var(--or);
-  background: var(--ord);
-}
-.sbadge.grn {
-  border-color: rgba(0,230,118,.3);
-  color: var(--grn);
-  background: rgba(0,230,118,.05);
-}
+.sbadge.active { border-color: rgba(255,85,0,.55); color: var(--or); background: var(--ord); box-shadow: 0 0 0 1px rgba(255,85,0,.04), inset 0 1px 0 rgba(255,255,255,.04); }
+.sbadge.grn    { border-color: rgba(0,230,118,.3); color: var(--grn); background: rgba(0,230,118,.05); }
 .sp { color: var(--ln2); }
 
 .hero {
-  padding: 36px 20px 32px;
+  padding: 36px 20px 36px;
   background: var(--bg);
-  border-bottom: 1px solid var(--ln);
+  border-bottom: 2px solid var(--ln2);
   position: relative;
   overflow: hidden;
 }
-.hero-grid-lines {
+/* OPTIMIZED: static grid, no drift animation */
+.hero-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,85,0,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,85,0,.025) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255,85,0,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,85,0,.018) 1px, transparent 1px);
+  background-size: 36px 36px;
   pointer-events: none;
 }
-.hero-glow {
+.hero-atm {
   position: absolute;
-  top: -60px;
-  right: -80px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255,85,0,.09) 0%, transparent 65%);
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(255,85,0,.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 85%, rgba(75,123,255,.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-fade-b {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(transparent, var(--bg));
   pointer-events: none;
 }
 
@@ -269,56 +299,112 @@ body[data-lang="id"] .en { display: none !important; }
   align-items: center;
   gap: 5px;
   padding: 4px 10px;
-  border: 1px solid var(--ln2);
-  background: var(--bg2);
-  font-family: var(--M);
+  border: 1.5px solid var(--ln2);
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: var(--txt3);
-  border-radius: 4px;
+  color: var(--txt2);
+  border-radius: 5px;
+  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
-.hchip.active { border-color: rgba(0,230,118,.4); color: var(--grn); background: rgba(0,230,118,.05); }
-.hchip.hot { border-color: rgba(255,85,0,.5); color: var(--or); background: var(--ord); }
-.hchip-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.hchip.active {
+  border-color: rgba(0,230,118,.4);
+  color: var(--grn);
+  background: rgba(0,230,118,.05);
+}
+.hchip.hot {
+  border-color: rgba(255,85,0,.50);
+  color: var(--or);
+  background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.04) 100%);
+  box-shadow: 0 0 0 1px rgba(255,85,0,.04), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.hchip-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; animation: pulseAnim 2.5s infinite; }
 
 .av-wrap {
   position: relative;
-  width: 88px;
-  height: 88px;
-  margin-bottom: 28px;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.av-aura {
+  position: absolute;
+  inset: 0;
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  /* OPTIMIZED: no CSS filter here; handled in canvas */
+}
+.av-rings {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 .av-ring {
   position: absolute;
-  inset: -4px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,85,0,.3);
-  animation: spinRing 8s linear infinite;
+  /* GPU-accelerate ring rotations */
+  will-change: transform;
 }
-@keyframes spinRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.av-r1 {
+  width: 124px;
+  height: 124px;
+  border: 1px solid rgba(255,85,0,.35);
+  animation: spinCW 8s linear infinite;
 }
-.av-ring::before {
+.av-r1::before {
   content: '';
   position: absolute;
-  top: -2px;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--or);
+  box-shadow: 0 0 8px var(--or);
+}
+.av-r2 {
+  width: 150px;
+  height: 150px;
+  border: 1px dashed rgba(255,85,0,.12);
+  animation: spinCCW 15s linear infinite;
+}
+.av-r2::after {
+  content: '';
+  position: absolute;
+  bottom: -2.5px;
   left: 50%;
   transform: translateX(-50%);
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--or);
+  background: rgba(255,85,0,.45);
 }
+/* OPTIMIZED: removed outermost ring (least visible, still animating) */
+@keyframes spinCW  { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+@keyframes spinCCW { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
+
 .av-frame {
-  width: 88px;
-  height: 88px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   overflow: hidden;
   background: var(--bg3);
-  border: 2px solid var(--ln2);
+  border: 2.5px solid rgba(255,85,0,.65);
   position: relative;
+  z-index: 2;
+  box-shadow:
+    0 0 0 4px rgba(255,85,0,.07),
+    0 0 24px rgba(255,85,0,.28),
+    inset 0 2px 4px rgba(255,255,255,.04);
 }
 .av-img {
   position: absolute;
@@ -327,29 +413,11 @@ body[data-lang="id"] .en { display: none !important; }
   height: 100%;
   object-fit: cover;
 }
-.av-badge {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--grn);
-  border: 2.5px solid var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.av-badge::after {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #000;
+.av-online {
+  display: none;
 }
 
 .hero-eyebrow {
-  font-family: var(--M);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 3px;
@@ -357,6 +425,7 @@ body[data-lang="id"] .en { display: none !important; }
   margin-bottom: 6px;
   position: relative;
   z-index: 1;
+  opacity: .75;
 }
 .hero-name {
   font-family: var(--D);
@@ -369,9 +438,14 @@ body[data-lang="id"] .en { display: none !important; }
   position: relative;
   z-index: 1;
 }
-.hero-name em { font-style: normal; color: var(--or); }
+.hero-name em {
+  font-style: normal;
+  background: linear-gradient(135deg, #FF8C55 0%, #FF5500 45%, #CC3000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .hero-fullname {
-  font-family: var(--M);
   font-size: 11px;
   font-weight: 500;
   color: var(--txt3);
@@ -391,26 +465,29 @@ body[data-lang="id"] .en { display: none !important; }
   position: relative;
   z-index: 1;
 }
-.hero-sub .hl { color: var(--or2); }
+.hero-sub .hl   { color: var(--or2); }
 .hero-sub .pipe { color: var(--ln2); margin: 0 8px; }
 
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--ln);
-  border: 1px solid var(--ln);
-  border-radius: 8px;
+  gap: 1.5px;
+  background: var(--ln2);
+  border: 1.5px solid var(--ln2);
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 24px;
   position: relative;
   z-index: 1;
+  box-shadow: 0 4px 14px rgba(0,0,0,.35), inset 0 1px 0 var(--surf-hi);
 }
 .hstat {
-  background: var(--bg2);
-  padding: 12px 10px;
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  padding: 14px 10px;
   text-align: center;
+  transition: background .15s;
 }
+.hstat:hover { background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%); }
 .hstat-val {
   font-family: var(--D);
   font-weight: 800;
@@ -420,58 +497,57 @@ body[data-lang="id"] .en { display: none !important; }
   margin-bottom: 3px;
 }
 .hstat-lbl {
-  font-family: var(--M);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--txt3);
 }
 
-.btns {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
+.btns { display: flex; gap: 10px; flex-wrap: wrap; position: relative; z-index: 1; }
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 11px 18px;
-  font-family: var(--M);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
   border-radius: 6px;
-  transition: all .15s;
+  transition: all .18s;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 }
-.b-solid { background: var(--or); color: #000; border: 1px solid var(--or); }
-.b-solid:active { background: var(--or2); }
-.b-out { background: transparent; color: var(--txt); border: 1px solid var(--ln2); }
+.b-solid {
+  background: linear-gradient(180deg, #FF6B22 0%, var(--or) 100%);
+  color: #000;
+  border: 1.5px solid var(--or);
+  box-shadow: 0 0 14px rgba(255,85,0,.28), inset 0 1px 0 rgba(255,255,255,.18);
+}
+.b-solid:hover  { box-shadow: 0 0 22px rgba(255,85,0,.42), inset 0 1px 0 rgba(255,255,255,.22); transform: translateY(-1px); }
+.b-solid:active { transform: scale(.97); }
+.b-out {
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  color: var(--txt);
+  border: 1.5px solid var(--ln2);
+  box-shadow: inset 0 1px 0 var(--surf-hi);
+}
+.b-out:hover  { background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%); border-color: var(--bd-or); color: var(--or3); }
 .b-out:active { background: var(--bg3); }
 
 section {
   padding: 28px 20px;
-  border-bottom: 1px solid var(--ln);
+  border-bottom: 2px solid var(--ln2);
   position: relative;
+  contain: layout style;
 }
 
-.stag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
+.stag { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .stag-lbl {
-  font-family: var(--M);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
   color: var(--or);
-  border: 1px solid rgba(255,85,0,.3);
+  border: 1px solid rgba(255,85,0,.28);
   padding: 2px 8px;
   border-radius: 4px;
   background: var(--ord);
@@ -482,7 +558,7 @@ section {
   gap: 12px;
   padding-bottom: 18px;
   margin-bottom: 22px;
-  border-bottom: 1px solid var(--ln);
+  border-bottom: 2px solid var(--ln2);
 }
 .snum {
   font-family: var(--D);
@@ -490,9 +566,13 @@ section {
   font-size: 64px;
   line-height: 1;
   letter-spacing: -1px;
-  color: var(--ln2);
+  background: linear-gradient(170deg, #FFFFFF 0%, #FFE2CB 20%, #FF8C55 55%, var(--or) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   flex-shrink: 0;
   margin-bottom: -4px;
+  filter: drop-shadow(0 4px 14px rgba(255,85,0,.22)) drop-shadow(0 0 1px rgba(255,140,85,.18));
 }
 .stitle {
   font-family: var(--D);
@@ -511,7 +591,7 @@ section {
   font-weight: 400;
 }
 .abody strong { color: var(--or3); font-weight: 700; }
-.abody em { color: var(--txt); font-style: normal; font-weight: 600; }
+.abody em     { color: var(--txt); font-style: normal; font-weight: 600; }
 
 .about-quote {
   border-left: 2px solid var(--or);
@@ -530,28 +610,28 @@ section {
 }
 .about-quote span {
   display: block;
-  font-family: var(--M);
   font-size: 10px;
   color: var(--or);
   letter-spacing: 2px;
   margin-top: 6px;
+  opacity: .8;
 }
 
-.tgrid { display: flex; flex-direction: column; border-radius: 8px; overflow: hidden; border: 1px solid var(--ln); }
+.tgrid { display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; border: 2px solid var(--ln2); box-shadow: 0 4px 14px rgba(0,0,0,.32), inset 0 1px 0 var(--surf-hi); }
 .tr {
   display: grid;
   grid-template-columns: 90px 14px 1fr;
   align-items: start;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--ln);
-  background: var(--bg2);
-  transition: background .1s;
+  padding: 11px 14px;
+  border-bottom: 1.5px solid var(--ln);
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  transition: background .12s;
 }
 .tr:last-child { border-bottom: none; }
 .tr:hover { background: var(--bg3); }
-.tk2 { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); padding-top: 2px; }
+.tk2  { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); padding-top: 2px; }
 .tsep { color: var(--ln2); font-size: 13px; padding-top: 1px; }
-.tv { font-size: 13px; font-weight: 600; color: var(--txt); word-break: break-word; }
+.tv   { font-size: 13px; font-weight: 600; color: var(--txt); word-break: break-word; }
 .tv.ac { color: var(--or); }
 .tv.gr { color: var(--grn); }
 
@@ -562,25 +642,30 @@ section {
   margin-top: 20px;
 }
 .skill-card {
-  background: var(--bg2);
-  border: 1px solid var(--ln);
-  border-radius: 8px;
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border: 2px solid var(--ln2);
+  border-radius: 10px;
   padding: 14px;
-  transition: border-color .15s;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.30), inset 0 1px 0 var(--surf-hi);
 }
-.skill-card:hover { border-color: var(--ln2); }
+.skill-card:hover { border-color: var(--bd-or); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255,85,0,.10), 0 2px 8px rgba(0,0,0,.32), inset 0 1px 0 var(--surf-hi); }
 .skill-icon {
-  width: 32px;
-  height: 32px;
-  background: var(--ord);
-  border: 1px solid rgba(255,85,0,.2);
-  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(180deg, rgba(255,85,0,.12) 0%, rgba(255,85,0,.04) 100%);
+  border: 1.5px solid var(--bd-or);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
   margin-bottom: 10px;
+  color: var(--or);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
 }
+.skill-icon svg { width: 16px; height: 16px; }
 .skill-name {
   font-family: var(--D);
   font-weight: 700;
@@ -590,25 +675,27 @@ section {
   margin-bottom: 3px;
 }
 .skill-lvl {
-  font-family: var(--M);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--or);
   margin-bottom: 8px;
+  opacity: .8;
 }
 .skill-bar { height: 3px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
-.skill-fill { height: 100%; background: linear-gradient(90deg, var(--or), var(--or3)); border-radius: 2px; }
+.skill-fill { height: 100%; background: linear-gradient(90deg, var(--or), var(--or3)); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .8s cubic-bezier(.22,.8,.22,1); }
+.skill-fill.in { transform: scaleX(1); }
 
 .npbar {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: var(--bg2);
-  border: 1px solid var(--ln);
-  border-radius: 8px 8px 0 0;
-  margin-bottom: 1px;
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border: 2px solid var(--ln2);
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 1.5px;
+  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
 .npbars { display: flex; align-items: flex-end; gap: 2px; height: 14px; flex-shrink: 0; }
 .npb { width: 3px; background: var(--or); animation: wav 1s ease-in-out infinite; transform-origin: bottom; border-radius: 2px; }
@@ -621,38 +708,52 @@ section {
 
 .mlist { display: flex; flex-direction: column; }
 .mc {
-  background: var(--bg2);
-  border: 1px solid var(--ln);
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border: 2px solid var(--ln2);
   border-top: none;
   padding: 14px;
   display: grid;
   grid-template-columns: 62px 1fr;
   gap: 14px;
   align-items: start;
-  transition: background .1s, border-color .1s;
+  transition: background .12s, border-color .12s;
 }
-.mc:last-child { border-radius: 0 0 8px 8px; }
-.mc:hover { background: var(--bg3); border-color: var(--ln2); }
+.mc:last-child { border-radius: 0 0 10px 10px; }
+.mc:hover { background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%); border-color: var(--ln3); }
+.mc.playing { border-color: var(--bd-or); background: linear-gradient(180deg, rgba(255,85,0,.06) 0%, var(--bg3) 100%); }
 .mcov {
   width: 62px;
   height: 62px;
   object-fit: cover;
-  border: 1px solid var(--ln2);
+  border: 1.5px solid var(--ln2);
   background: var(--bg3);
-  border-radius: 6px;
+  border-radius: 7px;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,.32), inset 0 1px 0 var(--surf-hi);
 }
 .mmeta { min-width: 0; }
 .midx {
   font-family: var(--D);
   font-weight: 900;
-  font-size: 34px;
+  font-size: 32px;
   line-height: 1;
   letter-spacing: -1px;
-  color: var(--ln2);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFE0C9 30%, #FF8C55 75%, var(--or) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 2px;
+  transition: filter .2s, opacity .2s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  opacity: .55;
+  filter: drop-shadow(0 2px 6px rgba(255,85,0,.14));
 }
-.mc.playing .midx { color: var(--or); }
+/* Brighten on tap / when playing */
+.midx:active,
+.midx.tapped,
+.mc.playing .midx { opacity: 1; filter: drop-shadow(0 4px 14px rgba(255,85,0,.30)); }
 .mtitle {
   font-family: var(--D);
   font-weight: 700;
@@ -674,41 +775,58 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--or);
+  background: linear-gradient(180deg, #FF6B22 0%, var(--or) 100%);
   color: #000;
   font-size: 9px;
   font-weight: 700;
   border: none;
   border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,85,0,.30), inset 0 1px 0 rgba(255,255,255,.20);
   transition: opacity .12s, transform .12s;
 }
 .pbtn:active { opacity: .7; transform: scale(.9); }
-.pbtn.playing { background: transparent; color: var(--or); border: 1.5px solid var(--or); }
+.pbtn.playing { background: transparent; color: var(--or); border: 2px solid var(--or); box-shadow: 0 0 10px rgba(255,85,0,.30); }
 .mtime2 { font-size: 10px; color: var(--txt3); }
 .mpbar { width: 100%; height: 2px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
 .mpfill { height: 100%; width: 0; background: linear-gradient(90deg, var(--or), var(--or3)); border-radius: 2px; transition: width .1s linear; }
 
 .plist { display: flex; flex-direction: column; gap: 0; }
 .pcard {
-  background: var(--bg2);
-  border: 1px solid var(--ln);
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border: 1.5px solid var(--ln2);
   border-top: none;
   overflow: hidden;
-  transition: border-color .15s;
+  transition: border-color .18s, box-shadow .18s;
+  position: relative;
 }
-.pcard:first-child { border-top: 1px solid var(--ln); border-radius: 8px 8px 0 0; }
-.pcard:last-child { border-radius: 0 0 8px 8px; }
-.pcard:hover { border-color: var(--ln2); }
+.pcard:first-child { border-top: 1.5px solid var(--ln2); border-radius: 10px 10px 0 0; }
+.pcard:last-child  { border-radius: 0 0 10px 10px; }
+.pcard:hover { border-color: var(--bd-or); box-shadow: 0 4px 14px rgba(255,85,0,.06), inset 0 1px 0 var(--surf-hi); }
 .phead {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9px 14px;
-  background: var(--bg3);
-  border-bottom: 1px solid var(--ln);
+  padding: 10px 14px;
+  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
+  border-bottom: 1.5px solid var(--ln2);
+  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
-.ptype { font-family: var(--M); font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--or); }
-.pnum { font-family: var(--M); font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--txt3); }
+.ptype { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--or); }
+
+/* OPTIMIZED: project number orange on tap */
+.pnum {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--txt3);
+  transition: color .15s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.pnum:active,
+.pnum.tapped { color: var(--or); }
+
 .pbody { padding: 18px 14px 14px; }
 .ptitle {
   font-family: var(--D);
@@ -724,20 +842,21 @@ section {
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   padding: 3px 10px;
-  font-family: var(--M);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
-  border: 1px solid;
-  border-radius: 4px;
+  border: 1.5px solid;
+  border-radius: 5px;
+  background: var(--bg3);
 }
-.bor { border-color: rgba(255,85,0,.4); color: var(--or); background: var(--ord); }
-.bmu { border-color: var(--ln2); color: var(--txt3); }
-.bcy { border-color: rgba(0,212,232,.3); color: var(--cyn); background: rgba(0,212,232,.05); }
-.brm { border-color: var(--ln); color: var(--txt3); }
-.bgrn { border-color: rgba(0,230,118,.3); color: var(--grn); background: rgba(0,230,118,.05); }
+.bor  { border-color: rgba(255,85,0,.45);   color: var(--or);  background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.03) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.bmu  { border-color: var(--ln2);          color: var(--txt2); }
+.bcy  { border-color: rgba(0,212,232,.35);  color: var(--cyn); background: rgba(0,212,232,.05); }
+.brm  { border-color: var(--ln2);          color: var(--txt3); }
+.bgrn { border-color: var(--ln2); color: var(--txt2); background: var(--bg3); padding-left: 7px; }
+.bgrn::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--grn); box-shadow: 0 0 5px rgba(0,230,118,.55); animation: pulseAnim 2.5s infinite; }
 
 .pdesc { font-size: 12.5px; color: var(--txt2); line-height: 1.85; margin-bottom: 14px; font-weight: 400; }
 .pdesc strong { color: var(--txt); font-weight: 700; }
@@ -759,34 +878,37 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--or);
+  font-size: 10px;
 }
-.feat-bullet::before { content: '▸'; color: var(--or); font-size: 10px; }
 
 .dbox {
-  background: var(--bg3);
-  border: 1px solid var(--ln);
-  border-radius: 6px;
-  padding: 10px 13px;
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border: 1.5px solid var(--ln2);
+  border-radius: 7px;
+  padding: 11px 13px;
   margin-bottom: 14px;
+  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
-.drow { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; }
-.dtag { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 6px; flex-shrink: 0; border-radius: 3px; }
+.drow  { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; }
+.dtag  { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 6px; flex-shrink: 0; border-radius: 3px; }
 .dtag.old { background: var(--bg4); border: 1px solid var(--ln2); color: var(--txt3); }
 .dtag.new { background: var(--or); color: #000; }
-.durl { color: var(--txt); }
+.durl  { color: var(--txt); }
 .durl.old { color: var(--txt3); text-decoration: line-through; }
-.darr { text-align: center; color: var(--ln2); font-size: 11px; margin: 5px 0; }
+.darr  { text-align: center; color: var(--ln2); font-size: 11px; margin: 5px 0; }
 
 .rbox {
-  background: var(--bg3);
-  border: 1px solid var(--ln);
-  border-left: 2px solid var(--or);
-  border-radius: 0 6px 6px 0;
-  padding: 10px 14px;
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border: 1.5px solid var(--ln2);
+  border-left: 3px solid var(--or);
+  border-radius: 0 7px 7px 0;
+  padding: 11px 14px;
   margin-bottom: 14px;
   font-size: 12px;
   font-weight: 600;
   color: var(--txt2);
+  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
 .rbox strong { color: var(--or); }
 
@@ -795,37 +917,34 @@ section {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 11px;
-  background: var(--bg3);
-  border: 1px solid var(--ln2);
-  border-radius: 6px;
-  font-family: var(--M);
+  padding: 12px;
+  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
+  border: 1.5px solid var(--ln2);
+  border-radius: 7px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--txt);
-  transition: all .15s;
+  transition: all .18s;
+  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
-.plink:hover { border-color: var(--or); color: var(--or); background: var(--ord); }
-.plink .ar { color: var(--or); }
-.plink.off { pointer-events: none; color: var(--txt3); border-color: var(--ln); }
+.plink:hover { border-color: var(--or); color: var(--or); background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.04) 100%); box-shadow: 0 0 14px rgba(255,85,0,.10), inset 0 1px 0 var(--surf-hi); }
+.plink .ar   { color: var(--or); }
+.plink.off   { pointer-events: none; color: var(--txt3); border-color: var(--ln); background: var(--bg2); }
 
-.pcard.rmr .phead { background: var(--bg2); }
+.pcard.rmr .phead  { background: var(--bg2); }
 .pcard.rmr .ptitle { color: var(--txt3); }
-.pcard.rmr .ptype { color: var(--txt3); }
+.pcard.rmr .ptype  { color: var(--txt3); }
 
-.countdown-wrap {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 14px;
-}
+.countdown-wrap { display: flex; gap: 10px; margin-bottom: 14px; }
 .cd-unit {
   flex: 1;
-  background: var(--bg3);
-  border: 1px solid var(--ln);
-  border-radius: 6px;
-  padding: 10px 6px;
+  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
+  border: 1.5px solid var(--ln2);
+  border-radius: 8px;
+  padding: 11px 6px;
   text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.28), inset 0 1px 0 var(--surf-hi);
 }
 .cd-num {
   font-family: var(--D);
@@ -835,34 +954,38 @@ section {
   color: var(--or);
   margin-bottom: 3px;
 }
-.cd-lbl {
-  font-family: var(--M);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--txt3);
-}
+.cd-lbl { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; color: var(--txt3); }
 
 .cpanel {
-  background: var(--bg2);
-  border: 1px solid var(--ln);
-  border-radius: 10px;
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border: 2px solid var(--ln2);
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.40), 0 0 0 1px var(--bd-or-sft), inset 0 1px 0 var(--surf-hi);
 }
 .cphead {
-  padding: 20px;
-  border-bottom: 1px solid var(--ln);
-  background: var(--bg3);
+  padding: 22px 20px;
+  border-bottom: 1.5px solid var(--ln2);
+  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
   position: relative;
   overflow: hidden;
 }
 .cphead-glow {
   position: absolute;
-  bottom: -40px;
-  left: -40px;
+  bottom: -50px;
+  left: -50px;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle, rgba(255,85,0,.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,85,0,.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cphead-glow2 {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(255,140,85,.07) 0%, transparent 65%);
   pointer-events: none;
 }
 .cptitle {
@@ -888,50 +1011,117 @@ section {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 12px 20px;
-  border-bottom: 1px solid var(--ln);
+  padding: 13px 20px;
+  border-bottom: 1.5px solid var(--ln);
   transition: background .1s;
 }
 .cprow:last-child { border-bottom: none; }
 .cprow:hover { background: var(--bg3); }
 .cpico {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg3);
-  border: 1px solid var(--ln2);
-  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.03) 100%);
+  border: 1.5px solid var(--bd-or);
+  border-radius: 9px;
   font-size: 11px;
   font-weight: 700;
   color: var(--or);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
 }
 .cpkey { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); margin-bottom: 2px; }
 .cpval { font-size: 13px; font-weight: 600; color: var(--txt); }
 .cpbtns { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
 
 .footer {
-  padding: 20px;
-  background: var(--bg2);
-  border-top: 1px solid var(--ln);
+  padding: 22px 20px;
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+  border-top: 2px solid var(--ln2);
   text-align: center;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2.5px;
   color: var(--txt3);
 }
-.footer .ac { color: var(--or); }
-.footer-meta {
-  margin-top: 8px;
+.footer .ac    { color: var(--or); }
+.footer-meta   { margin-top: 8px; font-size: 10px; color: var(--txt3); letter-spacing: 1px; }
+.footer-line   { width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--or), transparent); margin: 12px auto; }
+
+.rv { opacity: 0; transform: translateY(14px); transition: opacity .45s cubic-bezier(.22,.8,.22,1), transform .45s cubic-bezier(.22,.8,.22,1); }
+.rv.in { opacity: 1; transform: translateY(0); }
+
+.loc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px;
+  background: linear-gradient(180deg, rgba(255,85,0,.14) 0%, rgba(255,85,0,.06) 100%);
+  border: 1.5px solid var(--bd-or);
+  border-radius: 4px;
   font-size: 10px;
-  color: var(--txt3);
+  font-weight: 700;
+  color: var(--or);
   letter-spacing: 1px;
 }
 
-.rv { opacity: 0; transform: translateY(16px); transition: opacity .5s cubic-bezier(.22,.8,.22,1), transform .5s cubic-bezier(.22,.8,.22,1); }
-.rv.in { opacity: 1; transform: translateY(0); }
+.hero-desc {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 22px;
+}
+.hero-desc-lead {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--txt2);
+  line-height: 1.85;
+  letter-spacing: .2px;
+  margin-bottom: 12px;
+}
+.hero-desc-lead strong { color: var(--or3); font-weight: 700; }
+.hero-desc-lead em { font-style: normal; color: var(--txt); font-weight: 600; }
+.hero-desc-sub {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--txt3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-left: 2px solid var(--or);
+  padding-left: 10px;
+  margin-bottom: 16px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  background: linear-gradient(180deg, rgba(255,85,0,.08) 0%, rgba(255,85,0,.02) 100%);
+  border: 1.5px solid var(--bd-or);
+  border-radius: 7px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--or);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+.hero-meta-key { color: var(--or); }
+.hero-meta-val {
+  color: var(--txt);
+  font-weight: 600;
+  letter-spacing: .8px;
+  font-size: 10.5px;
+  text-transform: none;
+  border-left: 1.5px solid var(--bd-or);
+  padding-left: 8px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; transition-duration: .001s !important; }
@@ -940,12 +1130,12 @@ section {
 a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-offset: 2px; }
 ::-webkit-scrollbar { width: 2px; height: 2px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--ln2); }
+::-webkit-scrollbar-thumb { background: var(--ln2); border-radius: 2px; }
 </style>
 </head>
 <body data-lang="en">
-<div class="corner-glow"></div>
-<div class="corner-glow-right"></div>
+<div class="ambient-l"></div>
+<div class="ambient-r"></div>
 <main class="app" aria-label="Afrizal Vandlest portfolio">
 
 <header class="header">
@@ -967,35 +1157,33 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
   <span class="pulse"></span>
   <span class="sbadge active">ONLINE</span>
   <span class="sp">·</span>
-  <span>FRESH GRADUATE</span>
-  <span class="sp">·</span>
   <span>BOGOR, ID</span>
   <span class="sp">·</span>
-  <span>AGE 18</span>
-  <span class="sp">·</span>
-  <span class="sbadge grn">OPEN TO WORK</span>
-  <span class="sp">·</span>
-  <span>4 PROJECTS</span>
+  <span class="en">PORTFOLIO 2025</span>
+  <span class="id">PORTOFOLIO 2025</span>
 </div>
 
 <section class="hero" id="hero" aria-labelledby="hero-name">
-  <div class="hero-grid-lines"></div>
-  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-atm"></div>
+  <div class="hero-fade-b"></div>
 
   <div class="hero-chips">
-    <span class="hchip active"><span class="hchip-dot"></span>ACTIVE</span>
     <span class="hchip hot">FRESH GRAD</span>
-    <span class="hchip">BOGOR</span>
+    <span class="hchip">BOGOR · ID</span>
     <span class="hchip en">OPEN TO WORK</span>
     <span class="hchip id">SIAP BEKERJA</span>
   </div>
 
   <div class="av-wrap rv">
-    <div class="av-ring"></div>
-    <div class="av-frame">
-      <img class="av-img" src="https://files.catbox.moe/82997e.png" alt="Rijal profile photo" onerror="this.onerror=null;this.style.display='none'"/>
+    <canvas class="av-aura" id="auraCanvas"></canvas>
+    <div class="av-rings" aria-hidden="true">
+      <div class="av-ring av-r2"></div>
+      <div class="av-ring av-r1"></div>
     </div>
-    <div class="av-badge"></div>
+    <div class="av-frame">
+      <img class="av-img" src="https://up.ijal.eu.cc/f/mq84fgwa" alt="Rijal profile photo" onerror="this.onerror=null;this.style.display='none'"/>
+    </div>
   </div>
 
   <div class="hero-eyebrow">// PORTFOLIO 2025 — AFRIZAL VANDLEST</div>
@@ -1006,16 +1194,33 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     <span class="id"><span class="hl">FRESH GRADUATE</span><span class="pipe">|</span>PEMBUAT<span class="pipe">|</span>PENJELAJAH</span>
   </p>
 
+  <div class="hero-desc rv">
+    <p class="hero-desc-lead en">I turn ideas into <em>real, working products</em> — from <strong>Telegram &amp; WhatsApp bots</strong> that automate everyday tasks, to fast <strong>web tools</strong> for media sharing &amp; downloading. I focus on what people <em>actually use</em>, not just demos. Every project is shipped with a craftsman&rsquo;s eye for <strong>speed</strong>, <strong>clarity</strong>, and <strong>real-world impact</strong>.</p>
+    <p class="hero-desc-lead id">Saya mengubah ide menjadi <em>produk nyata yang benar-benar dipakai</em> — mulai dari <strong>bot Telegram &amp; WhatsApp</strong> untuk otomasi tugas harian, hingga <strong>web tool</strong> cepat untuk berbagi &amp; mengunduh media. Saya fokus pada hal yang <em>benar-benar digunakan orang</em>, bukan sekadar demo. Setiap proyek dirilis dengan perhatian pada <strong>kecepatan</strong>, <strong>kejelasan</strong>, dan <strong>dampak nyata</strong>.</p>
+    <p class="hero-desc-sub en">// Driven by curiosity, shipped with care.</p>
+    <p class="hero-desc-sub id">// Didorong rasa ingin tahu, dirilis dengan teliti.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-key"><span class="en">FOCUS</span><span class="id">FOKUS</span></span>
+        <span class="hero-meta-val"><span class="en">Automation · Bots · Web</span><span class="id">Otomasi · Bot · Web</span></span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-key">STACK</span>
+        <span class="hero-meta-val">JS · Node · APIs</span>
+      </div>
+    </div>
+  </div>
+
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-val">4</div><div class="hstat-lbl">PROJECTS</div></div>
     <div class="hstat"><div class="hstat-val">18</div><div class="hstat-lbl">YEARS OLD</div></div>
-    <div class="hstat"><div class="hstat-val">∞</div><div class="hstat-lbl">DRIVE</div></div>
+    <div class="hstat"><div class="hstat-val">&#x221E;</div><div class="hstat-lbl">DRIVE</div></div>
   </div>
 
   <div class="btns">
     <a href="#projects" class="btn b-solid">
-      <span class="en">→ VIEW PROJECTS</span>
-      <span class="id">→ LIHAT PROYEK</span>
+      <span class="en">&#x2192; VIEW PROJECTS</span>
+      <span class="id">&#x2192; LIHAT PROYEK</span>
     </a>
     <a href="#contact" class="btn b-out">
       <span class="en">GET IN TOUCH</span>
@@ -1027,7 +1232,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
 <section id="about" aria-labelledby="about-h">
   <div class="stag"><span class="stag-lbl"><span class="en">// CHAPTER 01</span><span class="id">// BAB 01</span></span></div>
   <div class="sheader">
-    <span class="snum">01</span>
+    <span class="snum" aria-hidden="true">01</span>
     <h2 id="about-h" class="stitle"><span class="en">ABOUT ME</span><span class="id">TENTANG SAYA</span></h2>
   </div>
 
@@ -1037,26 +1242,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     <span>— AFRIZAL VANDLEST</span>
   </div>
 
-  <p class="abody rv en">
-    My name is <strong>Afrizal Vandlest</strong>, better known as <em>Rijal</em> — a <strong>Fresh Graduate</strong> at 18 years old from Bogor, Indonesia, with an intense passion for technology, exploration, and self-improvement. I believe that growth doesn't come from comfort, it comes from constantly stepping into the unknown and challenging everything I think I already know. Every project I start is a reflection of that mindset — curiosity turned into code.
-  </p>
-  <p class="abody rv id">
-    Nama saya <strong>Afrizal Vandlest</strong>, biasa dipanggil <em>Rijal</em> — seorang <strong>Fresh Graduate</strong> berusia 18 tahun dari Bogor, Indonesia, dengan semangat besar terhadap teknologi, eksplorasi, dan pengembangan diri. Aku percaya bahwa pertumbuhan sejati tidak datang dari zona nyaman, melainkan dari keberanian untuk melangkah ke hal-hal baru dan mempertanyakan semua yang sudah diketahui. Setiap proyek yang aku mulai adalah cerminan dari mindset itu — rasa ingin tahu yang diwujudkan dalam kode.
-  </p>
+  <p class="abody rv en">My name is <strong>Afrizal Vandlest</strong>, better known as <em>Rijal</em> — a <strong>Fresh Graduate</strong> at 18 years old from Bogor, Indonesia, with an intense passion for technology, exploration, and self-improvement. I believe that growth doesn't come from comfort, it comes from constantly stepping into the unknown and challenging everything I think I already know. Every project I start is a reflection of that mindset — curiosity turned into code.</p>
+  <p class="abody rv id">Nama saya <strong>Afrizal Vandlest</strong>, biasa dipanggil <em>Rijal</em> — seorang <strong>Fresh Graduate</strong> berusia 18 tahun dari Bogor, Indonesia, dengan semangat besar terhadap teknologi, eksplorasi, dan pengembangan diri. Aku percaya bahwa pertumbuhan sejati tidak datang dari zona nyaman, melainkan dari keberanian untuk melangkah ke hal-hal baru dan mempertanyakan semua yang sudah diketahui. Setiap proyek yang aku mulai adalah cerminan dari mindset itu — rasa ingin tahu yang diwujudkan dalam kode.</p>
 
-  <p class="abody rv en">
-    From building <strong>Telegram and WhatsApp bots</strong> that solve real everyday problems, to crafting web tools for fast media sharing and downloading — I'm drawn to building things that <em>actually get used</em>. I don't just write code to learn syntax; I build products that people interact with. I care deeply about user experience, clean functionality, and making technology feel effortless.
-  </p>
-  <p class="abody rv id">
-    Dari membangun <strong>bot Telegram dan WhatsApp</strong> yang menyelesaikan masalah nyata, hingga membuat web tool untuk berbagi dan mengunduh media dengan cepat — aku tertarik untuk membangun hal-hal yang <em>benar-benar digunakan</em>. Aku tidak hanya menulis kode untuk belajar sintaks; aku membangun produk yang berinteraksi langsung dengan orang-orang. Aku sangat peduli terhadap pengalaman pengguna, fungsionalitas yang bersih, dan membuat teknologi terasa mudah dan natural.
-  </p>
+  <p class="abody rv en">From building <strong>Telegram and WhatsApp bots</strong> that solve real everyday problems, to crafting web tools for fast media sharing and downloading — I'm drawn to building things that <em>actually get used</em>. I don't just write code to learn syntax; I build products that people interact with. I care deeply about user experience, clean functionality, and making technology feel effortless.</p>
+  <p class="abody rv id">Dari membangun <strong>bot Telegram dan WhatsApp</strong> yang menyelesaikan masalah nyata, hingga membuat web tool untuk berbagi dan mengunduh media dengan cepat — aku tertarik untuk membangun hal-hal yang <em>benar-benar digunakan</em>. Aku tidak hanya menulis kode untuk belajar sintaks; aku membangun produk yang berinteraksi langsung dengan orang-orang. Aku sangat peduli terhadap pengalaman pengguna, fungsionalitas yang bersih, dan membuat teknologi terasa mudah dan natural.</p>
 
-  <p class="abody rv en">
-    Outside of code, I'm someone who finds meaning in <strong>music</strong>, values <strong>genuine connection</strong> with others, and is always on the lookout for the next adventure — whether that's a hiking trail, a new skill to master, or a completely different domain to explore. I thrive in collaborative environments and believe that the best ideas are born when different minds come together.
-  </p>
-  <p class="abody rv id">
-    Di luar koding, aku adalah seseorang yang menemukan makna dalam <strong>musik</strong>, menghargai <strong>hubungan tulus</strong> dengan orang lain, dan selalu mencari petualangan berikutnya — baik itu jalur pendakian, keahlian baru untuk dikuasai, atau domain yang sama sekali berbeda untuk dijelajahi. Aku tumbuh berkembang dalam lingkungan kolaboratif dan percaya bahwa ide terbaik lahir saat pikiran-pikiran berbeda bertemu.
-  </p>
+  <p class="abody rv en">Outside of code, I'm someone who finds meaning in <strong>music</strong>, values <strong>genuine connection</strong> with others, and is always on the lookout for the next adventure — whether that's a hiking trail, a new skill to master, or a completely different domain to explore. I thrive in collaborative environments and believe that the best ideas are born when different minds come together.</p>
+  <p class="abody rv id">Di luar koding, aku adalah seseorang yang menemukan makna dalam <strong>musik</strong>, menghargai <strong>hubungan tulus</strong> dengan orang lain, dan selalu mencari petualangan berikutnya — baik itu jalur pendakian, keahlian baru untuk dikuasai, atau domain yang sama sekali berbeda untuk dijelajahi. Aku tumbuh berkembang dalam lingkungan kolaboratif dan percaya bahwa ide terbaik lahir saat pikiran-pikiran berbeda bertemu.</p>
 
   <div class="tgrid rv" style="margin-bottom:20px">
     <div class="tr">
@@ -1077,7 +1270,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     </div>
     <div class="tr">
       <span class="tk2"><span class="en">LOCATION</span><span class="id">LOKASI</span></span>
-      <span class="tsep">:</span><span class="tv">Bogor, Indonesia 🇮🇩</span>
+      <span class="tsep">:</span>
+      <span class="tv">Bogor, Indonesia <span class="loc-badge">ID</span></span>
     </div>
     <div class="tr">
       <span class="tk2"><span class="en">HOBBY</span><span class="id">HOBI</span></span>
@@ -1107,28 +1301,36 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
 
   <div class="skills-grid rv">
     <div class="skill-card">
-      <div class="skill-icon">🤖</div>
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M12 9V6.5A2.5 2.5 0 0 0 9.5 4v0A2.5 2.5 0 0 0 7 6.5V9"/><circle cx="9.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><path d="M9 18h6"/></svg>
+      </div>
       <div class="skill-name">Bot Dev</div>
       <div class="skill-lvl">INTERMEDIATE</div>
-      <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+      <div class="skill-bar"><div class="skill-fill" data-w="72"></div></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🌐</div>
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 5.5-2.5 12.5 0 18"/><path d="M12 3c2.5 5.5 2.5 12.5 0 18"/><path d="M3 12h18"/><path d="M4.2 7.5h15.6"/><path d="M4.2 16.5h15.6"/></svg>
+      </div>
       <div class="skill-name">Web Dev</div>
       <div class="skill-lvl">GROWING</div>
-      <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      <div class="skill-bar"><div class="skill-fill" data-w="55"></div></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">⚡</div>
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.5 13.5H11L10 22l9.5-12H14L13 2z" stroke="none"/></svg>
+      </div>
       <div class="skill-name">JavaScript</div>
       <div class="skill-lvl">INTERMEDIATE</div>
-      <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      <div class="skill-bar"><div class="skill-fill" data-w="65"></div></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🔧</div>
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 7h10M7 11h6"/></svg>
+      </div>
       <div class="skill-name">Node.js</div>
       <div class="skill-lvl">INTERMEDIATE</div>
-      <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      <div class="skill-bar"><div class="skill-fill" data-w="60"></div></div>
     </div>
   </div>
 </section>
@@ -1136,7 +1338,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
 <section id="music" aria-labelledby="music-h">
   <div class="stag"><span class="stag-lbl"><span class="en">// CHAPTER 02</span><span class="id">// BAB 02</span></span></div>
   <div class="sheader">
-    <span class="snum">02</span>
+    <span class="snum" aria-hidden="true">02</span>
     <h2 id="music-h" class="stitle"><span class="en">TOP 3 SONGS</span><span class="id">3 LAGU FAVORIT</span></h2>
   </div>
 
@@ -1148,18 +1350,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="npb"></div><div class="npb"></div><div class="npb"></div>
     </div>
     <span class="nplbl"><span class="en">NOW PLAYING</span><span class="id">DIPUTAR</span> &gt;&gt;</span>
-    <span class="nptk" id="npT">─</span>
+    <span class="nptk" id="npT">&#x2500;</span>
   </div>
 
   <ol class="mlist">
     <li class="mc" id="mc1" data-track="Eenie Meenie — Justin Bieber &amp; Sean Kingston">
-      <img class="mcov" src="https://up.ijal.eu.cc/f/inimini" alt="Eenie Meenie cover" onerror="this.onerror=null;this.style.background='#161616'"/>
+      <img class="mcov" src="https://up.ijal.eu.cc/f/inimini" alt="Eenie Meenie cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
       <div class="mmeta">
         <div class="midx">01</div>
         <div class="mtitle">Eenie Meenie</div>
         <div class="martist">Justin Bieber &amp; Sean Kingston</div>
         <div class="mctrl">
-          <button class="pbtn" data-audio="a1" aria-label="Play Eenie Meenie">▶</button>
+          <button class="pbtn" data-audio="a1" aria-label="Play Eenie Meenie">&#x25B6;</button>
           <span class="mtime2" id="t1">0:00 / 0:00</span>
         </div>
         <div class="mpbar"><div class="mpfill" id="p1"></div></div>
@@ -1167,13 +1369,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <audio id="a1" src="https://up.ijal.eu.cc/f/iniminilagu" preload="metadata"></audio>
     </li>
     <li class="mc" id="mc2" data-track="Locked Out of Heaven — Bruno Mars">
-      <img class="mcov" src="https://up.ijal.eu.cc/f/fortulong" alt="Locked Out cover" onerror="this.onerror=null;this.style.background='#161616'"/>
+      <img class="mcov" src="https://up.ijal.eu.cc/f/fortulong" alt="Locked Out cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
       <div class="mmeta">
         <div class="midx">02</div>
         <div class="mtitle">Locked Out of Heaven</div>
         <div class="martist">Bruno Mars</div>
         <div class="mctrl">
-          <button class="pbtn" data-audio="a2" aria-label="Play Locked Out of Heaven">▶</button>
+          <button class="pbtn" data-audio="a2" aria-label="Play Locked Out of Heaven">&#x25B6;</button>
           <span class="mtime2" id="t2">0:00 / 0:00</span>
         </div>
         <div class="mpbar"><div class="mpfill" id="p2"></div></div>
@@ -1181,13 +1383,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <audio id="a2" src="https://up.ijal.eu.cc/f/portulong" preload="metadata"></audio>
     </li>
     <li class="mc" id="mc3" data-track="Cook Pardom — Unknown Artist">
-      <img class="mcov" src="https://up.ijal.eu.cc/f/pardomm" alt="Cook Pardom cover" onerror="this.onerror=null;this.style.background='#161616'"/>
+      <img class="mcov" src="https://up.ijal.eu.cc/f/pardomm" alt="Cook Pardom cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
       <div class="mmeta">
         <div class="midx">03</div>
         <div class="mtitle">Cook Pardom</div>
         <div class="martist">Unknown Artist</div>
         <div class="mctrl">
-          <button class="pbtn" data-audio="a3" aria-label="Play Cook Pardom">▶</button>
+          <button class="pbtn" data-audio="a3" aria-label="Play Cook Pardom">&#x25B6;</button>
           <span class="mtime2" id="t3">0:00 / 0:00</span>
         </div>
         <div class="mpbar"><div class="mpfill" id="p3"></div></div>
@@ -1200,7 +1402,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
 <section id="projects" aria-labelledby="proj-h">
   <div class="stag"><span class="stag-lbl"><span class="en">// CHAPTER 03</span><span class="id">// BAB 03</span></span></div>
   <div class="sheader">
-    <span class="snum">03</span>
+    <span class="snum" aria-hidden="true">03</span>
     <h2 id="proj-h" class="stitle"><span class="en">MY PROJECTS</span><span class="id">PROYEK SAYA</span></h2>
   </div>
 
@@ -1216,27 +1418,27 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">IGNITE BOT</div>
         <div class="badges">
-          <span class="badge bor">★ <span class="en">AUTOMATION</span><span class="id">OTOMATISASI</span></span>
+          <span class="badge bor">&#x2605; <span class="en">AUTOMATION</span><span class="id">OTOMATISASI</span></span>
           <span class="badge bmu">@IgniteBot</span>
           <span class="badge bgrn">LIVE</span>
         </div>
-        <p class="pdesc en">Ignite Bot is a smart Telegram chatbot engineered to handle <strong>YouTube media downloading</strong> with ease. Paste any YouTube link, and the bot instantly processes and delivers the audio or video file directly in chat — no third-party apps needed. It's powered by <strong>yt-search</strong> combined with a custom-built web downloader I designed for speed and reliability.</p>
-        <p class="pdesc id">Ignite Bot adalah bot Telegram cerdas yang dirancang untuk menangani <strong>pengunduhan media YouTube</strong> dengan mudah. Tempel link YouTube apa pun, dan bot langsung memproses serta mengirimkan file audio atau video langsung di chat — tanpa aplikasi pihak ketiga. Ditenagai <strong>yt-search</strong> dikombinasikan dengan web downloader yang aku rancang sendiri untuk kecepatan dan keandalan.</p>
+        <p class="pdesc en">Ignite Bot is a smart Telegram chatbot engineered to handle <strong>YouTube media downloading</strong> with ease. Paste any YouTube link, and the bot instantly processes and delivers the audio or video file directly in chat — no third-party apps needed. It's powered by <strong>yt-search</strong> combined with a custom-built web downloader designed for speed and reliability.</p>
+        <p class="pdesc id">Ignite Bot adalah bot Telegram cerdas yang dirancang untuk menangani <strong>pengunduhan media YouTube</strong> dengan mudah. Tempel link YouTube apa pun, dan bot langsung memproses serta mengirimkan file audio atau video langsung di chat — tanpa aplikasi pihak ketiga. Ditenagai <strong>yt-search</strong> dikombinasikan dengan web downloader yang dirancang untuk kecepatan dan keandalan.</p>
         <div class="feat-list en">
-          <div class="feat-item"><span class="feat-bullet"></span>Download YouTube videos in multiple formats and resolutions</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Auto-play and stream audio directly inside Telegram</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Smart search — just type a song name, no URL required</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Fast, lightweight, and built for daily use</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Download YouTube videos in multiple formats and resolutions</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Auto-play and stream audio directly inside Telegram</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Smart search — just type a song name, no URL required</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Fast, lightweight, and built for daily use</div>
         </div>
         <div class="feat-list id">
-          <div class="feat-item"><span class="feat-bullet"></span>Unduh video YouTube dalam berbagai format dan resolusi</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Auto-play dan stream audio langsung di Telegram</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Pencarian cerdas — cukup ketik nama lagu, tanpa perlu URL</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Cepat, ringan, dan dibangun untuk penggunaan harian</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Unduh video YouTube dalam berbagai format dan resolusi</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Auto-play dan stream audio langsung di Telegram</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Pencarian cerdas — cukup ketik nama lagu, tanpa perlu URL</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Cepat, ringan, dan dibangun untuk penggunaan harian</div>
         </div>
         <a href="https://t.me/ignitttee_bot" target="_blank" rel="noopener noreferrer" class="plink">
           <span class="en">CHAT ON TELEGRAM</span><span class="id">CHAT DI TELEGRAM</span>
-          <span class="ar">→</span>
+          <span class="ar">&#x2192;</span>
         </a>
       </div>
     </article>
@@ -1249,29 +1451,29 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">K1BRAT BOT</div>
         <div class="badges">
-          <span class="badge bor">★ MULTI-TOOL</span>
+          <span class="badge bor">&#x2605; MULTI-TOOL</span>
           <span class="badge bmu">WA MD</span>
           <span class="badge bgrn">ACTIVE</span>
         </div>
-        <p class="pdesc en">K1Brat Bot is a powerful multi-device WhatsApp bot built for <strong>group management and creative tools</strong>. Designed to handle everything from media downloading to AI-powered image enhancement, it's a complete toolkit that makes WhatsApp groups more productive and entertaining. The bot was built using the latest WhatsApp MD protocol for maximum stability across devices.</p>
-        <p class="pdesc id">K1Brat Bot adalah bot WhatsApp multi-device bertenaga tinggi yang dibangun untuk <strong>manajemen grup dan alat kreatif</strong>. Dirancang untuk menangani segalanya mulai dari pengunduhan media hingga peningkatan gambar berbasis AI, ini adalah toolkit lengkap yang membuat grup WhatsApp lebih produktif dan menghibur. Bot dibangun menggunakan protokol WhatsApp MD terbaru untuk stabilitas maksimal di semua perangkat.</p>
+        <p class="pdesc en">K1Brat Bot is a powerful multi-device WhatsApp bot built for <strong>group management and creative tools</strong>. Designed to handle everything from media downloading to AI-powered image enhancement, it's a complete toolkit that makes WhatsApp groups more productive and entertaining. Built using the latest WhatsApp MD protocol for maximum stability across devices.</p>
+        <p class="pdesc id">K1Brat Bot adalah bot WhatsApp multi-device bertenaga tinggi yang dibangun untuk <strong>manajemen grup dan alat kreatif</strong>. Dirancang untuk menangani segalanya mulai dari pengunduhan media hingga peningkatan gambar berbasis AI, ini adalah toolkit lengkap yang membuat grup WhatsApp lebih produktif dan menghibur. Dibangun menggunakan protokol WhatsApp MD terbaru untuk stabilitas maksimal di semua perangkat.</p>
         <div class="feat-list en">
-          <div class="feat-item"><span class="feat-bullet"></span>Multi-platform downloader: YouTube, Instagram, TikTok & more</div>
-          <div class="feat-item"><span class="feat-bullet"></span>HD Photo Enhancer — upscale low-quality images with AI</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Remove BG — instant background removal for any photo</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Brat & Brat Video maker — trending content creation tool</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Group management commands for admins</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Multi-platform downloader: YouTube, Instagram, TikTok &amp; more</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>HD Photo Enhancer — upscale low-quality images with AI</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Remove BG — instant background removal for any photo</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Brat &amp; Brat Video maker — trending content creation tool</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Group management commands for admins</div>
         </div>
         <div class="feat-list id">
-          <div class="feat-item"><span class="feat-bullet"></span>Downloader multi-platform: YouTube, Instagram, TikTok & lainnya</div>
-          <div class="feat-item"><span class="feat-bullet"></span>HD Photo Enhancer — tingkatkan gambar beresolusi rendah dengan AI</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Remove BG — hapus latar belakang foto secara instan</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Pembuat Brat & Brat Video — alat pembuatan konten trending</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Perintah manajemen grup untuk admin</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Downloader multi-platform: YouTube, Instagram, TikTok &amp; lainnya</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>HD Photo Enhancer — tingkatkan gambar beresolusi rendah dengan AI</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Remove BG — hapus latar belakang foto secara instan</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Pembuat Brat &amp; Brat Video — alat pembuatan konten trending</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Perintah manajemen grup untuk admin</div>
         </div>
         <a href="https://chat.whatsapp.com/Ds2KpajGHexBrgSuLo4xku" target="_blank" rel="noopener noreferrer" class="plink">
           <span class="en">TRY ON WHATSAPP</span><span class="id">COBA DI WHATSAPP</span>
-          <span class="ar">→</span>
+          <span class="ar">&#x2192;</span>
         </a>
       </div>
     </article>
@@ -1284,19 +1486,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">VOIDUPLOADER</div>
         <div class="badges">
-          <span class="badge bcy">⇄ <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
+          <span class="badge bcy">&#x21C4; <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
           <span class="badge bgrn">LIVE</span>
         </div>
-        <p class="pdesc en">VoidUploader is a lightweight, no-nonsense file hosting tool built for speed. Upload <strong>images, videos, or audio files</strong> and receive an instant shareable link — no accounts, no fuss, no ads. It was one of my first solo web projects and taught me a tremendous amount about backend architecture, file handling, and building for real user needs. The domain recently migrated for improved performance and reliability.</p>
-        <p class="pdesc id">VoidUploader adalah alat hosting file yang ringan dan langsung ke intinya, dibangun untuk kecepatan. Unggah <strong>gambar, video, atau file audio</strong> dan terima tautan yang bisa dibagikan secara instan — tanpa akun, tanpa ribet, tanpa iklan. Ini adalah salah satu proyek web solo pertamaku dan mengajarkan banyak hal tentang arsitektur backend, penanganan file, dan membangun sesuai kebutuhan pengguna nyata. Domain baru saja dipindahkan untuk performa dan keandalan yang lebih baik.</p>
+        <p class="pdesc en">VoidUploader is a lightweight, no-nonsense file hosting tool built for speed. Upload <strong>images, videos, or audio files</strong> and receive an instant shareable link — no accounts, no fuss, no ads. One of my first solo web projects — taught me a tremendous amount about backend architecture, file handling, and building for real user needs. Domain recently migrated for improved performance and reliability.</p>
+        <p class="pdesc id">VoidUploader adalah alat hosting file yang ringan dan langsung ke intinya, dibangun untuk kecepatan. Unggah <strong>gambar, video, atau file audio</strong> dan terima tautan yang bisa dibagikan secara instan — tanpa akun, tanpa ribet, tanpa iklan. Salah satu proyek web solo pertamaku dan mengajarkan banyak hal tentang arsitektur backend, penanganan file, dan membangun sesuai kebutuhan pengguna nyata.</p>
         <div class="dbox">
           <div class="drow"><span class="dtag old"><span class="en">OLD</span><span class="id">LAMA</span></span><span class="durl old">uploader.ijal.eu.cc</span></div>
-          <div class="darr">↓</div>
+          <div class="darr">&#x2193;</div>
           <div class="drow"><span class="dtag new"><span class="en">NEW</span><span class="id">BARU</span></span><span class="durl">up.ijal.eu.cc</span></div>
         </div>
         <a href="https://up.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
           <span class="en">VISIT NEW DOMAIN</span><span class="id">KUNJUNGI DOMAIN BARU</span>
-          <span class="ar">→</span>
+          <span class="ar">&#x2192;</span>
         </a>
       </div>
     </article>
@@ -1309,31 +1511,31 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">YTDOWN</div>
         <div class="badges">
-          <span class="badge bcy">⇄ <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
+          <span class="badge bcy">&#x21C4; <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
           <span class="badge bgrn">LIVE</span>
         </div>
         <p class="pdesc en">YTDOWN is a clean, focused YouTube downloader web app — no bloat, no distractions, just <strong>pure functionality</strong>. Paste a link, select your preferred quality from HD to audio-only, and download in seconds. Built with a minimalist philosophy: do one thing and do it extremely well. This project sharpened my skills in frontend UX design, API integration, and creating tools that respect the user's time.</p>
         <p class="pdesc id">YTDOWN adalah aplikasi web downloader YouTube yang bersih dan terfokus — tanpa bloat, tanpa gangguan, hanya <strong>fungsionalitas murni</strong>. Tempel link, pilih kualitas yang diinginkan dari HD hingga audio saja, dan unduh dalam hitungan detik. Dibangun dengan filosofi minimalis: lakukan satu hal dan lakukan dengan sangat baik. Proyek ini mengasah kemampuanku dalam desain UX frontend, integrasi API, dan membuat alat yang menghargai waktu pengguna.</p>
         <div class="feat-list en">
-          <div class="feat-item"><span class="feat-bullet"></span>Download any YouTube video in HD quality</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Extract audio as MP3 — clean, high bitrate</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Zero ads, zero registration required</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Fast processing with real-time progress feedback</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Download any YouTube video in HD quality</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Extract audio as MP3 — clean, high bitrate</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Zero ads, zero registration required</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Fast processing with real-time progress feedback</div>
         </div>
         <div class="feat-list id">
-          <div class="feat-item"><span class="feat-bullet"></span>Unduh video YouTube apa pun dalam kualitas HD</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Ekstrak audio sebagai MP3 — bersih, bitrate tinggi</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Tanpa iklan, tanpa pendaftaran</div>
-          <div class="feat-item"><span class="feat-bullet"></span>Pemrosesan cepat dengan umpan balik progres real-time</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Unduh video YouTube apa pun dalam kualitas HD</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Ekstrak audio sebagai MP3 — bersih, bitrate tinggi</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Tanpa iklan, tanpa pendaftaran</div>
+          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Pemrosesan cepat dengan umpan balik progres real-time</div>
         </div>
         <div class="dbox">
           <div class="drow"><span class="dtag old"><span class="en">OLD</span><span class="id">LAMA</span></span><span class="durl old">goldstream.idgf.web.id</span></div>
-          <div class="darr">↓</div>
+          <div class="darr">&#x2193;</div>
           <div class="drow"><span class="dtag new"><span class="en">NEW</span><span class="id">BARU</span></span><span class="durl">down.ijal.eu.cc</span></div>
         </div>
         <a href="https://down.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
           <span class="en">VISIT NEW DOMAIN</span><span class="id">KUNJUNGI DOMAIN BARU</span>
-          <span class="ar">→</span>
+          <span class="ar">&#x2192;</span>
         </a>
       </div>
     </article>
@@ -1352,13 +1554,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
         <p class="pdesc id"><strong style="color:var(--txt2)">Bocoran Project:</strong> Alat berikutnya adalah TikTok downloader yang didedikasikan — dibangun untuk mengambil video dalam <strong style="color:var(--txt2)">kualitas HD penuh tanpa watermark</strong>, plus ekstraksi audio berkualitas tinggi sebagai MP3. Tujuannya adalah membuat penyimpanan konten TikTok semudah mungkin — pemrosesan link instan, tanpa layar filler, langsung file yang dibutuhkan. Arsitektur sudah direncanakan; rilis sudah di depan mata.</p>
         <div class="rbox">
           <strong><span class="en">ESTIMATED RELEASE:</span><span class="id">ESTIMASI RILIS:</span></strong>
-          <span class="en"> May 16, 2026</span><span class="id"> 16 Mei 2026</span>
+          <span class="en"> June 26, 2026</span><span class="id"> 26 Juni 2026</span>
         </div>
         <div class="countdown-wrap" id="cdWrap">
-          <div class="cd-unit"><div class="cd-num" id="cdD">─</div><div class="cd-lbl">DAYS</div></div>
-          <div class="cd-unit"><div class="cd-num" id="cdH">─</div><div class="cd-lbl">HRS</div></div>
-          <div class="cd-unit"><div class="cd-num" id="cdM">─</div><div class="cd-lbl">MIN</div></div>
-          <div class="cd-unit"><div class="cd-num" id="cdS">─</div><div class="cd-lbl">SEC</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdD">&#x2500;</div><div class="cd-lbl">DAYS</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdH">&#x2500;</div><div class="cd-lbl">HRS</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdM">&#x2500;</div><div class="cd-lbl">MIN</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdS">&#x2500;</div><div class="cd-lbl">SEC</div></div>
         </div>
         <span class="plink off">COMING SOON [X]</span>
       </div>
@@ -1369,13 +1571,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
 <section id="contact" aria-labelledby="contact-h">
   <div class="stag"><span class="stag-lbl"><span class="en">// FINAL</span><span class="id">// TERAKHIR</span></span></div>
   <div class="sheader">
-    <span class="snum">04</span>
+    <span class="snum" aria-hidden="true">04</span>
     <h2 id="contact-h" class="stitle"><span class="en">LET'S CONNECT</span><span class="id">MARI TERHUBUNG</span></h2>
   </div>
 
   <div class="cpanel rv">
     <div class="cphead">
       <div class="cphead-glow"></div>
+      <div class="cphead-glow2"></div>
       <div class="cptitle">
         <span class="en">EMBRACING<br/>THE JOURNEY</span>
         <span class="id">MENIKMATI<br/>PERJALANAN</span>
@@ -1385,11 +1588,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     </div>
     <div class="cprows">
       <div class="cprow">
-        <span class="cpico">⌖</span>
-        <div><div class="cpkey"><span class="en">LOCATION</span><span class="id">LOKASI</span></div><div class="cpval">Bogor, Indonesia 🇮🇩</div></div>
+        <span class="cpico">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </span>
+        <div><div class="cpkey"><span class="en">LOCATION</span><span class="id">LOKASI</span></div><div class="cpval">Bogor, Indonesia</div></div>
       </div>
       <div class="cprow">
-        <span class="cpico">ID</span>
+        <span class="cpico">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </span>
         <div><div class="cpkey">FULL NAME</div><div class="cpval">Afrizal Vandlest</div></div>
       </div>
       <div class="cprow">
@@ -1403,136 +1610,236 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     </div>
     <div class="cpbtns">
       <a class="btn b-solid" href="https://wa.me/6283834683978" target="_blank" rel="noopener noreferrer">
-        <span class="en">→ WHATSAPP ME</span><span class="id">→ WHATSAPP SAYA</span>
+        <span class="en">&#x2192; WHATSAPP ME</span><span class="id">&#x2192; WHATSAPP SAYA</span>
       </a>
       <a class="btn b-out" href="https://www.instagram.com/lestnsgr?igsh=d3MwdmNpNGphZWk=" target="_blank" rel="noopener noreferrer">
-        → INSTAGRAM
+        &#x2192; INSTAGRAM
       </a>
     </div>
   </div>
 </section>
 
 <footer class="footer">
-  © <span id="yr"></span> <span class="ac">AFRIZAL VANDLEST</span> · RIJAL.DEV
-  <div class="footer-meta">FRESH GRADUATE · BOGOR · INDONESIA</div>
+  <div class="footer-line"></div>
+  &copy; <span id="yr"></span> <span class="ac">AFRIZAL VANDLEST</span> &middot; RIJAL.DEV
+  <div class="footer-meta">FRESH GRADUATE &middot; BOGOR &middot; INDONESIA</div>
 </footer>
 
 </main>
-
 <script>
 (function(){
-  'use strict';
+'use strict';
 
-  document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-  var ls = document.getElementById('lsw');
-  function tgl() {
-    var n = ls.getAttribute('data-lang') === 'en' ? 'id' : 'en';
-    ls.setAttribute('data-lang', n);
-    document.body.setAttribute('data-lang', n);
+// Language toggle
+var ls = document.getElementById('lsw');
+function tgl() {
+  var n = ls.getAttribute('data-lang') === 'en' ? 'id' : 'en';
+  ls.setAttribute('data-lang', n);
+  document.body.setAttribute('data-lang', n);
+}
+ls.addEventListener('click', tgl);
+ls.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tgl(); }
+});
+
+// Scroll reveal
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function(ents) {
+    ents.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { threshold: .08 });
+  document.querySelectorAll('.rv').forEach(function(el) { io.observe(el); });
+} else {
+  document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); });
+}
+
+// Skill bar reveal
+if ('IntersectionObserver' in window) {
+  var sio = new IntersectionObserver(function(ents) {
+    ents.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var w = e.target.getAttribute('data-w');
+      if (w) e.target.style.width = w + '%';
+      e.target.classList.add('in');
+      sio.unobserve(e.target);
+    });
+  }, { threshold: .2 });
+  document.querySelectorAll('.skill-fill').forEach(function(el) { sio.observe(el); });
+}
+
+// Countdown
+var release = new Date('2026-05-26T00:00:00');
+function updateCountdown() {
+  var diff = release - new Date();
+  if (diff <= 0) {
+    ['cdD','cdH','cdM','cdS'].forEach(function(id) { document.getElementById(id).textContent = '0'; });
+    return;
   }
-  ls.addEventListener('click', tgl);
-  ls.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tgl(); }
+  var d = Math.floor(diff / 86400000);
+  var h = Math.floor((diff % 86400000) / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cdD').textContent = d;
+  document.getElementById('cdH').textContent = h;
+  document.getElementById('cdM').textContent = m < 10 ? '0'+m : m;
+  document.getElementById('cdS').textContent = s < 10 ? '0'+s : s;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ORANGE tap on project numbers (.pnum) and music indexes (.midx)
+function addTapHighlight(selector) {
+  document.querySelectorAll(selector).forEach(function(el) {
+    el.addEventListener('pointerdown', function() {
+      el.classList.add('tapped');
+      setTimeout(function() { el.classList.remove('tapped'); }, 350);
+    });
   });
+}
+addTapHighlight('.pnum');
+addTapHighlight('.midx');
 
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(ents) {
-      ents.forEach(function(e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      });
-    }, { threshold: .08 });
-    document.querySelectorAll('.rv').forEach(function(el) { io.observe(el); });
-  } else {
-    document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); });
-  }
+// Audio player
+var npT = document.getElementById('npT');
+var npA = document.getElementById('npA');
+var btns = document.querySelectorAll('.pbtn');
+var auds = document.querySelectorAll('audio');
 
-  var release = new Date('2026-05-16T00:00:00');
-  function updateCountdown() {
-    var now = new Date();
-    var diff = release - now;
-    if (diff <= 0) {
-      document.getElementById('cdD').textContent = '0';
-      document.getElementById('cdH').textContent = '0';
-      document.getElementById('cdM').textContent = '0';
-      document.getElementById('cdS').textContent = '0';
-      return;
+function fmt(s) {
+  if (isNaN(s) || s === Infinity) return '0:00';
+  var m = Math.floor(s / 60), ss = Math.floor(s % 60);
+  return m + ':' + (ss < 10 ? '0' : '') + ss;
+}
+function stopAll(keep) {
+  auds.forEach(function(a) { if (a.id !== keep) a.pause(); });
+  btns.forEach(function(b) {
+    if (b.dataset.audio !== keep) {
+      b.classList.remove('playing');
+      b.innerHTML = '&#x25B6;';
+      var c = b.closest('.mc');
+      if (c) c.classList.remove('playing');
     }
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    var s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cdD').textContent = d;
-    document.getElementById('cdH').textContent = h;
-    document.getElementById('cdM').textContent = m < 10 ? '0' + m : m;
-    document.getElementById('cdS').textContent = s < 10 ? '0' + s : s;
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  var npT = document.getElementById('npT');
-  var npA = document.getElementById('npA');
-  var btns = document.querySelectorAll('.pbtn');
-  var auds = document.querySelectorAll('audio');
-
-  function fmt(s) {
-    if (isNaN(s) || s === Infinity) return '0:00';
-    var m = Math.floor(s / 60), ss = Math.floor(s % 60);
-    return m + ':' + (ss < 10 ? '0' : '') + ss;
-  }
-  function stopAll(keep) {
-    auds.forEach(function(a) { if (a.id !== keep) a.pause(); });
-    btns.forEach(function(b) {
-      if (b.dataset.audio !== keep) {
-        b.classList.remove('playing');
-        b.textContent = '▶';
-        var c = b.closest('.mc');
-        if (c) c.classList.remove('playing');
-      }
-    });
-  }
-
-  btns.forEach(function(btn) {
-    var aid = btn.dataset.audio;
-    var aud = document.getElementById(aid);
-    if (!aud) return;
-    var card = btn.closest('.mc');
-    var idx = (aid.match(/\d+/) || ['1'])[0];
-    var tEl = document.getElementById('t' + idx);
-    var pEl = document.getElementById('p' + idx);
-
-    btn.addEventListener('click', function() {
-      if (aud.paused) { stopAll(aid); aud.play().catch(function(){}); }
-      else aud.pause();
-    });
-    aud.addEventListener('play', function() {
-      btn.classList.add('playing'); btn.textContent = '❚❚';
-      if (card) card.classList.add('playing');
-      if (npT && card) npT.textContent = card.dataset.track || '─';
-      if (npA) npA.classList.remove('idle');
-    });
-    aud.addEventListener('pause', function() {
-      btn.classList.remove('playing'); btn.textContent = '▶';
-      if (card) card.classList.remove('playing');
-      if (npA) npA.classList.add('idle');
-    });
-    aud.addEventListener('ended', function() {
-      btn.classList.remove('playing'); btn.textContent = '▶';
-      if (card) card.classList.remove('playing');
-      if (pEl) pEl.style.width = '0%';
-      if (npT) npT.textContent = '─';
-      if (npA) npA.classList.add('idle');
-    });
-    aud.addEventListener('timeupdate', function() {
-      if (tEl) tEl.textContent = fmt(aud.currentTime) + ' / ' + fmt(aud.duration);
-      if (pEl && aud.duration) pEl.style.width = ((aud.currentTime / aud.duration) * 100) + '%';
-    });
-    aud.addEventListener('loadedmetadata', function() {
-      if (tEl) tEl.textContent = '0:00 / ' + fmt(aud.duration);
-    });
   });
+}
+btns.forEach(function(btn) {
+  var aid = btn.dataset.audio;
+  var aud = document.getElementById(aid);
+  if (!aud) return;
+  var card = btn.closest('.mc');
+  var idx = (aid.match(/\d+/) || ['1'])[0];
+  var tEl = document.getElementById('t' + idx);
+  var pEl = document.getElementById('p' + idx);
+  btn.addEventListener('click', function() {
+    if (aud.paused) { stopAll(aid); aud.play().catch(function(){}); }
+    else aud.pause();
+  });
+  aud.addEventListener('play', function() {
+    btn.classList.add('playing'); btn.innerHTML = '&#x275A;&#x275A;';
+    if (card) card.classList.add('playing');
+    if (npT && card) npT.textContent = card.dataset.track || '\u2500';
+    if (npA) npA.classList.remove('idle');
+  });
+  aud.addEventListener('pause', function() {
+    btn.classList.remove('playing'); btn.innerHTML = '&#x25B6;';
+    if (card) card.classList.remove('playing');
+    if (npA) npA.classList.add('idle');
+  });
+  aud.addEventListener('ended', function() {
+    btn.classList.remove('playing'); btn.innerHTML = '&#x25B6;';
+    if (card) card.classList.remove('playing');
+    if (pEl) pEl.style.width = '0%';
+    if (npT) npT.textContent = '\u2500';
+    if (npA) npA.classList.add('idle');
+  });
+  aud.addEventListener('timeupdate', function() {
+    if (tEl) tEl.textContent = fmt(aud.currentTime) + ' / ' + fmt(aud.duration);
+    if (pEl && aud.duration) pEl.style.width = ((aud.currentTime / aud.duration) * 100) + '%';
+  });
+  aud.addEventListener('loadedmetadata', function() {
+    if (tEl) tEl.textContent = '0:00 / ' + fmt(aud.duration);
+  });
+});
+
+// OPTIMIZED Canvas Aura — fewer particles, no ctx.filter blur (was the main perf killer)
+function initAura() {
+  var canvas = document.getElementById('auraCanvas');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var S = 200;
+  canvas.width = S;
+  canvas.height = S;
+  var cx = S / 2, cy = S / 2;
+  var R = 62;
+
+  // REDUCED: 75 → 28 particles; removed ctx.filter (very expensive)
+  var COUNT = 28;
+  var particles = [];
+
+  function makeParticle(i) {
+    return {
+      angle: (Math.PI * 2 * i / COUNT) + (Math.random() - .5) * .5,
+      r: R + (Math.random() - .5) * 14,
+      speed: (0.003 + Math.random() * 0.003) * (Math.random() > .45 ? 1 : -1),
+      life: Math.floor(Math.random() * 80),
+      maxLife: 60 + Math.floor(Math.random() * 80),
+      size: 5 + Math.random() * 10,
+      driftDir: 1
+    };
+  }
+  for (var i = 0; i < COUNT; i++) particles.push(makeParticle(i));
+
+  // Pre-build reusable gradient helper (avoids GC thrash)
+  function drawParticle(p) {
+    var x = cx + Math.cos(p.angle) * p.r;
+    var y = cy + Math.sin(p.angle) * p.r;
+    var t = p.life / p.maxLife;
+    var alpha = t < .2 ? t / .2 : t > .8 ? (1 - t) / .2 : 1;
+    var normY = (Math.sin(p.angle) + 1) / 2;
+    var gg = Math.floor(115 - normY * 87); // lerp 115→28
+    var a = alpha * (0.65 - normY * 0.43);
+
+    var g = ctx.createRadialGradient(x, y, 0, x, y, p.size);
+    g.addColorStop(0,   'rgba(255,' + gg + ',0,' + a + ')');
+    g.addColorStop(.6,  'rgba(255,' + gg + ',0,' + (a * .2) + ')');
+    g.addColorStop(1,   'rgba(0,0,0,0)');
+    ctx.beginPath();
+    ctx.arc(x, y, p.size, 0, 6.2832);
+    ctx.fillStyle = g;
+    ctx.fill();
+  }
+
+  function update(p) {
+    p.angle += p.speed;
+    p.r += p.driftDir * 0.06;
+    if (p.r < R - 10) p.driftDir = 1;
+    if (p.r > R + 17) p.driftDir = -1;
+    p.life++;
+    if (p.life >= p.maxLife) {
+      p.life = 0;
+      p.maxLife = 60 + Math.floor(Math.random() * 80);
+      p.size = 5 + Math.random() * 10;
+    }
+  }
+
+  // OPTIMIZED: throttle to ~30fps instead of 60fps (halves GPU load)
+  var lastT = 0;
+  function animate(t) {
+    if (t - lastT < 33) { requestAnimationFrame(animate); return; }
+    lastT = t;
+    ctx.clearRect(0, 0, S, S);
+    for (var i = 0; i < COUNT; i++) { update(particles[i]); drawParticle(particles[i]); }
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+initAura();
+
 })();
 </script>
 </body>
