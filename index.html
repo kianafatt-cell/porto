@@ -90,32 +90,6 @@ body[data-lang="id"] .en { display: none !important; }
   overflow: hidden;
 }
 
-/* REMOVED: scanline overlay — redundant visual cost */
-
-/* OPTIMIZED: static ambient, no animation */
-.ambient-l {
-  position: fixed;
-  bottom: -100px;
-  left: -100px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255,85,0,.09) 0%, rgba(255,85,0,.03) 40%, transparent 68%);
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 50%;
-}
-.ambient-r {
-  position: fixed;
-  top: -140px;
-  right: -140px;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(75,123,255,.04) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 50%;
-}
-
 .header {
   position: sticky;
   top: 0;
@@ -124,9 +98,8 @@ body[data-lang="id"] .en { display: none !important; }
   align-items: center;
   justify-content: space-between;
   padding: 12px 18px;
-  background: rgba(6,6,8,.95);
-  border-bottom: 2px solid var(--ln2);
-  /* OPTIMIZED: reduced blur amount */
+  background: rgba(6,6,8,.97);
+  border-bottom: 1px solid var(--ln2);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -153,7 +126,6 @@ body[data-lang="id"] .en { display: none !important; }
   font-weight: 700;
   border-radius: 6px;
   flex-shrink: 0;
-  box-shadow: 0 0 12px rgba(255,85,0,.35);
 }
 .logo-text { color: var(--txt); }
 .logo-text .dot { color: var(--or); }
@@ -190,8 +162,8 @@ body[data-lang="id"] .en { display: none !important; }
   left: 3px;
   transition: transform .25s cubic-bezier(.22,.8,.22,1), background .25s;
 }
-.lsw[data-lang="en"] .tk { background: var(--or); transform: translateX(0); box-shadow: 0 0 6px rgba(255,85,0,.4); }
-.lsw[data-lang="id"] .tk { background: var(--cyn); transform: translateX(15px); box-shadow: 0 0 6px rgba(0,212,232,.4); }
+.lsw[data-lang="en"] .tk { background: var(--or); transform: translateX(0); }
+.lsw[data-lang="id"] .tk { background: var(--cyn); transform: translateX(15px); }
 .lsw[data-lang="id"] { color: var(--cyn); }
 
 .hcta {
@@ -205,19 +177,17 @@ body[data-lang="id"] .en { display: none !important; }
   font-weight: 700;
   letter-spacing: 1.5px;
   border-radius: 6px;
-  box-shadow: 0 0 10px rgba(255,85,0,.25);
   transition: background .15s, transform .15s;
 }
 .hcta:active { background: var(--or2); transform: scale(.97); }
 
-/* OPTIMIZED: shorter statusbar content */
 .statusbar {
   display: flex;
   align-items: center;
   gap: 7px;
   padding: 8px 18px;
   background: var(--bg2);
-  border-bottom: 2px solid var(--ln2);
+  border-bottom: 1px solid var(--ln2);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -247,52 +217,23 @@ body[data-lang="id"] .en { display: none !important; }
   letter-spacing: 1px;
   background: var(--bg3);
 }
-.sbadge.active { border-color: rgba(255,85,0,.55); color: var(--or); background: var(--ord); box-shadow: 0 0 0 1px rgba(255,85,0,.04), inset 0 1px 0 rgba(255,255,255,.04); }
+.sbadge.active { border-color: rgba(255,85,0,.55); color: var(--or); background: var(--ord); }
 .sbadge.grn    { border-color: rgba(0,230,118,.3); color: var(--grn); background: rgba(0,230,118,.05); }
 .sp { color: var(--ln2); }
 
+/* ── HERO ── */
 .hero {
-  padding: 36px 20px 36px;
+  padding: 32px 20px 36px;
   background: var(--bg);
-  border-bottom: 2px solid var(--ln2);
+  border-bottom: 1px solid var(--ln2);
   position: relative;
-  overflow: hidden;
-}
-/* OPTIMIZED: static grid, no drift animation */
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,85,0,.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,85,0,.018) 1px, transparent 1px);
-  background-size: 36px 36px;
-  pointer-events: none;
-}
-.hero-atm {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 85% 15%, rgba(255,85,0,.07) 0%, transparent 50%),
-    radial-gradient(ellipse at 15% 85%, rgba(75,123,255,.03) 0%, transparent 50%);
-  pointer-events: none;
-}
-.hero-fade-b {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(transparent, var(--bg));
-  pointer-events: none;
 }
 
 .hero-chips {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 24px;
 }
 .hchip {
   display: inline-flex;
@@ -300,13 +241,12 @@ body[data-lang="id"] .en { display: none !important; }
   gap: 5px;
   padding: 4px 10px;
   border: 1.5px solid var(--ln2);
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  background: var(--bg3);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--txt2);
   border-radius: 5px;
-  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
 .hchip.active {
   border-color: rgba(0,230,118,.4);
@@ -316,127 +256,49 @@ body[data-lang="id"] .en { display: none !important; }
 .hchip.hot {
   border-color: rgba(255,85,0,.50);
   color: var(--or);
-  background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.04) 100%);
-  box-shadow: 0 0 0 1px rgba(255,85,0,.04), inset 0 1px 0 rgba(255,255,255,.05);
+  background: rgba(255,85,0,.07);
 }
 .hchip-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; animation: pulseAnim 2.5s infinite; }
 
-.av-wrap {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin-bottom: 20px;
-  z-index: 1;
+/* Profile row: photo left, identity right */
+.hero-top {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 24px;
 }
-.av-aura {
-  position: absolute;
-  inset: 0;
-  width: 200px;
-  height: 200px;
-  pointer-events: none;
-  /* OPTIMIZED: no CSS filter here; handled in canvas */
-}
-.av-rings {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-.av-ring {
-  position: absolute;
-  border-radius: 50%;
-  /* GPU-accelerate ring rotations */
-  will-change: transform;
-}
-.av-r1 {
-  width: 124px;
-  height: 124px;
-  border: 1px solid rgba(255,85,0,.35);
-  animation: spinCW 8s linear infinite;
-}
-.av-r1::before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--or);
-  box-shadow: 0 0 8px var(--or);
-}
-.av-r2 {
-  width: 150px;
-  height: 150px;
-  border: 1px dashed rgba(255,85,0,.12);
-  animation: spinCCW 15s linear infinite;
-}
-.av-r2::after {
-  content: '';
-  position: absolute;
-  bottom: -2.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255,85,0,.45);
-}
-/* OPTIMIZED: removed outermost ring (least visible, still animating) */
-@keyframes spinCW  { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
-@keyframes spinCCW { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
 
-.av-frame {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--bg3);
-  border: 2.5px solid rgba(255,85,0,.65);
-  position: relative;
-  z-index: 2;
-  box-shadow:
-    0 0 0 4px rgba(255,85,0,.07),
-    0 0 24px rgba(255,85,0,.28),
-    inset 0 2px 4px rgba(255,255,255,.04);
-}
-.av-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.av-simple {
+  width: 82px;
+  height: 82px;
+  border-radius: 12px;
   object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg3);
 }
-.av-online {
-  display: none;
+
+.hero-top-info {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
 }
 
 .hero-eyebrow {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 500;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: var(--or);
-  margin-bottom: 6px;
-  position: relative;
-  z-index: 1;
-  opacity: .75;
+  margin-bottom: 4px;
+  opacity: .7;
 }
 .hero-name {
   font-family: var(--D);
   font-weight: 900;
-  font-size: 72px;
+  font-size: 48px;
   line-height: .92;
   letter-spacing: -1px;
   color: var(--txt);
-  margin-bottom: 6px;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 5px;
 }
 .hero-name em {
   font-style: normal;
@@ -446,27 +308,76 @@ body[data-lang="id"] .en { display: none !important; }
   background-clip: text;
 }
 .hero-fullname {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
   color: var(--txt3);
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
 }
 .hero-fullname span { color: var(--or3); }
 .hero-sub {
   font-family: var(--D);
   font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 3px;
+  font-size: 12px;
+  letter-spacing: 2px;
   color: var(--txt3);
-  margin-bottom: 28px;
-  position: relative;
-  z-index: 1;
 }
 .hero-sub .hl   { color: var(--or2); }
-.hero-sub .pipe { color: var(--ln2); margin: 0 8px; }
+.hero-sub .pipe { color: var(--ln2); margin: 0 5px; }
+
+/* Rest of hero — full width */
+.hero-desc {
+  margin-bottom: 22px;
+}
+.hero-desc-lead {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--txt2);
+  line-height: 1.85;
+  letter-spacing: .2px;
+  margin-bottom: 12px;
+}
+.hero-desc-lead strong { color: var(--or3); font-weight: 700; }
+.hero-desc-lead em { font-style: normal; color: var(--txt); font-weight: 600; }
+.hero-desc-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--txt3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-left: 2px solid var(--or);
+  padding-left: 10px;
+  margin-bottom: 16px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0;
+}
+.hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  background: rgba(255,85,0,.05);
+  border: 1.5px solid var(--bd-or);
+  border-radius: 7px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--or);
+}
+.hero-meta-key { color: var(--or); }
+.hero-meta-val {
+  color: var(--txt);
+  font-weight: 600;
+  letter-spacing: .8px;
+  font-size: 10.5px;
+  text-transform: none;
+  border-left: 1.5px solid var(--bd-or);
+  padding-left: 8px;
+}
 
 .hero-stats {
   display: grid;
@@ -476,18 +387,15 @@ body[data-lang="id"] .en { display: none !important; }
   border: 1.5px solid var(--ln2);
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 4px 14px rgba(0,0,0,.35), inset 0 1px 0 var(--surf-hi);
+  margin-bottom: 20px;
 }
 .hstat {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  background: var(--bg3);
   padding: 14px 10px;
   text-align: center;
   transition: background .15s;
 }
-.hstat:hover { background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%); }
+.hstat:hover { background: var(--bg4); }
 .hstat-val {
   font-family: var(--D);
   font-weight: 800;
@@ -503,7 +411,7 @@ body[data-lang="id"] .en { display: none !important; }
   color: var(--txt3);
 }
 
-.btns { display: flex; gap: 10px; flex-wrap: wrap; position: relative; z-index: 1; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
 .btn {
   display: inline-flex;
   align-items: center;
@@ -521,24 +429,22 @@ body[data-lang="id"] .en { display: none !important; }
   background: linear-gradient(180deg, #FF6B22 0%, var(--or) 100%);
   color: #000;
   border: 1.5px solid var(--or);
-  box-shadow: 0 0 14px rgba(255,85,0,.28), inset 0 1px 0 rgba(255,255,255,.18);
 }
-.b-solid:hover  { box-shadow: 0 0 22px rgba(255,85,0,.42), inset 0 1px 0 rgba(255,255,255,.22); transform: translateY(-1px); }
+.b-solid:hover  { opacity: .9; transform: translateY(-1px); }
 .b-solid:active { transform: scale(.97); }
 .b-out {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  background: var(--bg3);
   color: var(--txt);
   border: 1.5px solid var(--ln2);
-  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
-.b-out:hover  { background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%); border-color: var(--bd-or); color: var(--or3); }
+.b-out:hover  { border-color: var(--bd-or); color: var(--or3); background: var(--bg4); }
 .b-out:active { background: var(--bg3); }
 
+/* ── SECTIONS ── */
 section {
   padding: 28px 20px;
-  border-bottom: 2px solid var(--ln2);
+  border-bottom: 1px solid var(--ln2);
   position: relative;
-  contain: layout style;
 }
 
 .stag { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -558,7 +464,7 @@ section {
   gap: 12px;
   padding-bottom: 18px;
   margin-bottom: 22px;
-  border-bottom: 2px solid var(--ln2);
+  border-bottom: 1px solid var(--ln2);
 }
 .snum {
   font-family: var(--D);
@@ -572,7 +478,6 @@ section {
   background-clip: text;
   flex-shrink: 0;
   margin-bottom: -4px;
-  filter: drop-shadow(0 4px 14px rgba(255,85,0,.22)) drop-shadow(0 0 1px rgba(255,140,85,.18));
 }
 .stitle {
   font-family: var(--D);
@@ -617,14 +522,14 @@ section {
   opacity: .8;
 }
 
-.tgrid { display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; border: 2px solid var(--ln2); box-shadow: 0 4px 14px rgba(0,0,0,.32), inset 0 1px 0 var(--surf-hi); }
+.tgrid { display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--ln2); }
 .tr {
   display: grid;
   grid-template-columns: 90px 14px 1fr;
   align-items: start;
   padding: 11px 14px;
-  border-bottom: 1.5px solid var(--ln);
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  border-bottom: 1px solid var(--ln);
+  background: var(--bg2);
   transition: background .12s;
 }
 .tr:last-child { border-bottom: none; }
@@ -642,20 +547,19 @@ section {
   margin-top: 20px;
 }
 .skill-card {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
-  border: 2px solid var(--ln2);
+  background: var(--bg2);
+  border: 1.5px solid var(--ln2);
   border-radius: 10px;
   padding: 14px;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s, transform .2s;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,.30), inset 0 1px 0 var(--surf-hi);
 }
-.skill-card:hover { border-color: var(--bd-or); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255,85,0,.10), 0 2px 8px rgba(0,0,0,.32), inset 0 1px 0 var(--surf-hi); }
+.skill-card:hover { border-color: var(--bd-or); transform: translateY(-2px); }
 .skill-icon {
   width: 34px;
   height: 34px;
-  background: linear-gradient(180deg, rgba(255,85,0,.12) 0%, rgba(255,85,0,.04) 100%);
+  background: rgba(255,85,0,.07);
   border: 1.5px solid var(--bd-or);
   border-radius: 8px;
   display: flex;
@@ -663,7 +567,6 @@ section {
   justify-content: center;
   margin-bottom: 10px;
   color: var(--or);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
 }
 .skill-icon svg { width: 16px; height: 16px; }
 .skill-name {
@@ -686,16 +589,16 @@ section {
 .skill-fill { height: 100%; background: linear-gradient(90deg, var(--or), var(--or3)); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .8s cubic-bezier(.22,.8,.22,1); }
 .skill-fill.in { transform: scaleX(1); }
 
+/* ── MUSIC ── */
 .npbar {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
-  border: 2px solid var(--ln2);
+  background: var(--bg2);
+  border: 1.5px solid var(--ln2);
   border-radius: 10px 10px 0 0;
   margin-bottom: 1.5px;
-  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
 .npbars { display: flex; align-items: flex-end; gap: 2px; height: 14px; flex-shrink: 0; }
 .npb { width: 3px; background: var(--or); animation: wav 1s ease-in-out infinite; transform-origin: bottom; border-radius: 2px; }
@@ -708,8 +611,8 @@ section {
 
 .mlist { display: flex; flex-direction: column; }
 .mc {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
-  border: 2px solid var(--ln2);
+  background: var(--bg2);
+  border: 1.5px solid var(--ln2);
   border-top: none;
   padding: 14px;
   display: grid;
@@ -719,17 +622,16 @@ section {
   transition: background .12s, border-color .12s;
 }
 .mc:last-child { border-radius: 0 0 10px 10px; }
-.mc:hover { background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%); border-color: var(--ln3); }
-.mc.playing { border-color: var(--bd-or); background: linear-gradient(180deg, rgba(255,85,0,.06) 0%, var(--bg3) 100%); }
+.mc:hover { background: var(--bg3); }
+.mc.playing { border-color: var(--bd-or); background: rgba(255,85,0,.04); }
 .mcov {
   width: 62px;
   height: 62px;
   object-fit: cover;
-  border: 1.5px solid var(--ln2);
+  border: 1px solid var(--ln2);
   background: var(--bg3);
   border-radius: 7px;
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,.32), inset 0 1px 0 var(--surf-hi);
 }
 .mmeta { min-width: 0; }
 .midx {
@@ -748,12 +650,10 @@ section {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   opacity: .55;
-  filter: drop-shadow(0 2px 6px rgba(255,85,0,.14));
 }
-/* Brighten on tap / when playing */
 .midx:active,
 .midx.tapped,
-.mc.playing .midx { opacity: 1; filter: drop-shadow(0 4px 14px rgba(255,85,0,.30)); }
+.mc.playing .midx { opacity: 1; }
 .mtitle {
   font-family: var(--D);
   font-weight: 700;
@@ -781,39 +681,36 @@ section {
   font-weight: 700;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255,85,0,.30), inset 0 1px 0 rgba(255,255,255,.20);
   transition: opacity .12s, transform .12s;
 }
 .pbtn:active { opacity: .7; transform: scale(.9); }
-.pbtn.playing { background: transparent; color: var(--or); border: 2px solid var(--or); box-shadow: 0 0 10px rgba(255,85,0,.30); }
+.pbtn.playing { background: transparent; color: var(--or); border: 2px solid var(--or); }
 .mtime2 { font-size: 10px; color: var(--txt3); }
 .mpbar { width: 100%; height: 2px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
 .mpfill { height: 100%; width: 0; background: linear-gradient(90deg, var(--or), var(--or3)); border-radius: 2px; transition: width .1s linear; }
 
+/* ── PROJECTS ── */
 .plist { display: flex; flex-direction: column; gap: 0; }
 .pcard {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  background: var(--bg2);
   border: 1.5px solid var(--ln2);
   border-top: none;
   overflow: hidden;
-  transition: border-color .18s, box-shadow .18s;
+  transition: border-color .18s;
   position: relative;
 }
 .pcard:first-child { border-top: 1.5px solid var(--ln2); border-radius: 10px 10px 0 0; }
 .pcard:last-child  { border-radius: 0 0 10px 10px; }
-.pcard:hover { border-color: var(--bd-or); box-shadow: 0 4px 14px rgba(255,85,0,.06), inset 0 1px 0 var(--surf-hi); }
+.pcard:hover { border-color: var(--bd-or); }
 .phead {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 14px;
-  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
-  border-bottom: 1.5px solid var(--ln2);
-  box-shadow: inset 0 1px 0 var(--surf-hi);
+  background: var(--bg3);
+  border-bottom: 1px solid var(--ln2);
 }
 .ptype { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--or); }
-
-/* OPTIMIZED: project number orange on tap */
 .pnum {
   font-size: 10px;
   font-weight: 700;
@@ -851,11 +748,11 @@ section {
   border-radius: 5px;
   background: var(--bg3);
 }
-.bor  { border-color: rgba(255,85,0,.45);   color: var(--or);  background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.03) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.bor  { border-color: rgba(255,85,0,.45);   color: var(--or);  background: rgba(255,85,0,.07); }
 .bmu  { border-color: var(--ln2);          color: var(--txt2); }
 .bcy  { border-color: rgba(0,212,232,.35);  color: var(--cyn); background: rgba(0,212,232,.05); }
 .brm  { border-color: var(--ln2);          color: var(--txt3); }
-.bgrn { border-color: var(--ln2); color: var(--txt2); background: var(--bg3); padding-left: 7px; }
+.bgrn { border-color: rgba(0,230,118,.35); color: var(--grn); background: rgba(0,230,118,.05); padding-left: 7px; }
 .bgrn::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--grn); box-shadow: 0 0 5px rgba(0,230,118,.55); animation: pulseAnim 2.5s infinite; }
 
 .pdesc { font-size: 12.5px; color: var(--txt2); line-height: 1.85; margin-bottom: 14px; font-weight: 400; }
@@ -880,15 +777,15 @@ section {
   justify-content: center;
   color: var(--or);
   font-size: 10px;
+  font-weight: 700;
 }
 
 .dbox {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  background: var(--bg3);
   border: 1.5px solid var(--ln2);
   border-radius: 7px;
   padding: 11px 13px;
   margin-bottom: 14px;
-  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
 .drow  { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; }
 .dtag  { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 6px; flex-shrink: 0; border-radius: 3px; }
@@ -899,7 +796,7 @@ section {
 .darr  { text-align: center; color: var(--ln2); font-size: 11px; margin: 5px 0; }
 
 .rbox {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
+  background: var(--bg3);
   border: 1.5px solid var(--ln2);
   border-left: 3px solid var(--or);
   border-radius: 0 7px 7px 0;
@@ -908,7 +805,6 @@ section {
   font-size: 12px;
   font-weight: 600;
   color: var(--txt2);
-  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
 .rbox strong { color: var(--or); }
 
@@ -918,7 +814,7 @@ section {
   justify-content: center;
   gap: 6px;
   padding: 12px;
-  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
+  background: var(--bg3);
   border: 1.5px solid var(--ln2);
   border-radius: 7px;
   font-size: 11px;
@@ -926,9 +822,8 @@ section {
   letter-spacing: 1.5px;
   color: var(--txt);
   transition: all .18s;
-  box-shadow: inset 0 1px 0 var(--surf-hi);
 }
-.plink:hover { border-color: var(--or); color: var(--or); background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.04) 100%); box-shadow: 0 0 14px rgba(255,85,0,.10), inset 0 1px 0 var(--surf-hi); }
+.plink:hover { border-color: var(--or); color: var(--or); background: rgba(255,85,0,.06); }
 .plink .ar   { color: var(--or); }
 .plink.off   { pointer-events: none; color: var(--txt3); border-color: var(--ln); background: var(--bg2); }
 
@@ -939,12 +834,11 @@ section {
 .countdown-wrap { display: flex; gap: 10px; margin-bottom: 14px; }
 .cd-unit {
   flex: 1;
-  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
+  background: var(--bg3);
   border: 1.5px solid var(--ln2);
   border-radius: 8px;
   padding: 11px 6px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,.28), inset 0 1px 0 var(--surf-hi);
 }
 .cd-num {
   font-family: var(--D);
@@ -956,17 +850,17 @@ section {
 }
 .cd-lbl { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; color: var(--txt3); }
 
+/* ── CONTACT ── */
 .cpanel {
-  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%);
-  border: 2px solid var(--ln2);
+  background: var(--bg2);
+  border: 1.5px solid var(--ln2);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,.40), 0 0 0 1px var(--bd-or-sft), inset 0 1px 0 var(--surf-hi);
 }
 .cphead {
   padding: 22px 20px;
-  border-bottom: 1.5px solid var(--ln2);
-  background: linear-gradient(180deg, var(--bg4) 0%, var(--bg3) 100%);
+  border-bottom: 1px solid var(--ln2);
+  background: var(--bg3);
   position: relative;
   overflow: hidden;
 }
@@ -976,16 +870,7 @@ section {
   left: -50px;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle, rgba(255,85,0,.1) 0%, transparent 65%);
-  pointer-events: none;
-}
-.cphead-glow2 {
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, rgba(255,140,85,.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(255,85,0,.08) 0%, transparent 65%);
   pointer-events: none;
 }
 .cptitle {
@@ -1012,7 +897,7 @@ section {
   align-items: center;
   gap: 14px;
   padding: 13px 20px;
-  border-bottom: 1.5px solid var(--ln);
+  border-bottom: 1px solid var(--ln);
   transition: background .1s;
 }
 .cprow:last-child { border-bottom: none; }
@@ -1024,22 +909,22 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(255,85,0,.10) 0%, rgba(255,85,0,.03) 100%);
+  background: rgba(255,85,0,.07);
   border: 1.5px solid var(--bd-or);
   border-radius: 9px;
   font-size: 11px;
   font-weight: 700;
   color: var(--or);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
 }
 .cpkey { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); margin-bottom: 2px; }
 .cpval { font-size: 13px; font-weight: 600; color: var(--txt); }
 .cpbtns { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
 
+/* ── FOOTER ── */
 .footer {
   padding: 22px 20px;
-  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
-  border-top: 2px solid var(--ln2);
+  background: var(--bg2);
+  border-top: 1px solid var(--ln2);
   text-align: center;
   font-size: 10px;
   font-weight: 700;
@@ -1050,6 +935,7 @@ section {
 .footer-meta   { margin-top: 8px; font-size: 10px; color: var(--txt3); letter-spacing: 1px; }
 .footer-line   { width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--or), transparent); margin: 12px auto; }
 
+/* ── REVEAL ── */
 .rv { opacity: 0; transform: translateY(14px); transition: opacity .45s cubic-bezier(.22,.8,.22,1), transform .45s cubic-bezier(.22,.8,.22,1); }
 .rv.in { opacity: 1; transform: translateY(0); }
 
@@ -1058,69 +944,13 @@ section {
   align-items: center;
   gap: 4px;
   padding: 1px 6px;
-  background: linear-gradient(180deg, rgba(255,85,0,.14) 0%, rgba(255,85,0,.06) 100%);
+  background: rgba(255,85,0,.07);
   border: 1.5px solid var(--bd-or);
   border-radius: 4px;
   font-size: 10px;
   font-weight: 700;
   color: var(--or);
   letter-spacing: 1px;
-}
-
-.hero-desc {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 22px;
-}
-.hero-desc-lead {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--txt2);
-  line-height: 1.85;
-  letter-spacing: .2px;
-  margin-bottom: 12px;
-}
-.hero-desc-lead strong { color: var(--or3); font-weight: 700; }
-.hero-desc-lead em { font-style: normal; color: var(--txt); font-weight: 600; }
-.hero-desc-sub {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--txt3);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border-left: 2px solid var(--or);
-  padding-left: 10px;
-  margin-bottom: 16px;
-}
-.hero-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-.hero-meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 11px;
-  background: linear-gradient(180deg, rgba(255,85,0,.08) 0%, rgba(255,85,0,.02) 100%);
-  border: 1.5px solid var(--bd-or);
-  border-radius: 7px;
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--or);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
-}
-.hero-meta-key { color: var(--or); }
-.hero-meta-val {
-  color: var(--txt);
-  font-weight: 600;
-  letter-spacing: .8px;
-  font-size: 10.5px;
-  text-transform: none;
-  border-left: 1.5px solid var(--bd-or);
-  padding-left: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1134,8 +964,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
 </style>
 </head>
 <body data-lang="en">
-<div class="ambient-l"></div>
-<div class="ambient-r"></div>
 <main class="app" aria-label="Afrizal Vandlest portfolio">
 
 <header class="header">
@@ -1164,9 +992,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
 </div>
 
 <section class="hero" id="hero" aria-labelledby="hero-name">
-  <div class="hero-grid"></div>
-  <div class="hero-atm"></div>
-  <div class="hero-fade-b"></div>
 
   <div class="hero-chips">
     <span class="hchip hot">FRESH GRAD</span>
@@ -1175,28 +1000,27 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     <span class="hchip id">SIAP BEKERJA</span>
   </div>
 
-  <div class="av-wrap rv">
-    <canvas class="av-aura" id="auraCanvas"></canvas>
-    <div class="av-rings" aria-hidden="true">
-      <div class="av-ring av-r2"></div>
-      <div class="av-ring av-r1"></div>
-    </div>
-    <div class="av-frame">
-      <img class="av-img" src="https://up.ijal.eu.cc/f/mq84fgwa" alt="Rijal profile photo" onerror="this.onerror=null;this.style.display='none'"/>
+  <div class="hero-top rv">
+    <img
+      class="av-simple"
+      src="https://up.ijal.eu.cc/f/mq84fgwa"
+      alt="Rijal profile photo"
+      onerror="this.onerror=null;this.style.background='#16161E'"
+    />
+    <div class="hero-top-info">
+      <div class="hero-eyebrow">// PORTFOLIO 2025</div>
+      <h1 id="hero-name" class="hero-name">HI, I'M<br/><em>RIJAL</em></h1>
+      <div class="hero-fullname">FULL NAME: <span>AFRIZAL VANDLEST</span></div>
+      <p class="hero-sub">
+        <span class="en"><span class="hl">FRESH GRAD</span><span class="pipe">|</span>BUILDER<span class="pipe">|</span>EXPLORER</span>
+        <span class="id"><span class="hl">FRESH GRAD</span><span class="pipe">|</span>PEMBUAT<span class="pipe">|</span>PENJELAJAH</span>
+      </p>
     </div>
   </div>
 
-  <div class="hero-eyebrow">// PORTFOLIO 2025 — AFRIZAL VANDLEST</div>
-  <h1 id="hero-name" class="hero-name">HI, I'M<br/><em>RIJAL</em></h1>
-  <div class="hero-fullname">FULL NAME: <span>AFRIZAL VANDLEST</span></div>
-  <p class="hero-sub">
-    <span class="en"><span class="hl">FRESH GRADUATE</span><span class="pipe">|</span>BUILDER<span class="pipe">|</span>EXPLORER</span>
-    <span class="id"><span class="hl">FRESH GRADUATE</span><span class="pipe">|</span>PEMBUAT<span class="pipe">|</span>PENJELAJAH</span>
-  </p>
-
   <div class="hero-desc rv">
-    <p class="hero-desc-lead en">I turn ideas into <em>real, working products</em> — from <strong>Telegram &amp; WhatsApp bots</strong> that automate everyday tasks, to fast <strong>web tools</strong> for media sharing &amp; downloading. I focus on what people <em>actually use</em>, not just demos. Every project is shipped with a craftsman&rsquo;s eye for <strong>speed</strong>, <strong>clarity</strong>, and <strong>real-world impact</strong>.</p>
-    <p class="hero-desc-lead id">Saya mengubah ide menjadi <em>produk nyata yang benar-benar dipakai</em> — mulai dari <strong>bot Telegram &amp; WhatsApp</strong> untuk otomasi tugas harian, hingga <strong>web tool</strong> cepat untuk berbagi &amp; mengunduh media. Saya fokus pada hal yang <em>benar-benar digunakan orang</em>, bukan sekadar demo. Setiap proyek dirilis dengan perhatian pada <strong>kecepatan</strong>, <strong>kejelasan</strong>, dan <strong>dampak nyata</strong>.</p>
+    <p class="hero-desc-lead en">I turn ideas into <em>real, working products</em> — from <strong>Telegram &amp; WhatsApp bots</strong> that automate everyday tasks, to fast <strong>web tools</strong> for media sharing &amp; downloading. I focus on what people <em>actually use</em>, not just demos.</p>
+    <p class="hero-desc-lead id">Saya mengubah ide menjadi <em>produk nyata yang benar-benar dipakai</em> — mulai dari <strong>bot Telegram &amp; WhatsApp</strong> untuk otomasi tugas harian, hingga <strong>web tool</strong> cepat untuk berbagi &amp; mengunduh media.</p>
     <p class="hero-desc-sub en">// Driven by curiosity, shipped with care.</p>
     <p class="hero-desc-sub id">// Didorong rasa ingin tahu, dirilis dengan teliti.</p>
     <div class="hero-meta">
@@ -1211,13 +1035,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     </div>
   </div>
 
-  <div class="hero-stats">
+  <div class="hero-stats" style="margin-top:22px">
     <div class="hstat"><div class="hstat-val">4</div><div class="hstat-lbl">PROJECTS</div></div>
     <div class="hstat"><div class="hstat-val">18</div><div class="hstat-lbl">YEARS OLD</div></div>
     <div class="hstat"><div class="hstat-val">&#x221E;</div><div class="hstat-lbl">DRIVE</div></div>
   </div>
 
-  <div class="btns">
+  <div class="btns" style="margin-top:20px">
     <a href="#projects" class="btn b-solid">
       <span class="en">&#x2192; VIEW PROJECTS</span>
       <span class="id">&#x2192; LIHAT PROYEK</span>
@@ -1242,14 +1066,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
     <span>— AFRIZAL VANDLEST</span>
   </div>
 
-  <p class="abody rv en">My name is <strong>Afrizal Vandlest</strong>, better known as <em>Rijal</em> — a <strong>Fresh Graduate</strong> at 18 years old from Bogor, Indonesia, with an intense passion for technology, exploration, and self-improvement. I believe that growth doesn't come from comfort, it comes from constantly stepping into the unknown and challenging everything I think I already know. Every project I start is a reflection of that mindset — curiosity turned into code.</p>
-  <p class="abody rv id">Nama saya <strong>Afrizal Vandlest</strong>, biasa dipanggil <em>Rijal</em> — seorang <strong>Fresh Graduate</strong> berusia 18 tahun dari Bogor, Indonesia, dengan semangat besar terhadap teknologi, eksplorasi, dan pengembangan diri. Aku percaya bahwa pertumbuhan sejati tidak datang dari zona nyaman, melainkan dari keberanian untuk melangkah ke hal-hal baru dan mempertanyakan semua yang sudah diketahui. Setiap proyek yang aku mulai adalah cerminan dari mindset itu — rasa ingin tahu yang diwujudkan dalam kode.</p>
+  <p class="abody rv en">My name is <strong>Afrizal Vandlest</strong>, better known as <em>Rijal</em> — a <strong>Fresh Graduate</strong> at 18 years old from Bogor, Indonesia, with an intense passion for technology, exploration, and self-improvement. I believe that growth doesn't come from comfort, it comes from constantly stepping into the unknown and challenging everything I think I already know.</p>
+  <p class="abody rv id">Nama saya <strong>Afrizal Vandlest</strong>, biasa dipanggil <em>Rijal</em> — seorang <strong>Fresh Graduate</strong> berusia 18 tahun dari Bogor, Indonesia, dengan semangat besar terhadap teknologi, eksplorasi, dan pengembangan diri. Aku percaya pertumbuhan sejati tidak datang dari zona nyaman, melainkan dari keberanian untuk melangkah ke hal-hal baru.</p>
 
-  <p class="abody rv en">From building <strong>Telegram and WhatsApp bots</strong> that solve real everyday problems, to crafting web tools for fast media sharing and downloading — I'm drawn to building things that <em>actually get used</em>. I don't just write code to learn syntax; I build products that people interact with. I care deeply about user experience, clean functionality, and making technology feel effortless.</p>
-  <p class="abody rv id">Dari membangun <strong>bot Telegram dan WhatsApp</strong> yang menyelesaikan masalah nyata, hingga membuat web tool untuk berbagi dan mengunduh media dengan cepat — aku tertarik untuk membangun hal-hal yang <em>benar-benar digunakan</em>. Aku tidak hanya menulis kode untuk belajar sintaks; aku membangun produk yang berinteraksi langsung dengan orang-orang. Aku sangat peduli terhadap pengalaman pengguna, fungsionalitas yang bersih, dan membuat teknologi terasa mudah dan natural.</p>
+  <p class="abody rv en">From building <strong>Telegram and WhatsApp bots</strong> that solve real everyday problems, to crafting web tools for fast media sharing and downloading — I'm drawn to building things that <em>actually get used</em>. I care deeply about user experience, clean functionality, and making technology feel effortless.</p>
+  <p class="abody rv id">Dari membangun <strong>bot Telegram dan WhatsApp</strong> yang menyelesaikan masalah nyata, hingga membuat web tool untuk berbagi dan mengunduh media dengan cepat — aku tertarik untuk membangun hal-hal yang <em>benar-benar digunakan</em>. Aku peduli terhadap pengalaman pengguna, fungsionalitas yang bersih, dan membuat teknologi terasa mudah.</p>
 
-  <p class="abody rv en">Outside of code, I'm someone who finds meaning in <strong>music</strong>, values <strong>genuine connection</strong> with others, and is always on the lookout for the next adventure — whether that's a hiking trail, a new skill to master, or a completely different domain to explore. I thrive in collaborative environments and believe that the best ideas are born when different minds come together.</p>
-  <p class="abody rv id">Di luar koding, aku adalah seseorang yang menemukan makna dalam <strong>musik</strong>, menghargai <strong>hubungan tulus</strong> dengan orang lain, dan selalu mencari petualangan berikutnya — baik itu jalur pendakian, keahlian baru untuk dikuasai, atau domain yang sama sekali berbeda untuk dijelajahi. Aku tumbuh berkembang dalam lingkungan kolaboratif dan percaya bahwa ide terbaik lahir saat pikiran-pikiran berbeda bertemu.</p>
+  <p class="abody rv en">Outside of code, I'm someone who finds meaning in <strong>music</strong>, values <strong>genuine connection</strong> with others, and is always on the lookout for the next adventure — whether that's a new skill to master or a completely different domain to explore.</p>
+  <p class="abody rv id">Di luar koding, aku adalah seseorang yang menemukan makna dalam <strong>musik</strong>, menghargai <strong>hubungan tulus</strong> dengan orang lain, dan selalu mencari petualangan berikutnya — baik itu keahlian baru untuk dikuasai, atau domain yang sama sekali berbeda untuk dijelajahi.</p>
 
   <div class="tgrid rv" style="margin-bottom:20px">
     <div class="tr">
@@ -1354,47 +1178,47 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
   </div>
 
   <ol class="mlist">
-    <li class="mc" id="mc1" data-track="Eenie Meenie — Justin Bieber &amp; Sean Kingston">
-      <img class="mcov" src="https://up.ijal.eu.cc/f/inimini" alt="Eenie Meenie cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
+    <li class="mc" id="mc1" data-track="Beauty and a Beat — Justin Bieber ft. Nicki Minaj">
+      <img class="mcov" src="https://uploader.ijal.eu.cc/s/KOmjqxZ" alt="Beauty and a Beat cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
       <div class="mmeta">
         <div class="midx">01</div>
-        <div class="mtitle">Eenie Meenie</div>
-        <div class="martist">Justin Bieber &amp; Sean Kingston</div>
+        <div class="mtitle">Beauty and a Beat</div>
+        <div class="martist">Justin Bieber ft. Nicki Minaj</div>
         <div class="mctrl">
-          <button class="pbtn" data-audio="a1" aria-label="Play Eenie Meenie">&#x25B6;</button>
+          <button class="pbtn" data-audio="a1" aria-label="Play Beauty and a Beat">&#x25B6;</button>
           <span class="mtime2" id="t1">0:00 / 0:00</span>
         </div>
         <div class="mpbar"><div class="mpfill" id="p1"></div></div>
       </div>
-      <audio id="a1" src="https://up.ijal.eu.cc/f/iniminilagu" preload="metadata"></audio>
+      <audio id="a1" src="https://uploader.ijal.eu.cc/s/x9Xkw2e" preload="metadata"></audio>
     </li>
-    <li class="mc" id="mc2" data-track="Locked Out of Heaven — Bruno Mars">
-      <img class="mcov" src="https://up.ijal.eu.cc/f/fortulong" alt="Locked Out cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
+    <li class="mc" id="mc2" data-track="One More Night — Maroon 5">
+      <img class="mcov" src="https://uploader.ijal.eu.cc/s/MAs1Qst" alt="One More Night cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
       <div class="mmeta">
         <div class="midx">02</div>
-        <div class="mtitle">Locked Out of Heaven</div>
-        <div class="martist">Bruno Mars</div>
+        <div class="mtitle">One More Night</div>
+        <div class="martist">Maroon 5</div>
         <div class="mctrl">
-          <button class="pbtn" data-audio="a2" aria-label="Play Locked Out of Heaven">&#x25B6;</button>
+          <button class="pbtn" data-audio="a2" aria-label="Play One More Night">&#x25B6;</button>
           <span class="mtime2" id="t2">0:00 / 0:00</span>
         </div>
         <div class="mpbar"><div class="mpfill" id="p2"></div></div>
       </div>
-      <audio id="a2" src="https://up.ijal.eu.cc/f/portulong" preload="metadata"></audio>
+      <audio id="a2" src="https://uploader.ijal.eu.cc/s/j4rGLtJ" preload="metadata"></audio>
     </li>
-    <li class="mc" id="mc3" data-track="Cook Pardom — Unknown Artist">
-      <img class="mcov" src="https://up.ijal.eu.cc/f/pardomm" alt="Cook Pardom cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
+    <li class="mc" id="mc3" data-track="Locked Out of Heaven — Bruno Mars">
+      <img class="mcov" src="https://uploader.ijal.eu.cc/s/h039WUh" alt="Locked Out of Heaven cover" loading="lazy" onerror="this.onerror=null;this.style.background='#161616'"/>
       <div class="mmeta">
         <div class="midx">03</div>
-        <div class="mtitle">Cook Pardom</div>
-        <div class="martist">Unknown Artist</div>
+        <div class="mtitle">Locked Out of Heaven</div>
+        <div class="martist">Bruno Mars</div>
         <div class="mctrl">
-          <button class="pbtn" data-audio="a3" aria-label="Play Cook Pardom">&#x25B6;</button>
+          <button class="pbtn" data-audio="a3" aria-label="Play Locked Out of Heaven">&#x25B6;</button>
           <span class="mtime2" id="t3">0:00 / 0:00</span>
         </div>
         <div class="mpbar"><div class="mpfill" id="p3"></div></div>
       </div>
-      <audio id="a3" src="https://up.ijal.eu.cc/f/tulongg" preload="metadata"></audio>
+      <audio id="a3" src="https://uploader.ijal.eu.cc/s/11t12x7" preload="metadata"></audio>
     </li>
   </ol>
 </section>
@@ -1407,7 +1231,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
   </div>
 
   <p class="abody rv en">Every project here started as an idea to fix a problem or scratch a curiosity — built from the ground up, learned along the way, and shipped with pride. Each one represents a step forward in my journey as a developer who cares about both code quality and real-world impact.</p>
-  <p class="abody rv id">Setiap proyek di sini dimulai sebagai ide untuk menyelesaikan masalah atau mewujudkan rasa ingin tahu — dibangun dari nol, dipelajari sepanjang jalan, dan dirilis dengan bangga. Masing-masing mewakili langkah maju dalam perjalananku sebagai developer yang peduli terhadap kualitas kode dan dampak di dunia nyata.</p>
+  <p class="abody rv id">Setiap proyek di sini dimulai sebagai ide untuk menyelesaikan masalah atau mewujudkan rasa ingin tahu — dibangun dari nol, dipelajari sepanjang jalan, dan dirilis dengan bangga. Masing-masing mewakili langkah maju dalam perjalananku sebagai developer.</p>
 
   <div class="plist">
     <article class="pcard rv">
@@ -1418,23 +1242,23 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">IGNITE BOT</div>
         <div class="badges">
-          <span class="badge bor">&#x2605; <span class="en">AUTOMATION</span><span class="id">OTOMATISASI</span></span>
+          <span class="badge bor"><span class="en">AUTOMATION</span><span class="id">OTOMATISASI</span></span>
           <span class="badge bmu">@IgniteBot</span>
           <span class="badge bgrn">LIVE</span>
         </div>
-        <p class="pdesc en">Ignite Bot is a smart Telegram chatbot engineered to handle <strong>YouTube media downloading</strong> with ease. Paste any YouTube link, and the bot instantly processes and delivers the audio or video file directly in chat — no third-party apps needed. It's powered by <strong>yt-search</strong> combined with a custom-built web downloader designed for speed and reliability.</p>
-        <p class="pdesc id">Ignite Bot adalah bot Telegram cerdas yang dirancang untuk menangani <strong>pengunduhan media YouTube</strong> dengan mudah. Tempel link YouTube apa pun, dan bot langsung memproses serta mengirimkan file audio atau video langsung di chat — tanpa aplikasi pihak ketiga. Ditenagai <strong>yt-search</strong> dikombinasikan dengan web downloader yang dirancang untuk kecepatan dan keandalan.</p>
+        <p class="pdesc en">Ignite Bot is a smart Telegram chatbot engineered to handle <strong>YouTube media downloading</strong> with ease. Paste any YouTube link, and the bot instantly processes and delivers the audio or video file directly in chat — no third-party apps needed. Powered by <strong>yt-search</strong> combined with a custom-built web downloader designed for speed and reliability.</p>
+        <p class="pdesc id">Ignite Bot adalah bot Telegram cerdas yang dirancang untuk menangani <strong>pengunduhan media YouTube</strong> dengan mudah. Tempel link YouTube apa pun, dan bot langsung memproses serta mengirimkan file audio atau video langsung di chat — tanpa aplikasi pihak ketiga.</p>
         <div class="feat-list en">
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Download YouTube videos in multiple formats and resolutions</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Auto-play and stream audio directly inside Telegram</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Smart search — just type a song name, no URL required</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Fast, lightweight, and built for daily use</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Download YouTube videos in multiple formats and resolutions</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Auto-play and stream audio directly inside Telegram</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Smart search — just type a song name, no URL required</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Fast, lightweight, and built for daily use</div>
         </div>
         <div class="feat-list id">
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Unduh video YouTube dalam berbagai format dan resolusi</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Auto-play dan stream audio langsung di Telegram</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Pencarian cerdas — cukup ketik nama lagu, tanpa perlu URL</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Cepat, ringan, dan dibangun untuk penggunaan harian</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Unduh video YouTube dalam berbagai format dan resolusi</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Auto-play dan stream audio langsung di Telegram</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Pencarian cerdas — cukup ketik nama lagu, tanpa perlu URL</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Cepat, ringan, dan dibangun untuk penggunaan harian</div>
         </div>
         <a href="https://t.me/ignitttee_bot" target="_blank" rel="noopener noreferrer" class="plink">
           <span class="en">CHAT ON TELEGRAM</span><span class="id">CHAT DI TELEGRAM</span>
@@ -1451,25 +1275,25 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">K1BRAT BOT</div>
         <div class="badges">
-          <span class="badge bor">&#x2605; MULTI-TOOL</span>
+          <span class="badge bor">MULTI-TOOL</span>
           <span class="badge bmu">WA MD</span>
           <span class="badge bgrn">ACTIVE</span>
         </div>
-        <p class="pdesc en">K1Brat Bot is a powerful multi-device WhatsApp bot built for <strong>group management and creative tools</strong>. Designed to handle everything from media downloading to AI-powered image enhancement, it's a complete toolkit that makes WhatsApp groups more productive and entertaining. Built using the latest WhatsApp MD protocol for maximum stability across devices.</p>
-        <p class="pdesc id">K1Brat Bot adalah bot WhatsApp multi-device bertenaga tinggi yang dibangun untuk <strong>manajemen grup dan alat kreatif</strong>. Dirancang untuk menangani segalanya mulai dari pengunduhan media hingga peningkatan gambar berbasis AI, ini adalah toolkit lengkap yang membuat grup WhatsApp lebih produktif dan menghibur. Dibangun menggunakan protokol WhatsApp MD terbaru untuk stabilitas maksimal di semua perangkat.</p>
+        <p class="pdesc en">K1Brat Bot is a powerful multi-device WhatsApp bot built for <strong>group management and creative tools</strong>. Designed to handle everything from media downloading to AI-powered image enhancement, it's a complete toolkit that makes WhatsApp groups more productive and entertaining.</p>
+        <p class="pdesc id">K1Brat Bot adalah bot WhatsApp multi-device bertenaga tinggi yang dibangun untuk <strong>manajemen grup dan alat kreatif</strong>. Dirancang untuk menangani segalanya mulai dari pengunduhan media hingga peningkatan gambar berbasis AI.</p>
         <div class="feat-list en">
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Multi-platform downloader: YouTube, Instagram, TikTok &amp; more</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>HD Photo Enhancer — upscale low-quality images with AI</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Remove BG — instant background removal for any photo</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Brat &amp; Brat Video maker — trending content creation tool</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Group management commands for admins</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Multi-platform downloader: YouTube, Instagram, TikTok and more</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>HD Photo Enhancer — upscale low-quality images with AI</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Remove BG — instant background removal for any photo</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Brat and Brat Video maker — trending content creation tool</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Group management commands for admins</div>
         </div>
         <div class="feat-list id">
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Downloader multi-platform: YouTube, Instagram, TikTok &amp; lainnya</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>HD Photo Enhancer — tingkatkan gambar beresolusi rendah dengan AI</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Remove BG — hapus latar belakang foto secara instan</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Pembuat Brat &amp; Brat Video — alat pembuatan konten trending</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Perintah manajemen grup untuk admin</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Downloader multi-platform: YouTube, Instagram, TikTok dan lainnya</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>HD Photo Enhancer — tingkatkan gambar beresolusi rendah dengan AI</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Remove BG — hapus latar belakang foto secara instan</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Pembuat Brat dan Brat Video — alat pembuatan konten trending</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Perintah manajemen grup untuk admin</div>
         </div>
         <a href="https://chat.whatsapp.com/Ds2KpajGHexBrgSuLo4xku" target="_blank" rel="noopener noreferrer" class="plink">
           <span class="en">TRY ON WHATSAPP</span><span class="id">COBA DI WHATSAPP</span>
@@ -1486,17 +1310,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">VOIDUPLOADER</div>
         <div class="badges">
-          <span class="badge bcy">&#x21C4; <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
+          <span class="badge bcy"><span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
           <span class="badge bgrn">LIVE</span>
         </div>
-        <p class="pdesc en">VoidUploader is a lightweight, no-nonsense file hosting tool built for speed. Upload <strong>images, videos, or audio files</strong> and receive an instant shareable link — no accounts, no fuss, no ads. One of my first solo web projects — taught me a tremendous amount about backend architecture, file handling, and building for real user needs. Domain recently migrated for improved performance and reliability.</p>
-        <p class="pdesc id">VoidUploader adalah alat hosting file yang ringan dan langsung ke intinya, dibangun untuk kecepatan. Unggah <strong>gambar, video, atau file audio</strong> dan terima tautan yang bisa dibagikan secara instan — tanpa akun, tanpa ribet, tanpa iklan. Salah satu proyek web solo pertamaku dan mengajarkan banyak hal tentang arsitektur backend, penanganan file, dan membangun sesuai kebutuhan pengguna nyata.</p>
+        <p class="pdesc en">VoidUploader is a lightweight, no-nonsense file hosting tool built for speed. Upload <strong>images, videos, or audio files</strong> and receive an instant shareable link — no accounts, no fuss, no ads. One of my first solo web projects that taught me a tremendous amount about backend architecture and file handling.</p>
+        <p class="pdesc id">VoidUploader adalah alat hosting file yang ringan dan langsung ke intinya, dibangun untuk kecepatan. Unggah <strong>gambar, video, atau file audio</strong> dan terima tautan yang bisa dibagikan secara instan — tanpa akun, tanpa ribet, tanpa iklan.</p>
         <div class="dbox">
-          <div class="drow"><span class="dtag old"><span class="en">OLD</span><span class="id">LAMA</span></span><span class="durl old">uploader.ijal.eu.cc</span></div>
+          <div class="drow"><span class="dtag old"><span class="en">OLD</span><span class="id">LAMA</span></span><span class="durl old">up.ijal.eu.cc</span></div>
           <div class="darr">&#x2193;</div>
-          <div class="drow"><span class="dtag new"><span class="en">NEW</span><span class="id">BARU</span></span><span class="durl">up.ijal.eu.cc</span></div>
+          <div class="drow"><span class="dtag new"><span class="en">NEW</span><span class="id">BARU</span></span><span class="durl">uploader.ijal.eu.cc</span></div>
         </div>
-        <a href="https://up.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
+        <a href="https://uploader.ijal.eu.cc" target="_blank" rel="noopener noreferrer" class="plink">
           <span class="en">VISIT NEW DOMAIN</span><span class="id">KUNJUNGI DOMAIN BARU</span>
           <span class="ar">&#x2192;</span>
         </a>
@@ -1511,22 +1335,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
       <div class="pbody">
         <div class="ptitle">YTDOWN</div>
         <div class="badges">
-          <span class="badge bcy">&#x21C4; <span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
+          <span class="badge bcy"><span class="en">MIGRATED</span><span class="id">BERPINDAH</span></span>
           <span class="badge bgrn">LIVE</span>
         </div>
-        <p class="pdesc en">YTDOWN is a clean, focused YouTube downloader web app — no bloat, no distractions, just <strong>pure functionality</strong>. Paste a link, select your preferred quality from HD to audio-only, and download in seconds. Built with a minimalist philosophy: do one thing and do it extremely well. This project sharpened my skills in frontend UX design, API integration, and creating tools that respect the user's time.</p>
-        <p class="pdesc id">YTDOWN adalah aplikasi web downloader YouTube yang bersih dan terfokus — tanpa bloat, tanpa gangguan, hanya <strong>fungsionalitas murni</strong>. Tempel link, pilih kualitas yang diinginkan dari HD hingga audio saja, dan unduh dalam hitungan detik. Dibangun dengan filosofi minimalis: lakukan satu hal dan lakukan dengan sangat baik. Proyek ini mengasah kemampuanku dalam desain UX frontend, integrasi API, dan membuat alat yang menghargai waktu pengguna.</p>
+        <p class="pdesc en">YTDOWN is a clean, focused YouTube downloader web app — no bloat, no distractions, just <strong>pure functionality</strong>. Paste a link, select your preferred quality from HD to audio-only, and download in seconds. Built with a minimalist philosophy: do one thing and do it extremely well.</p>
+        <p class="pdesc id">YTDOWN adalah aplikasi web downloader YouTube yang bersih dan terfokus — tanpa bloat, tanpa gangguan, hanya <strong>fungsionalitas murni</strong>. Tempel link, pilih kualitas yang diinginkan dari HD hingga audio saja, dan unduh dalam hitungan detik.</p>
         <div class="feat-list en">
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Download any YouTube video in HD quality</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Extract audio as MP3 — clean, high bitrate</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Zero ads, zero registration required</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Fast processing with real-time progress feedback</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Download any YouTube video in HD quality</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Extract audio as MP3 — clean, high bitrate</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Zero ads, zero registration required</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Fast processing with real-time progress feedback</div>
         </div>
         <div class="feat-list id">
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Unduh video YouTube apa pun dalam kualitas HD</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Ekstrak audio sebagai MP3 — bersih, bitrate tinggi</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Tanpa iklan, tanpa pendaftaran</div>
-          <div class="feat-item"><span class="feat-bullet">&#x25B8;</span>Pemrosesan cepat dengan umpan balik progres real-time</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Unduh video YouTube apa pun dalam kualitas HD</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Ekstrak audio sebagai MP3 — bersih, bitrate tinggi</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Tanpa iklan, tanpa pendaftaran</div>
+          <div class="feat-item"><span class="feat-bullet">—</span>Pemrosesan cepat dengan umpan balik progres real-time</div>
         </div>
         <div class="dbox">
           <div class="drow"><span class="dtag old"><span class="en">OLD</span><span class="id">LAMA</span></span><span class="durl old">goldstream.idgf.web.id</span></div>
@@ -1550,8 +1374,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
         <div class="badges">
           <span class="badge brm">[!] <span class="en">IN DEV</span><span class="id">DALAM PENGEMBANGAN</span></span>
         </div>
-        <p class="pdesc en"><strong style="color:var(--txt2)">Project Leak:</strong> The next tool in the lineup is a dedicated TikTok downloader — built to grab videos in <strong style="color:var(--txt2)">full HD without watermark</strong>, plus high-quality audio extraction as MP3. The goal is to make TikTok content saving as seamless as possible — instant link processing, no filler screens, just the file you need. Architecture is already planned; release is right around the corner.</p>
-        <p class="pdesc id"><strong style="color:var(--txt2)">Bocoran Project:</strong> Alat berikutnya adalah TikTok downloader yang didedikasikan — dibangun untuk mengambil video dalam <strong style="color:var(--txt2)">kualitas HD penuh tanpa watermark</strong>, plus ekstraksi audio berkualitas tinggi sebagai MP3. Tujuannya adalah membuat penyimpanan konten TikTok semudah mungkin — pemrosesan link instan, tanpa layar filler, langsung file yang dibutuhkan. Arsitektur sudah direncanakan; rilis sudah di depan mata.</p>
+        <p class="pdesc en"><strong style="color:var(--txt2)">Project Leak:</strong> The next tool in the lineup is a dedicated TikTok downloader — built to grab videos in <strong style="color:var(--txt2)">full HD without watermark</strong>, plus high-quality audio extraction as MP3. Architecture is already planned; release is right around the corner.</p>
+        <p class="pdesc id"><strong style="color:var(--txt2)">Bocoran Project:</strong> Alat berikutnya adalah TikTok downloader yang didedikasikan — dibangun untuk mengambil video dalam <strong style="color:var(--txt2)">kualitas HD penuh tanpa watermark</strong>, plus ekstraksi audio berkualitas tinggi sebagai MP3. Arsitektur sudah direncanakan; rilis sudah di depan mata.</p>
         <div class="rbox">
           <strong><span class="en">ESTIMATED RELEASE:</span><span class="id">ESTIMASI RILIS:</span></strong>
           <span class="en"> June 26, 2026</span><span class="id"> 26 Juni 2026</span>
@@ -1578,13 +1402,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--or); outline-of
   <div class="cpanel rv">
     <div class="cphead">
       <div class="cphead-glow"></div>
-      <div class="cphead-glow2"></div>
       <div class="cptitle">
         <span class="en">EMBRACING<br/>THE JOURNEY</span>
         <span class="id">MENIKMATI<br/>PERJALANAN</span>
       </div>
       <p class="cpsub en">I'm always open to new conversations, collaborations, and opportunities — whether you want to build something together, talk tech, or just say hi. Reach out on WhatsApp or Instagram, and let's make something happen.</p>
-      <p class="cpsub id">Aku selalu terbuka untuk percakapan baru, kolaborasi, dan peluang — baik kamu ingin membangun sesuatu bersama, ngobrol soal teknologi, atau sekadar menyapa. Hubungi via WhatsApp atau Instagram, dan mari kita wujudkan sesuatu.</p>
+      <p class="cpsub id">Aku selalu terbuka untuk percakapan baru, kolaborasi, dan peluang — baik kamu ingin membangun sesuatu bersama, ngobrol soal teknologi, atau sekadar menyapa. Hubungi via WhatsApp atau Instagram.</p>
     </div>
     <div class="cprows">
       <div class="cprow">
@@ -1673,7 +1496,7 @@ if ('IntersectionObserver' in window) {
 }
 
 // Countdown
-var release = new Date('2026-05-26T00:00:00');
+var release = new Date('2026-06-26T00:00:00');
 function updateCountdown() {
   var diff = release - new Date();
   if (diff <= 0) {
@@ -1692,7 +1515,7 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ORANGE tap on project numbers (.pnum) and music indexes (.midx)
+// Tap highlight on project numbers and music indexes
 function addTapHighlight(selector) {
   document.querySelectorAll(selector).forEach(function(el) {
     el.addEventListener('pointerdown', function() {
@@ -1764,81 +1587,6 @@ btns.forEach(function(btn) {
     if (tEl) tEl.textContent = '0:00 / ' + fmt(aud.duration);
   });
 });
-
-// OPTIMIZED Canvas Aura — fewer particles, no ctx.filter blur (was the main perf killer)
-function initAura() {
-  var canvas = document.getElementById('auraCanvas');
-  if (!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-  var S = 200;
-  canvas.width = S;
-  canvas.height = S;
-  var cx = S / 2, cy = S / 2;
-  var R = 62;
-
-  // REDUCED: 75 → 28 particles; removed ctx.filter (very expensive)
-  var COUNT = 28;
-  var particles = [];
-
-  function makeParticle(i) {
-    return {
-      angle: (Math.PI * 2 * i / COUNT) + (Math.random() - .5) * .5,
-      r: R + (Math.random() - .5) * 14,
-      speed: (0.003 + Math.random() * 0.003) * (Math.random() > .45 ? 1 : -1),
-      life: Math.floor(Math.random() * 80),
-      maxLife: 60 + Math.floor(Math.random() * 80),
-      size: 5 + Math.random() * 10,
-      driftDir: 1
-    };
-  }
-  for (var i = 0; i < COUNT; i++) particles.push(makeParticle(i));
-
-  // Pre-build reusable gradient helper (avoids GC thrash)
-  function drawParticle(p) {
-    var x = cx + Math.cos(p.angle) * p.r;
-    var y = cy + Math.sin(p.angle) * p.r;
-    var t = p.life / p.maxLife;
-    var alpha = t < .2 ? t / .2 : t > .8 ? (1 - t) / .2 : 1;
-    var normY = (Math.sin(p.angle) + 1) / 2;
-    var gg = Math.floor(115 - normY * 87); // lerp 115→28
-    var a = alpha * (0.65 - normY * 0.43);
-
-    var g = ctx.createRadialGradient(x, y, 0, x, y, p.size);
-    g.addColorStop(0,   'rgba(255,' + gg + ',0,' + a + ')');
-    g.addColorStop(.6,  'rgba(255,' + gg + ',0,' + (a * .2) + ')');
-    g.addColorStop(1,   'rgba(0,0,0,0)');
-    ctx.beginPath();
-    ctx.arc(x, y, p.size, 0, 6.2832);
-    ctx.fillStyle = g;
-    ctx.fill();
-  }
-
-  function update(p) {
-    p.angle += p.speed;
-    p.r += p.driftDir * 0.06;
-    if (p.r < R - 10) p.driftDir = 1;
-    if (p.r > R + 17) p.driftDir = -1;
-    p.life++;
-    if (p.life >= p.maxLife) {
-      p.life = 0;
-      p.maxLife = 60 + Math.floor(Math.random() * 80);
-      p.size = 5 + Math.random() * 10;
-    }
-  }
-
-  // OPTIMIZED: throttle to ~30fps instead of 60fps (halves GPU load)
-  var lastT = 0;
-  function animate(t) {
-    if (t - lastT < 33) { requestAnimationFrame(animate); return; }
-    lastT = t;
-    ctx.clearRect(0, 0, S, S);
-    for (var i = 0; i < COUNT; i++) { update(particles[i]); drawParticle(particles[i]); }
-    requestAnimationFrame(animate);
-  }
-  requestAnimationFrame(animate);
-}
-
-initAura();
 
 })();
 </script>
